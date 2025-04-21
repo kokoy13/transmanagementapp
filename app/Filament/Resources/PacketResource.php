@@ -22,6 +22,8 @@ class PacketResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-clipboard-document-list';
 
+    protected static ?string $navigationGroup = 'Contents';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -77,7 +79,7 @@ class PacketResource extends Resource
                         'Office' => 'warning',
                         'Internet Kerja' => 'success',
                         'Dedicated' => 'danger',
-                        default => 'gray', 
+                        default => 'gray',
                     }),
                 TextColumn::make('bandwidth')
                     ->sortable()

@@ -37,6 +37,12 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        'transnetsumbar' => [
+            'driver' => 'local',
+            'root' => '/home/kokoy/PBL/mainapp/transnetsumbar/storage/app/public',  // Path ke folder storage milik transnetsumbar
+            'url' => env('TRANSNETSUMBAR_URL', 'http://localhost:8001/storage'), // Sesuaikan URL dengan aplikasi kedua
+            'visibility' => 'public',
+        ],
 
         'public' => [
             'driver' => 'local',
@@ -76,5 +82,8 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
+
+
+
 
 ];

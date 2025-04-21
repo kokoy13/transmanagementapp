@@ -2,21 +2,26 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\BannerResource\Pages;
-use App\Filament\Resources\BannerResource\RelationManagers;
-use App\Models\Banner;
+use App\Models\User;
 use Filament\Forms;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Filters\Filter;
+use App\Models\Banner;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
+// use Filament\Widgets\StatsOverviewWidget\Card;
+use App\Filament\Resources\BannerResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\BannerResource\RelationManagers;
+// use Filament\Infolists\Components\Card;
+use Filament\Forms\Components\Card;
+use Illuminate\Support\Facades\Auth;
 
 
 class BannerResource extends Resource
@@ -25,15 +30,22 @@ class BannerResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-s-view-columns';
 
+    protected static ?string $navigationGroup = 'Contents';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->required()
-                    ->label('Banner Name'),
-                FileUpload::make('img')
-                    ->label('Image')
+                Card::make()
+                    ->schema([
+                        TextInput::make('name')
+                            ->required()
+                            ->label('Banner Name'),
+                        FileUpload::make('img')
+                            ->label('Image')
+                            ->disk('transnetsumbar')
+                            ->disk('public')
+                    ])
             ]);
     }
 
@@ -44,7 +56,7 @@ class BannerResource extends Resource
                 TextColumn::make('name')
                     ->label('Banner Name'),
                 ImageColumn::make('img')
-                    ->label('Image')
+                    ->label('thumbhnail')
             ])
             ->filters([
                 // Tables\Filters\trashedFilter::make(),

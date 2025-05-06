@@ -1,3 +1,4 @@
+@props(['packets'])
 <div class="flex flex-wrap justify-center gap-10 relative z-40">
     {{-- Card --}}
     @foreach ($packets as $packet)

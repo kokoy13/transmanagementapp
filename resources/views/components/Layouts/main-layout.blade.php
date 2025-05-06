@@ -8,11 +8,6 @@
     <meta name="theme-color" content="#000000" />
     <link rel="shortcut icon" href="./assets/img/favicon.ico" />
     <link
-        rel="apple-touch-icon"
-        sizes="76x76"
-        href="./assets/img/apple-icon.png"
-    />
-    <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />

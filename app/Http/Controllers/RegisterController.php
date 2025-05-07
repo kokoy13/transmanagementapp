@@ -11,7 +11,9 @@ class RegisterController extends Controller
 {
     public function register(Request $request)
     {
-        if ($request->password != $request->password2) {
+        $emailExists = User::where('email', $request->email)->exists();
+
+        if ($request->password != $request->password2 || $emailExists) {
             return redirect("sign-up")->with("error", "Password Tidak Sama atau Email Sudah Terdaftar");
         }
 

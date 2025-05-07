@@ -7,18 +7,18 @@
         :class="scrolled ? 'bg-gray-800 shadow-md' : 'bg-transparent'"
     >
         @if (session('success'))
-            <div class="flex items-center p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg absolute z-[99] right-1/2 translate-x-1/2" role="alert">
+            <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition class="flex items-center p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg absolute z-[99] right-1/2 translate-x-1/2" role="alert">
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V7a1 1 0 10-2 0v2a1 1 0 001 1h1a1 1 0 100-2h-1zm0 4a1 1 0 10-2 0v2a1 1 0 002 0v-2z" clip-rule="evenodd"></path>
                 </svg>
                 <span class="sr-only">Success</span>
                 <div>
                     {{ session('success') }}
-                </div> di tangah baa?
+                </div>
             </div>
         @endif
         <div
-            class="container px-24 mx-auto flex flex-wrap items-center justify-between"
+            class="container  w-full lg:px-18 xl:px-24  lg:mx-5 xl:mx-auto flex flex-wrap items-center justify-between"
         >
             <div
             class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"

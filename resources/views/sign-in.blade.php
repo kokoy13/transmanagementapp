@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +10,18 @@
     <title>Transnet Sumbar</title>
 </head>
 <body class="w-dvw h-dvh flex items-center">
-  <div class="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">
+  <div class="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl relative">
+        @if (session('error'))
+            <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition class="flex items-center p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg absolute z-[99] right-1/2 translate-x-1/2" role="alert">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V7a1 1 0 10-2 0v2a1 1 0 001 1h1a1 1 0 100-2h-1zm0 4a1 1 0 10-2 0v2a1 1 0 002 0v-2z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Error</span>
+                <div>
+                    {{ session('error') }}
+                </div>
+            </div>
+        @endif
     <div class="hidden bg-cover lg:block lg:w-1/2" style="background-image: url('/assets/img/hero-s.png');"></div>
 
     <form method="post" action="/sign-in" class="w-full px-6 py-8 md:px-8 lg:w-1/2">
@@ -70,5 +82,6 @@
         </div>
     </form>
 </div>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 </body>
 </html>

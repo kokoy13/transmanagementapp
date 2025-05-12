@@ -21,7 +21,7 @@
                 </div>
             </div>
         @endif
-        <div class="hidden bg-cover lg:block lg:w-1/2 bg-contain" style="background-image: url('/assets/img/hero4.jpeg')"></div>
+        <div class="hidden bg-cover lg:block lg:w-1/2" style="background-image: url('/assets/img/hero4.jpeg')"></div>
 
         <div class="w-full px-6 py-8 md:px-8 lg:w-1/2">
             <form class="w-full relative" method="post" action="/sign-up">

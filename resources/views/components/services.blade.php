@@ -39,7 +39,7 @@
                 >
                     <img
                     alt="..."
-                    src="/assets/img/service.jpg"
+                    src="/assets/img/service4.jpeg"
                     />
                     <blockquote class="relative p-8 mb-4">
                     <svg

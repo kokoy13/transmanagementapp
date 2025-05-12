@@ -39,7 +39,7 @@
                 </div>
                 <a
                     href=""
-                    class="bg-blue-600 absolute -bottom-4 text-white font-semibold w-max px-12 py-1 rounded-xl border border-white py-2">
+                    class="bg-blue-600 absolute -bottom-4 text-white font-semibold w-max px-12 rounded-xl border border-white py-2">
                     <span class="uppercase">
                         Pesan Sekarang
                     </span>

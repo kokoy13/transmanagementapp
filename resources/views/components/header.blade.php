@@ -74,14 +74,27 @@
                             Kontak
                         </a>
                     </li>
-                    <li data-aos="fade-down" class="flex items-center">
-                        <a href="/sign-in"
-                            class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
-                            type="button"
-                            style="transition: all 0.15s ease 0s;"
-                        > Log in
-                        </a>
-                    </li>
+                    @if(Auth::check())
+                        <div data-aos="fade-down" x-data="{ open: false }" class="relative">
+                            <img @click="open = !open" src="{{ Auth::user()->avatar }}" alt="Avatar" class="rounded-full w-10 h-10 cursor-pointer">
+                            <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg z-10">
+                                <a href="/dashboard" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+                                </form>
+                            </div>
+                        </div>
+                    @else
+                        <li data-aos="fade-down" class="flex items-center">
+                            <a href="/sign-in"
+                                class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+                                type="button"
+                                style="transition: all 0.15s ease 0s;"
+                            > Log in
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </div>
         </div>

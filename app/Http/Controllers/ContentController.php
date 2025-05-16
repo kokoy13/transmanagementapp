@@ -12,9 +12,9 @@ class ContentController extends Controller
         $packetController = new PacketController();
         $bannerController = new BannerController();
 
-        $packets = $packetController->getAll();
-        $banners = $bannerController->getAll();
+        $packets = $packetController->getContent();
+        $banners = $bannerController->getContent();
 
-        return view('home',["packets"=>$packets, "banners"=>$banners]);
+        return view('front.home',["packets"=>$packets, "banners"=>$banners]);
     }
 }

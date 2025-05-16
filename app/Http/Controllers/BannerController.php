@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class BannerController extends Controller
 {
-    public function getAll(){
+    public function getContent(){
         $banners = Banner::all();
         return $banners;
     }

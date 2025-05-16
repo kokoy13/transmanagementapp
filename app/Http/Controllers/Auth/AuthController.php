@@ -43,7 +43,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             return redirect()->intended('/');
         }
-        return view('sign-in');
+        return view('auth.sign-in');
     }
 
     public function authenticate(Request $request)

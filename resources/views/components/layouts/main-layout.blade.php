@@ -16,9 +16,23 @@
         href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css"
     />
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-    @vite('resources/css/app.css')
-    <link rel="stylesheet" href="/css/app.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .pricing-card:hover .speed-badge {
+            transform: scale(1.05);
+        }
+        .speed-badge {
+            transition: transform 0.3s ease;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #4338ca, #3b82f6);
+        }
+    </style>
     <title>{{ $title}}</title>
+    @vite('resources/css/app.css')
 </head>
 <body class="text-gray-800 antialiased">
     <x-header/>

@@ -1,7 +1,7 @@
 @props(['banners'])
 
 <div
-    class="relative pt-16 pb-32 flex content-center items-center justify-center"
+    class="relative pt-16 pb-64 flex content-center items-center justify-center"
     style="min-height: 105vh;"
 >
     <div id="default-carousel" class="absolute w-full h-full" data-carousel="slide">

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\PacketController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ZoneController;
 
@@ -18,7 +19,7 @@ Route::get('/home/{name}', [ContentController::class, 'index'])->middleware('aut
 
 //Route Sign Up
 Route::get('/sign-up', function () {
-    return view('sign-up');
+    return view('auth.sign-up');
 });
 
 //route Sign up
@@ -32,7 +33,7 @@ Route::get('/zones', [ZoneController::class, 'index']);
 
 //ROute create Zone
 Route::get('/map', function () {
-    return view('zone');
+    return view('front.zone');
 });
 
 //Route redirect auth socialite
@@ -40,3 +41,9 @@ Route::get('/auth/redirect/{provider}',[AuthController::class, 'redirect'])->nam
 
 //Route callback auth socialite
 Route::get('/auth/{provider}/callback',[AuthController::class, 'callback']);
+
+//Route Price List
+Route::get('/packets',[PacketController::class, 'getPacket']);
+
+//Route Details
+Route::get('/packet/details/{id}', [PacketController::class, 'getPacketId'])->name('packet.details');

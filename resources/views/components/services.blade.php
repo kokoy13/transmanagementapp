@@ -39,7 +39,7 @@
                 >
                     <img
                     alt="..."
-                    src="/assets/img/service4.jpeg"
+                    src="{{ asset('assets/img/service4.jpeg') }}"
                     />
                     <blockquote class="relative p-8 mb-4">
                     <svg
@@ -94,7 +94,7 @@
             alt="..."
             data-aos="fade-right"
             class="max-w-full rounded-lg shadow-lg"
-            src="assets/img/service2.jpg"
+            src="{{ asset('assets/img/service2.jpg') }}"
         />
         </div>
         <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
@@ -196,7 +196,7 @@
                 >
                     <img
                     alt="..."
-                    src="/assets/img/service3.jpg"
+                    src="{{ asset('assets/img/service3.jpg')}}"
                     />
                     <blockquote class="relative p-8 mb-4">
                     <svg

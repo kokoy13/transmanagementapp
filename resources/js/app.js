@@ -7,6 +7,5 @@ AOS.init({
     duration: 800, // opsional
 });
 
-
 window.Alpine = Alpine
 Alpine.start()

@@ -6,33 +6,23 @@
     <title>Modern Order Form</title>
     <!-- Include Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Include Alpine.js -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {{-- @vite('resources/css/app.css') --}}
+
 </head>
 <body class="bg-gray-100">
     <x-header2></x-header2>
     <main class="container mx-auto px-4 py-8 mb-8 mt-20 max-w-6xl" x-data="{
         showModal: false,
         formData: {
-            fullname: 'John Doe',
-            email: 'john@example.com',
             telp: '',
-            installationAddress: '',
-            packetName: 'Premium Package',
-            bandwidth: '80 Mbps',
-            price: '500.000'
+            installationAddress: ''
         },
         isValid() {
-            return this.formData.fullname && 
-                   this.formData.telp && 
+            return this.formData.telp && 
                    this.formData.installationAddress;
-        },
-        submitForm() {
-            if (this.isValid()) {
-                // In a real app, this would submit the form
-                alert('Form submitted successfully!');
-                this.showModal = false;
-            }
         }
     }">
         <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
@@ -51,12 +41,13 @@
                                     Full Name <span class="text-red-500">*</span>
                                 </label>
                                 <input
+                                    readonly
                                     type="text"
                                     id="fullname"
                                     name="fullname"
-                                    x-model="formData.fullname"
+                                    value="{{ $user->name }}"
                                     required
-                                    class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    class="w-full border border-gray-300 bg-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
                                 />
                             </div>
 
@@ -65,13 +56,13 @@
                                     Email <span class="text-red-500">*</span>
                                 </label>
                                 <input
-                                    disabled
+                                    readonly
                                     type="email"
                                     id="email"
-                                    value="john@example.com"
+                                    value="{{ $user->email }}"
                                     name="email"
                                     required
-                                    class="w-full border border-gray-300 bg-gray-100 rounded-lg px-4 py-3"
+                                    class="w-full border border-gray-300 bg-gray-300 rounded-lg px-4 py-3"
                                 />
                             </div>
 
@@ -121,12 +112,12 @@
                                 </label>
                                 <input
                                     readonly
-                                    value="Premium Package"
+                                    value="{{ $packet->name }}"
                                     type="text"
                                     id="packetName"
                                     name="packetName"
                                     required
-                                    class="w-full border border-gray-300 bg-gray-100 rounded-lg px-4 py-3"
+                                    class="w-full border border-gray-300 bg-gray-300 rounded-lg px-4 py-3"
                                 />
                             </div>
 
@@ -161,8 +152,8 @@
                                 <label class="block mb-2 font-medium text-gray-700">
                                     Price
                                 </label>
-                                <input type="text" name="price" hidden value="500.000">
-                                <div class="text-4xl font-bold text-green-600">Rp 500.000</div>
+                                <input type="text" name="price" hidden value="{{ $packet->price }}" />
+                                <div class="text-4xl font-bold text-green-600">Rp {{ number_format($packet->price, 0, ',','.') }}</div>
                             </div>
                         </div>
 
@@ -188,7 +179,9 @@
         </div>
 
         <!-- Confirmation Modal -->
-        <div 
+        <form
+            action="{{ route('order.set') }}"
+            method="post"
             x-show="showModal" 
             x-cloak
             class="fixed inset-0 z-50 overflow-y-auto"
@@ -199,6 +192,7 @@
             x-transition:leave-start="opacity-100"
             x-transition:leave-end="opacity-0"
         >
+            @csrf
             <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
                 <div 
                     class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75" 
@@ -233,25 +227,31 @@
                                         <div class="border-b border-gray-200 pb-3">
                                             <p class="text-sm text-gray-500">Please review your order details:</p>
                                         </div>
-                                        
+                                        <input type="text" hidden name="fullname" value="{{ $user->name }}">
+                                        <input type="text" hidden name="telp" x-model="formData.telp">
+                                        <input type="text" hidden name="email" value="{{ $user->email }}">
+                                        <input type="text" hidden name="packetName" value="{{ $packet->name }}">
+                                        <input type="text" hidden name="bandwidth" value="{{ $packet->bandwidth }}">
+                                        <input type="text" hidden name="installationAddress" x-model="formData.installationAddress">
+                                        <input type="text" hidden name="price" value="{{ $packet->price }}">
                                         <div class="grid grid-cols-2 gap-2 text-sm">
                                             <p class="text-gray-600">Full Name:</p>
-                                            <p class="font-medium" x-text="formData.fullname"></p>
+                                            <p class="font-medium">{{ $user->name }}</p>
                                             
                                             <p class="text-gray-600">Phone:</p>
                                             <p class="font-medium" x-text="formData.telp"></p>
                                             
                                             <p class="text-gray-600">Package:</p>
-                                            <p class="font-medium" x-text="formData.packetName"></p>
+                                            <p class="font-medium">{{ $packet->name }}</p>
                                             
                                             <p class="text-gray-600">Bandwidth:</p>
-                                            <p class="font-medium" x-text="formData.bandwidth"></p>
+                                            <p class="font-medium">{{ $packet->bandwidth }} Mbps</p>
                                             
                                             <p class="text-gray-600">Installation Address:</p>
                                             <p class="font-medium" x-text="formData.installationAddress"></p>
                                             
                                             <p class="text-gray-600 font-semibold">Total Price:</p>
-                                            <p class="font-bold text-green-600">Rp <span x-text="formData.price"></span></p>
+                                            <p class="font-bold text-green-600">Rp <span>{{ number_format($packet->price, 0, ',','.') }}</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -260,9 +260,8 @@
                     </div>
                     <div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
                         <button 
-                            type="button" 
+                            type="submit" 
                             class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
-                            @click="submitForm()"
                         >
                             Confirm Order
                         </button>
@@ -276,7 +275,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
 
         <style>
             [x-cloak] { display: none !important; }

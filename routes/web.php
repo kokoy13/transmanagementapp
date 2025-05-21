@@ -48,3 +48,6 @@ Route::get('/packets',[PacketController::class, 'getPacket']);
 
 //Route Order Form
 Route::get('/order/{id}', [OrderController::class, 'getOrder'])->middleware('auth')->name('order.form');
+
+//Route Order Create
+Route::post('/order', [OrderController::class, 'setOrder'])->middleware('auth')->name('order.set');

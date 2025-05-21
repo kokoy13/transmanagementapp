@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\PacketController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ZoneController;
+use App\Http\Controllers\Order\OrderController;
 
 //Route Home
 Route::get('/', [ContentController::class, 'index']);
@@ -45,5 +46,5 @@ Route::get('/auth/{provider}/callback',[AuthController::class, 'callback']);
 //Route Price List
 Route::get('/packets',[PacketController::class, 'getPacket']);
 
-//Route Details
-Route::get('/packet/details/{id}', [PacketController::class, 'getPacketId'])->name('packet.details');
+//Route Order Form
+Route::get('/order/{id}', [OrderController::class, 'setOrder'])->middleware('auth')->name('order.form');

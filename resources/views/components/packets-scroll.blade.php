@@ -85,7 +85,7 @@
                         </ul>
                     </div>
                     <div class="px-6 relative -bottom-2">
-                        <a @if(Auth::check()) href="{{ route('packet.details', $packet->id) }}" @else href="/sign-in" @endif class="w-full py-3 px-4 bg-white hover:gray-100 font-medium rounded-lg transition-colors duration-200 flex items-center justify-center text-indigo-800 text-sm">
+                        <a @if(Auth::check()) href="{{ route('order.form', $packet->id) }}" @else href="/sign-in" @endif class="w-full py-3 px-4 bg-white hover:gray-100 font-medium rounded-lg transition-colors duration-200 flex items-center justify-center text-indigo-800 text-sm">
                             PESAN SEKARANG
                         </a>
                     </div>

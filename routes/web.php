@@ -47,4 +47,4 @@ Route::get('/auth/{provider}/callback',[AuthController::class, 'callback']);
 Route::get('/packets',[PacketController::class, 'getPacket']);
 
 //Route Order Form
-Route::get('/order/{id}', [OrderController::class, 'setOrder'])->middleware('auth')->name('order.form');
+Route::get('/order/{id}', [OrderController::class, 'getOrder'])->middleware('auth')->name('order.form');

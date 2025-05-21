@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function setOrder(Request $request)
+    public function getOrder(Request $request)
     {
         return view('order.form-order');
     }

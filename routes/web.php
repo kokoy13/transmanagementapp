@@ -11,6 +11,8 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RebootController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\JobController;
@@ -50,10 +52,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 
     //Payment Route
-    Route::get('/payment', [PaymentController::class, 'index'])->name('payment');
+    Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
     
     //Notification Route
-    Route::get('/notification', [NotificationController::class, 'index'])->name('notification');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
     
     //Service Route
     Route::get('/services', [ServicesController::class, 'index'])->name('services');
@@ -64,6 +66,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     //Banner Route
     Route::get('/banners', [BannerController::class, 'index'])->name('banners');
 
+    //User Route
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+
+    //Reboot Route
+    Route::get('/reboot', [RebootController::class, 'index'])->name('reboot');
 
     Route::get('/community/profile', function () {
         return view('pages/community/profile');
@@ -107,9 +114,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/settings/account', function () {
         return view('pages/settings/account');
     })->name('account');  
-    Route::get('/settings/notifications', function () {
-        return view('pages/settings/notifications');
-    })->name('notifications');  
+    // Route::get('/settings/notifications', function () {
+    //     return view('pages/settings/notifications');
+    // })->name('notifications');  
     Route::get('/settings/apps', function () {
         return view('pages/settings/apps');
     })->name('apps');

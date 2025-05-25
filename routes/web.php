@@ -59,6 +59,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Service Route
     Route::get('/services', [ServicesController::class, 'index'])->name('services');
+    Route::get('/service/create', [ServicesController::class, 'create'])->name('service.create');
+    Route::post('/service', [ServicesController::class, 'store'])->name('service.store');
+    Route::get('/service/edit/{id}', [ServicesController::class, 'edit'])->name('service.edit');
+    Route::put('/service/{id}', [ServicesController::class, 'update'])->name('service.update');
+    Route::get('/service/delete/{id}', [ServicesController::class, 'delete'])->name('service.delete');
 
     //Content Route
     Route::get('/contents', [ContentController::class, 'index'])->name('contents');

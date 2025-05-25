@@ -65,6 +65,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     
     //Banner Route
     Route::get('/banners', [BannerController::class, 'index'])->name('banners');
+    Route::get('/banner/{id}', [BannerController::class, 'edit'])->name('banner.edit');
+    Route::post('/banner/{id}', [BannerController::class, 'update'])->name('banner.update');
+    Route::get('/banner/{id}', [BannerController::class, 'edit'])->name('banner.edit');
+
 
     //User Route
     Route::get('/users', [UserController::class, 'index'])->name('users');

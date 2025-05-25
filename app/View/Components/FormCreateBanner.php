@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class form-create-banner extends Component
+class FormCreateBanner extends Component
 {
     /**
      * Create a new component instance.

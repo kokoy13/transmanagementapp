@@ -6,6 +6,6 @@
                     <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Create Banner</h1>
                 </div>
         </div>
-        <x-form-edit-banner :banner="$banner"></x-form-edit-banner>
+        <x-form-create-banner/>
     </div>
 </x-app-layout>

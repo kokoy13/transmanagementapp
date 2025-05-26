@@ -48,8 +48,8 @@ class BannerController extends Controller
             }
             $store = $request->file('thumbnail')->store('public');
             $banner->img = basename($store);
-            $banner->save();
         }
+        $banner->save();
 
         return redirect()->route('banners')->with('success', 'Banner berhasil diperbarui.');
     }

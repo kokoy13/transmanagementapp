@@ -45,8 +45,6 @@ class BannerController extends Controller
         if ($request->hasFile('thumbnail')) {
             if ($banner->img && Storage::disk('public')->exists($banner->img)) {
                 Storage::disk('public')->delete($banner->img);
-            }else{
-                return redirect()->route('banners')->with('error', 'Gagal memperbarui banner');
             }
             $store = $request->file('thumbnail')->store('public');
             $banner->img = basename($store);

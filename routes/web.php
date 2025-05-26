@@ -7,6 +7,7 @@ use App\Http\Controllers\PacketController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ZoneController;
 use App\Http\Controllers\Order\OrderController;
+use App\Http\Controllers\ProfileController;
 
 //Route Home
 Route::get('/', [ContentController::class, 'index']);
@@ -51,3 +52,6 @@ Route::get('/order/{id}', [OrderController::class, 'getOrder'])->middleware('aut
 
 //Route Order Create
 Route::post('/order', [OrderController::class, 'setOrder'])->middleware('auth')->name('order.set');
+
+//Route Profile
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile');

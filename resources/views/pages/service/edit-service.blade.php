@@ -3,7 +3,7 @@
         <div class="sm:flex sm:justify-between sm:items-center mb-8">
                 <!-- Left: Title -->
                 <div class="mb-4 sm:mb-0">
-                    <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Edit Banner</h1>
+                    <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Edit Service</h1>
                 </div>
         </div>
         <x-form-edit-service :packet="$packet"></x-form-edit-service>

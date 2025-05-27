@@ -78,9 +78,17 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //User Route
     Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
+    Route::post('/user', [UserController::class, 'store'])->name('user.store');
+    Route::get('/user/{id}', [UserController::class, 'edit'])->name('user.edit');
+    Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 
     //Reboot Route
     Route::get('/reboot', [RebootController::class, 'index'])->name('reboot');
+
+    //Route Testing
+    Route::get('/test',[CustomerController::class, 'getTraffic']);
 
     Route::get('/community/profile', function () {
         return view('pages/community/profile');

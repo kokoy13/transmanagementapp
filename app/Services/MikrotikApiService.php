@@ -8,19 +8,37 @@ class MikrotikApiService
 {
     public function getData()
     {
+        try {
         $client = new Client([
-            'host' => '192.168.1.3',
+            'host' => '192.168.10.1',
             'user' => 'admin',
-            'pass' => ''
+            'pass' => 'admin',
+            'port' => 8730,
         ]);
 
-        // Send "equal" query with details about IP address which should be created
-        $query =
-            (new Query('/ip/print'));
+        $query = new Query('/interface/print');
+        $response = $client->query($query)->read();
+        dd($response);
+        } catch (\Exception $e) {
+            dd("Error: " . $e->getMessage());
+        }
 
-        // Send query and read response from RouterOS (ordinary answer from update/create/delete queries has empty body)
+    }
+
+    public function getTraffic($interface = 'ether1')
+    {
+        $client = new Client([
+            'host' => '192.168.10.1',
+            'user' => 'admin',
+            'pass' => 'admin',
+            'port' => 8730
+        ]);
+
+        $query = new Query('/interface/monitor-traffic');
+        $query->equal('interface', $interface)->equal('once', true); // 'once' penting agar tidak terus-menerus stream
+
         $response = $client->query($query)->read();
 
-        dd($response);
+        return $response[0] ?? [];
     }
 }

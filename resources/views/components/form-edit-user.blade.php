@@ -1,4 +1,4 @@
-@props(['users'])
+@props(['user'])
 <div
     x-data="{ show: true }"
     x-show="show"
@@ -29,18 +29,20 @@
 </div>
 
 <form
-    action="{{ route('user.store')}}"
+    action="{{ route('user.update', $user->id)}}"
     method="POST"
     enctype="multipart/form-data"
     class="space-y-6"
     x-data="{
-        name: '',
-        email: '',
-        password: '',
-        password2: '',
-        role: '',
-        avatar: null,
-        avatarPreview: null,
+        name: '{{ $user->name }}',
+        email: '{{ $user->email }}',
+        password: '{{ $user->password }}',
+        password2: '{{ $user->password }}',
+        role: '{{ $user->role }}',
+        avatar: '{{ $user->avatar }}',
+        avatarPreview: '{{ Str::startsWith($user->avatar, 'https')
+            ? $user->avatar
+            : Storage::url('public/avatars/' . $user->avatar) }}',
 
         isFormValid() {
             return this.name &&
@@ -87,6 +89,7 @@
     }"
 >
     @csrf
+    @method('put')
 
     <!-- Avatar -->
     <div>
@@ -292,7 +295,7 @@
             :class="isFormValid() ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-400 cursor-not-allowed'"
             :disabled="!isFormValid()"
         >
-            Tambah User
+            Edit User
         </button>
     </div>
 </form>

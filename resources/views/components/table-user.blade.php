@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-gray-800 dark:text-gray-100">Users</h2>
     </header>
     <div class="p-3">
-        
+
         <!-- Table -->
         <div class="overflow-x-auto">
             <table class="table-auto w-full">
@@ -35,7 +35,12 @@
                                     <td class="p-2 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="w-10 h-10 shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full" src="{{$user->avatar}}" width="40" height="40" />
+                                                <img class="rounded-full max-w-[40px] max-h-[40px] w-10 h-10"
+                                                        src="@if(substr($user->avatar, 0, 5) === 'https')
+                                                            {{ $user->avatar }}
+                                                            @else
+                                                            {{ Storage::url('avatars/'.$user->avatar) }}
+                                                            @endif"/>
                                             </div>
                                             <h1 class="text-gray-800 font-medium">{{ $user->name }}</h1>
                                         </div>
@@ -66,8 +71,8 @@
                     @endforeach
                 </tbody>
             </table>
-        
+
         </div>
-    
+
     </div>
 </div>

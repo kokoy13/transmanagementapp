@@ -6,6 +6,6 @@
                     <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Edit User</h1>
                 </div>
         </div>
-        {{-- <x-form-edit-service :packet="$packet"></x-form-edit-service> --}}
+        <x-form-edit-user :user="$user"></x-form-edit-user>
     </div>
 </x-app-layout>

@@ -1,0 +1,83 @@
+[33mcommit b30409ad393febed4288e8f5ecc44a37e533676b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mbackend2[m[33m)[m
+Author: HasrilMuhammadIbal <fadilahhidayah930@gmail.com>
+Date:   Wed May 28 22:10:22 2025 +0700
+
+    feat: Menambahkan fitur payment
+
+[33mcommit 05df461c6460530e21fe30be491437da5e219239[m[33m ([m[1;31morigin/backend2[m[33m)[m
+Author: kokoy13 <andikafiransyah1905@gmail.com>
+Date:   Mon May 26 01:40:55 2025 +0700
+
+    feat: menambahkan fitur edit service
+
+[33mcommit c3ce6fadb3807b2970f8b192f374020b287e6a7e[m
+Author: kokoy13 <andikafiransyah1905@gmail.com>
+Date:   Sun May 25 23:30:24 2025 +0700
+
+    feat: fitur banner compelete
+
+[33mcommit 47c8fa91cc51014ba7623f79a251b7704102d933[m
+Author: kokoy13 <andikafiransyah@gmail.com>
+Date:   Sun May 25 16:39:11 2025 +0700
+
+    refactor: add sql on it
+
+[33mcommit 2b8444d4e181a2a44397715ed4085cd850f0e09a[m
+Author: kokoy13 <andikafiransyah@gmail.com>
+Date:   Sun May 25 16:30:08 2025 +0700
+
+    feat: Menambahkan fitur edit banner
+
+[33mcommit 627bc66119a0158aa22cd1294be3c041dab2276e[m
+Author: kokoy13 <andikafiransyah1905@gmail.com>
+Date:   Sat May 24 22:18:30 2025 +0700
+
+    feat: menambahkan fitur customers
+
+[33mcommit a38e261f3daad6e1621b8865fe38335fc98c6040[m
+Author: kokoy13 <andikafiransyah1905@gmail.com>
+Date:   Sat May 24 17:13:15 2025 +0700
+
+    feat: menambahkan controller dan route item sidebar
+
+[33mcommit 8c9a9f6d6584f716dc38a931622346f2b3fc3b12[m
+Author: kokoy13 <andikafiransyah@gmail.com>
+Date:   Sat May 24 15:28:49 2025 +0700
+
+    Membuat semua controller dan route pada item sidebar
+
+[33mcommit 062cc0af34418c6a21eeff037e1cd3f803974298[m
+Author: kokoy13 <andikafiransyah@gmail.com>
+Date:   Sat May 24 05:00:07 2025 +0700
+
+    feat: Membuat semua view pada item sidebar
+
+[33mcommit 5adcf59c9f97d3d1449c38941eea1cbeba02cfdc[m
+Author: kokoy13 <andikafiransyah@gmail.com>
+Date:   Sat May 24 04:18:16 2025 +0700
+
+    fix : memperbaharui isi sidebar
+
+[33mcommit 583f50b7591cbb1da25e7098d1911db56be99b92[m
+Author: kokoy13 <andikafiransyah@gmail.com>
+Date:   Sat May 24 02:26:00 2025 +0700
+
+    fix: perbaiki error run server
+
+[33mcommit a5de84511596535322aa53a94516e8bc84483c54[m
+Author: unknown <intanramadanii88@gmail.com>
+Date:   Sat May 24 00:49:04 2025 +0700
+
+    add template
+
+[33mcommit c14c670710e54db922ec2ae3b2b5356c202d9130[m
+Author: pasqualevitiello <pasqualevitiello@gmail.com>
+Date:   Tue Feb 4 10:54:55 2025 +0100
+
+    fix gradient
+
+[33mcommit 094236f315d372b3b0ed36ff527783984d48bef4[m
+Author: pasqualevitiello <pasqualevitiello@gmail.com>
+Date:   Sun Feb 2 10:32:33 2025 +0100
+
+    mc

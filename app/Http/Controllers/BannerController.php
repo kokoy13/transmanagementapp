@@ -14,15 +14,17 @@ class BannerController extends Controller
         return view('pages.banner.index')->with(compact('banners'));
     }
 
-    public function create(){
+    public function create()
+    {
         $banner = Banner::all()->count();
-        if($banner == 5){
+        if ($banner == 5) {
             return redirect()->route('banners')->with('error', 'Jumlah banner telah mencapai limit');
         }
         return view('pages.banner.create-banner');
     }
 
-    public function store(BannerRequest $request){
+    public function store(BannerRequest $request)
+    {
         $banner = $request->validated();
         $store = $request->file('thumbnail')->store('public');
         $create = Banner::create([
@@ -33,7 +35,8 @@ class BannerController extends Controller
         return redirect()->route('banners')->with('berhasil menambahkan banner');
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $banner = Banner::find($id);
         return view('pages.banner.edit-banner')->with(compact('banner'));
     }
@@ -45,26 +48,24 @@ class BannerController extends Controller
         if ($request->hasFile('thumbnail')) {
             if ($banner->img && Storage::disk('public')->exists($banner->img)) {
                 Storage::disk('public')->delete($banner->img);
-            }else{
-                return redirect()->route('banners')->with('error', 'Gagal memperbarui banner');
             }
             $store = $request->file('thumbnail')->store('public');
             $banner->img = basename($store);
-            $banner->save();
         }
+        $banner->save();
 
         return redirect()->route('banners')->with('success', 'Banner berhasil diperbarui.');
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         $count = Banner::all()->count();
-        if($count == 3){
-            return redirect()->route('banners')->with('error','Tidak bisa menghapus. Banner sudah pada jumlah minimum.');
+        if ($count == 3) {
+            return redirect()->route('banners')->with('error', 'Tidak bisa menghapus. Banner sudah pada jumlah minimum.');
         }
         $banner = Banner::find($id);
         $banner->delete();
         Storage::disk('public')->delete($banner->img);
         return redirect()->route('banners')->with('success', 'Berhasil menghapus banner');
     }
-
 }

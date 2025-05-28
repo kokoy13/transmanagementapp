@@ -4,7 +4,7 @@
         <h2 class="font-semibold text-gray-800 dark:text-gray-100">Customers</h2>
     </header>
     <div class="p-3">
-        
+
         <!-- Table -->
         <div class="overflow-x-auto">
             <table class="table-auto w-full">
@@ -72,8 +72,8 @@
                     @endforelse
                 </tbody>
             </table>
-        
+
         </div>
-    
+
     </div>
 </div>

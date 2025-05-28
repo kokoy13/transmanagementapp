@@ -9,7 +9,11 @@ class Payment extends Model
 {
     protected $guarded = [];
 
-    public function order():BelongsTo
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    public function order(): BelongsTo
     {
         return $this->belongsTo(Order::class);
     }

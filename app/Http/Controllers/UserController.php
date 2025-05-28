@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class UserController extends Controller
 {
@@ -44,24 +45,28 @@ class UserController extends Controller
     }
 
     public function update(UserRequest $request, $id){
-        $validated = $request->validated();
-        if($validated['password'] != $validated['password_confirmation']){
-            return redirect()->route('user.edit')->with('error','Password tidak cocok, ulangi kembali');
+        $user = User::findOrFail($id);
+        if ($request->hasFile('avatar')) {
+            if ($user->avatar && Storage::disk('public')->exists('avatars/'.$user->avatar)) {
+                Storage::disk('public')->delete('avatars/'.$user->avatar);
+            }
+            $store = $request->file('avatar')->store('public/avatars');
+            $user->avatar = basename($store);
         }
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->role = $request->role;
+        $user->updated_at = now();
+        $user->save();
 
-        // if ($request->hasFile('avatar')) {
-        //     if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
-        //         Storage::disk('public')->delete($user->avatar);
-        //     }
-        //     $store = $request->file('thumbnail')->store('public');
-        //     $banner->img = basename($store);
-        // }
-        // $user = User::find($id);
-
-        // $user->name =
+        return redirect()->route('users')->with('success', 'User berhasil diperbarui.');
     }
 
-    public function delete(){
-
+    public function delete($id){
+        $user = User::find($id);
+        $user->delete();
+        Storage::disk('public')->delete('avatars/'.$user->avatar);
+        return redirect()->route('users')->with('success', 'Berhasil menghapus user');
     }
 }

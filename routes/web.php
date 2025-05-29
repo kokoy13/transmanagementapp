@@ -53,6 +53,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Payment Route
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
+    Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
+    Route::post('/payment', [PaymentController::class, 'store'])->name('payments.store');
+    Route::get('/payment/edit/{id}', [PaymentController::class, 'edit'])->name('payment.edit');
+    Route::put('/payment/{id}', [PaymentController::class, 'update'])->name('payment.update');
+    Route::get('/payment/delete/{id}', [PaymentController::class, 'delete'])->name('payment.delete');
 
     //Notification Route
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');

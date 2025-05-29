@@ -123,10 +123,12 @@
                                     </svg>
                                     <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Customers</span>
                                 </div>
-                                <!-- Badge -->
-                                <div class="flex shrink-0 ml-2">
-                                    <span class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-violet-400 px-2 rounded-sm">4</span>
-                                </div>
+                                @if($countCustomer)
+                                    <!-- Badge -->
+                                    <div class="flex shrink-0 ml-2">
+                                        <span class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-violet-400 px-2 rounded-sm">{{ $countCustomer }}</span>
+                                    </div>
+                                @endif
                             </div>
                         </a>
                     </li>
@@ -141,9 +143,11 @@
                                     <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Orders</span>
                                 </div>
                                 <!-- Badge -->
-                                <div class="flex shrink-0 ml-2">
-                                    <span class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-violet-400 px-2 rounded-sm">4</span>
-                                </div>
+                                @if ($countOrder > 0)
+                                    <div class="flex shrink-0 ml-2">
+                                        <span class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-violet-400 px-2 rounded-sm">{{ $countOrder }}</span>
+                                    </div>
+                                @endif
                             </div>
                         </a>
                     </li>
@@ -159,9 +163,11 @@
                                     <span class="text-sm font-medium ml-4 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Payments</span>
                                 </div>
                                 <!-- Badge -->
-                                <div class="flex shrink-0 ml-2">
-                                    <span class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-violet-400 px-2 rounded-sm">4</span>
-                                </div>
+                                @if($countPayment > 0)
+                                    <div class="flex shrink-0 ml-2">
+                                        <span class="inline-flex items-center justify-center h-5 text-xs font-medium text-white bg-violet-400 px-2 rounded-sm">{{ $countPayment }}</span>
+                                    </div>
+                                @endif
                             </div>
                         </a>
                     </li>

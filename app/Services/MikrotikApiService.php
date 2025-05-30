@@ -1,88 +1,69 @@
 <?php
-
 namespace App\Services;
-use \RouterOS\Client;
-use \RouterOS\Query;
+
+use RouterOS\Client;
+use RouterOS\Query;
 
 class MikrotikApiService
 {
-    public function createProfile($name, $limit){
-        try {
-        $client = new Client([
-            'host' => '192.168.10.1',
-            'user' => 'admin',
-            'pass' => '',
-            'port' => 8728,
+    protected Client $client;
+
+    public function __construct()
+    {
+        $this->client = new Client([
+            'host' => config('services.mikrotik.host'),
+            'user' => config('services.mikrotik.user'),
+            'pass' => config('services.mikrotik.pass'),
+            'port' => (int) config('services.mikrotik.port'),
         ]);
+    }
 
-        $query = new Query('/ppp/profile/add');
+    public function getSecret(){
+        try{
+            $query = (new Query('/ppp/secret/print'));
 
-        $query->equal('name', $name)
-            ->equal('local-address', '10.0.0.1')
-            ->equal('remote-address', 'dhcp_pool0')
-            ->equal('dns-server', '8.8.8.8')
-            ->equal('rate-limit', $limit);
-
-        $response = $client->query($query)->read();
-
-        return $response;
-
-        } catch (\Exception $e) {
-            dd("Error: " . $e->getMessage());
+            return $this->client->query($query)->read();
+        }catch(\Exception $e){
+            dd('Error: ' . $e->getMessage());
         }
     }
 
-    public function getService(){
-        try {
-        $client = new Client([
-            'host' => '192.168.10.1',
-            'user' => 'admin',
-            'pass' => '',
-            'port' => 8728,
-        ]);
+    public function enableSecret($id){
+        try{
+            $query = (new Query('/ppp/secret/enable'))
+                ->equal('.id', $id);
 
-        $query = new Query('/ppp/profile/print');
-        $response = $client->query($query)->read();
-
-        return $response;
-        } catch (\Exception $e) {
-            dd("Error: " . $e->getMessage());
+            return $this->client->query($query)->read();
+        }catch(\Exception $e){
+            dd('Error: ' . $e->getMessage());
         }
     }
 
-    public function getData()
+    public function disableSecret($id){
+        try{
+            $query = (new Query('/ppp/secret/disable'))
+                ->equal('.id', $id);
+
+            return $this->client->query($query)->read();
+        }catch(\Exception $e){
+            dd('Error: ' . $e->getMessage());
+        }
+    }
+
+    public function createProfile($name, $limit)
     {
         try {
-        $client = new Client([
-            'host' => '192.168.10.1',
-            'user' => 'admin',
-            'pass' => 'admin',
-            'port' => 8730,
-        ]);
+            $query = (new Query('/ppp/profile/add'))
+                ->equal('name', $name)
+                ->equal('local-address', '10.0.0.1')
+                ->equal('remote-address', 'dhcp_pool0')
+                ->equal('dns-server', '8.8.8.8')
+                ->equal('rate-limit', $limit);
 
-        $query = new Query('/interface/print');
-        $response = $client->query($query)->read();
-        dd($response);
+            return $this->client->query($query)->read();
+
         } catch (\Exception $e) {
             dd("Error: " . $e->getMessage());
         }
-
-    }
-
-    public function getTraffic($interface = 'ether1')
-    {
-        $client = new Client([
-            'host' => '192.168.10.1',
-            'user' => 'admin',
-            'pass' => 'admin',
-            'port' => 8730
-        ]);
-
-        $query = new Query('/interface/monitor-traffic');
-        $query->equal('interface', $interface)->equal('once', true); // 'once' penting agar tidak terus-menerus stream
-
-        $response = $client->query($query)->read();
-
-        return $response[0] ?? [];
     }
 }

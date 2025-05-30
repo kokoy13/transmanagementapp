@@ -4,76 +4,69 @@
         <h2 class="font-semibold text-gray-800 dark:text-gray-100">Customers</h2>
     </header>
     <div class="p-3">
-        
+
         <!-- Table -->
         <div class="overflow-x-auto">
             <table class="table-auto w-full">
                 <!-- Table header -->
                 <thead class="text-xs font-semibold uppercase text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-700/50">
                     <tr>
+                        <th></th>
+                        <th class="p-2 whitespace-nowrap">
+                            <div class="font-semibold text-left">ID</div>
+                        </th>
                         <th class="p-2 whitespace-nowrap">
                             <div class="font-semibold text-left">Name</div>
                         </th>
                         <th class="p-2 whitespace-nowrap">
-                            <div class="font-semibold text-left">Email</div>
-                        </th>
-                        <th class="p-2 whitespace-nowrap">
-                            <div class="font-semibold text-left">Phone</div>
-                        </th>
-                        <th class="p-2 whitespace-nowrap">
-                            <div class="font-semibold text-center">Address</div>
-                        </th>
-                        <th class="p-2 whitespace-nowrap">
-                            <div class="font-semibold text-center">Packet</div>
+                            <div class="font-semibold text-left">Packet</div>
                         </th>
                         <th class="p-2 whitespace-nowrap">
                             <div class="font-semibold text-center">Bandwidth</div>
                         </th>
+                        <th class="p-2 whitespace-nowrap">
+                            <div class="font-semibold text-center">Last Logout</div>
+                        </th>
+                        <th></th>
                     </tr>
                 </thead>
                 <!-- Table body -->
                 <tbody class="text-sm divide-y divide-gray-100 dark:divide-gray-700/60">
                     @forelse ($customers as $customer)
-                            @foreach ($customer->order as $cus)
-                                <tr>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="w-10 h-10 shrink-0 mr-2 sm:mr-3">
-                                                <img class="rounded-full" src="{{$customer->user->avatar}}" width="40" height="40" alt="Alex Shatov" />
-                                            </div>
-                                            <div class="text-gray-800">
-                                                <h1 class="font-medium">{{ $customer->full_name }}</h1>
-                                                <span class="text-sm opacity-50">{{ $customer->id }}</span>
-                                            </div>
-                                        </div>
+                                <tr class="@if($customer['disabled'] == 'true') bg-gray-100 text-gray-300 @endif">
+                                    <td>
+                                        <input type="checkbox" class="ml-3" name="selected_ids[]" value="{{ $customer['.id'] }}">
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left">{{ $customer->email }}</div>
+                                        <div class="text-left">{{ $customer['name'] }}</div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left font-medium text-green-500">{{ $customer->phone_number }}</div>
+                                        <div class="text-left">{{ $customer['comment'] }}</div>
+                                    </td>
+                                    @php
+                                        $explode = explode('-', $customer['profile']);
+                                        $packet = $explode[0];
+                                        $bandwidth = $explode[1];
+                                    @endphp
+                                    <td class="p-2 whitespace-nowrap">
+                                        <div class="text-left">{{ $packet }}</div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-center text-wrap">{{ $customer->address }}</div>
+                                        <div class="text-center">{{ $bandwidth }}</div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-center">{{ $cus->packet->name }}</div>
+                                        <div class="text-center">{{ ucfirst($customer['last-logged-out'] )}}</div>
                                     </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-center">{{ $cus->packet->bandwidth }} Mbps</div>
-                                    </td>
-                                    <td></td>
                                 </tr>
-                            @endforeach
-                        @empty
+                    @empty
                         <tr>
                             <td colspan="4" class="p-2 text-center text-gray-500">No customers found</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
-        
+
         </div>
-    
+
     </div>
 </div>

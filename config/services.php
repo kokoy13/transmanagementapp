@@ -21,6 +21,14 @@ return [
         'scheme' => 'https',
     ],
 
+    'mikrotik' => [
+        'host' => env('MIKROTIK_HOST'),
+        'user' => env('MIKROTIK_USER'),
+        'pass' => env('MIKROTIK_PASS'),
+        'port' => env('MIKROTIK_PORT'),
+    ],
+
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

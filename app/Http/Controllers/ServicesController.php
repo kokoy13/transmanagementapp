@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
+    protected $mikrotik;
+
+    public function __construct(MikrotikApiService $mikrotik) {
+        $this->mikrotik = $mikrotik;
+    }
+
     public function index()
     {
         $packets = Packet::all();
@@ -31,11 +37,10 @@ class ServicesController extends Controller
             return redirect()->route('service.create')->with('error', 'Error, Duplikat data');
         }
 
-        //Create Profile On Winbox
-        $api = new MikrotikApiService();
+        //Create Profile On Router
         $name = $validate['name']. '-'.$validate['bandwidth'].'M';
         $limit = $this->getLimit($validate['name'], $validate['bandwidth']);
-        $profile = $api->createProfile($name, $limit);
+        $profile = $this->mikrotik->createProfile($name, $limit);
 
         //Create Packet
         $packet = Packet::create([

@@ -47,6 +47,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Customer Route
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
+    Route::post('/customers', [CustomerController::class, 'action'])->name('customer.action');
 
     //Orders Route
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');

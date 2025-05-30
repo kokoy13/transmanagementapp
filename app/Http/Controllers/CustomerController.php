@@ -8,31 +8,31 @@ use App\Services\MikrotikApiService;
 
 class CustomerController extends Controller
 {
+    protected $mikrotik;
+
+    public function __construct(MikrotikApiService $mikrotik) {
+        $this->mikrotik = $mikrotik;
+    }
+
     public function index()
     {
-        $customers = Customer::with('order.packet')
-            ->get()
-            ->filter(function ($customer) {
-                return $customer->user->role === 'customer';
-            }
-        );
+        $customers = $this->mikrotik->getSecret();
         return view('pages.customer.index', compact('customers'));
     }
 
-    public function getData(){
-        $mikrotik = new MikrotikApiService();
-        $data = $mikrotik->getData();
-        dd($data);
-    }
+        public function action(Request $request){
+            if($request->action == 'enable'){
+                for($id = 0; $id < count($request->selected_ids); $id++){
+                    $this->mikrotik->enableSecret($request->selected_ids[$id]);
+                }
+            }else if($request->action == 'disable'){
+                for($id = 0; $id < count($request->selected_ids); $id++){
+                    $this->mikrotik->disableSecret($request->selected_ids[$id]);
+                }
+            }else{
+                return redirect()->route('customers');
+            }
 
-    public function getTraffic(Request $request)
-    {
-        $interface = $request->get('interface', 'ether1');
-        $data = (new MikrotikApiService())->getTraffic($interface);
-
-        return response()->json([
-            'rx' => $data['rx-bits-per-second'] ?? 0,
-            'tx' => $data['tx-bits-per-second'] ?? 0
-        ]);
-    }
+            return redirect()->route('customers');
+        }
 }

@@ -115,8 +115,6 @@ class MikrotikApiService
     //     }
     // }
 
-
-
     public function getInterfaces(){
         try{
             $query = (new Query('/interface/print'))

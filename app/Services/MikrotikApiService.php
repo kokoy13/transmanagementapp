@@ -3,6 +3,7 @@ namespace App\Services;
 
 use RouterOS\Client;
 use RouterOS\Query;
+use Illuminate\Support\Facades\Log;
 
 class MikrotikApiService
 {
@@ -62,6 +63,78 @@ class MikrotikApiService
 
             return $this->client->query($query)->read();
 
+        } catch (\Exception $e) {
+            dd("Error: " . $e->getMessage());
+        }
+    }
+
+    public function getTraffic($id)
+    {
+    try {
+        $interfaceData = $this->getInterfaceById($id);
+
+        if (empty($interfaceData)) {
+            return ['error' => 'Interface not found'];
+        }
+
+        $interfaceName = $interfaceData[0]['name'] ?? null;
+
+        if (!$interfaceName) {
+            return ['error' => 'Interface name not found'];
+        }
+
+        $query = (new Query('/interface/monitor-traffic'))
+            ->equal('interface', $interfaceName)
+                ->equal('once', '');
+
+            return $this->client->query($query)->read();
+        } catch (\Exception $e) {
+            Log::error('Mikrotik getTraffic error: ' . $e->getMessage());
+            return ['error' => $e->getMessage()];
+        }
+    }
+
+    // public function getTraffic($id)
+    // {
+    //     $interfaceData = $this->getInterfaceById($id);
+    //     // Ambil nama interface dari hasil array
+    //     $interfaceName = $interfaceData[0]['name'] ?? null;
+
+    //     if (!$interfaceName) {
+    //         return ['error' => 'Interface not found'];
+    //     }
+
+    //     try {
+    //         $query = (new Query('/interface/monitor-traffic'))
+    //             ->equal('interface', $interfaceName)
+    //             ->equal('once', '');
+
+    //         return $this->client->query($query)->read();
+    //     } catch (\Exception $e) {
+    //         dd("Error: " . $e->getMessage());
+    //     }
+    // }
+
+
+
+    public function getInterfaces(){
+        try{
+            $query = (new Query('/interface/print'))
+                ->equal('.proplist','.id,name,disabled');
+
+            return $this->client->query($query)->read();
+        }catch(\Exception $e){
+            dd("Error: " . $e->getMessage());
+        }
+    }
+
+    public function getInterfaceById($id){
+        try {
+        $query = (new Query('/interface/print'))
+                    ->where('.id', $id)
+                    ->equal('.proplist','.id,name');
+
+        return $this->client->query($query)->read();
         } catch (\Exception $e) {
             dd("Error: " . $e->getMessage());
         }

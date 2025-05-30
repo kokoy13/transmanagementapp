@@ -42,7 +42,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard/fintech', [DashboardController::class, 'fintech'])->name('fintech');
 
     //Monitoring Route
-    Route::get('/tx-rx', [MonitoringController::class, 'getTxRx'])->name('txrx');
+    Route::get('/tx-rx', [MonitoringController::class, 'index'])->name('txrx');
+    Route::get('/traffic/{id}', [MonitoringController::class, 'traffic'])->name('monitor.traffic');
+    Route::get('/interface-traffic/data/{id}', [MonitoringController::class, 'getTxRx']);
+
+
     Route::get('/active-connection', [MonitoringController::class, 'getActiveConnection'])->name('active-connection');
 
     //Customer Route
@@ -92,9 +96,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Reboot Route
     Route::get('/reboot', [RebootController::class, 'index'])->name('reboot');
-
-    //Route Testing
-    Route::get('/test',[CustomerController::class, 'getTraffic']);
 
     Route::get('/community/profile', function () {
         return view('pages/community/profile');

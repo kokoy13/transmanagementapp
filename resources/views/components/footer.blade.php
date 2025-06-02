@@ -1,184 +1,257 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Footer</title>
+    <title>Responsive Footer - TransNet Sumbar</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: {
-                            50: '#eff6ff',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#1e3a8a'
-                        },
-                        gray: {
-                            750: '#374151'
-                        }
+                        primary: '#4338ca',
+                        secondary: '#8b5cf6',
+                        accent: '#f59e0b',
+                        orange: '#ea580c',
                     }
                 }
             }
         }
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-50 font-sans">
 
-    <!-- Footer -->
-    <footer class="relative bg-gray-750 text-white overflow-hidden">
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 bg-black/20"></div>
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60 height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.05"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
-        
-        <div class="relative z-10">
-            <!-- Main Footer Content -->
-            <div class="container mx-auto px-6 pt-16 pb-8">
-                <div class="grid gap-12 lg:grid-cols-12 mb-12">
-                    <!-- Company Info -->
-                    <div class="lg:col-span-4 flex flex-col justify-center">
-                        <div class="mb-6">
-                            <div class="flex items-center justify-center space-x-3 mb-4">
-                                <a href="#">
-                                    <img src="/assets/img/logo.png" class="w-48  " alt="">
-                                </a>
+    <!-- Responsive Footer -->
+    <footer class="bg-gray-900 text-white">
+        <!-- Main Footer Content -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <!-- Company Info -->
+                <div class="lg:col-span-1">
+                    <!-- Logo -->
+                    <li data-aos="fade-down"
+                    class="list-none"
+                >
+                    <a
+                        href="/"
+                    >
+                        <img
+                            src="/assets/img/logo.png"
+                            alt=""
+                            class="w-48"
+                        >
+                    </a>
+                </li>
+
+                    <br>
+
+                    <!-- Company Description -->
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                        PT. Marawa Transmisi Media (Transnet) adalah perusahaan telekomunikasi dan IT terpercaya yang berkomitmen memberikan solusi inovatif untuk masa depan yang lebih terhubung.
+                    </p>
+                    
+                    <!-- Social Media -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors duration-200">
+                            <i class="fab fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition-colors duration-200">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors duration-200">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors duration-200">
+                            <i class="fab fa-whatsapp text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-lg font-semibold mb-6">Menu Utama</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
+                                Tentang Kami
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
+                                Layanan Kami
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
+                                Organisasi Perusahaan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
+                                Referensi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
+                                Kontak
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-lg font-semibold mb-6">Layanan</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                                Jaringan Telekomunikasi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                                Solusi IT
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                                Konsultasi Teknologi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                                Maintenance & Support
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                                Training & Development
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-lg font-semibold mb-6">Hubungi Kami</h3>
+                    <div class="space-y-4">
+                        <!-- Address -->
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-map-marker-alt text-red-400 text-sm"></i>
                             </div>
-                            <div class="space-y-4 text-gray-300 leading-relaxed">
-                                 <p class="text-sm text-justify">
-                                     PT. Marawa Transmisi Media (Transnet) didirikan pada Maret 2019 oleh para profesional berpengalaman di bidang Telekomunikasi dan Informatika, dengan tujuan memberikan solusi bagi sektor Telekomunikasi dan IT di Indonesia.
+                            <div class="text-sm">
+                                <p class="text-gray-300 leading-relaxed">
+                                    Jl. Batang Anai 2A Komplek GOR Haji Agus Salim Padang, Sumatera Barat, Indonesia
                                 </p>
                             </div>
                         </div>
-                        
-                        <!-- Social Media -->
-                        <div class="flex gap-5 justify-center">
-                            <a href="https://wa.me/6282382541525" class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-green-500 transition-all duration-300 group">
-                                <i class="fab fa-whatsapp text-lg text-white group-hover:scale-110 transition-transform"></i>
-                            </a>
-                            <a href="https://instagram.com/transnetofficial" class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-pink-500 transition-all duration-300 group">
-                                <i class="fab fa-instagram text-sm group-hover:scale-110 transition-transform"></i>
-                            </a>
-                            <a href="https://www.facebook.com/transnetofficial" class="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-blue-500 transition-all duration-300 group">
-                                <i class="fab fa-facebook text-sm group-hover:scale-110 transition-transform"></i>
-                            </a>
-                        </div>
-                    </div>
 
-                    <!-- Links Grid -->
-                    <div class="lg:col-span-8">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                            <!-- About Us -->
-                            <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-white mb-4 relative">
-                                    About Us
-                                    <div class="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                                </h3>
-                                <ul class="space-y-3">
-                                    <li><a class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 flex items-center group">
-                                        <i class="fas fa-chevron-right text-xs mr-2 group-hover:text-blue-400"></i>Tentang Kami
-                                    </a></li>
-                                    <li><a class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 flex items-center group">
-                                        <i class="fas fa-chevron-right text-xs mr-2 group-hover:text-blue-400"></i>Layanan kami
-                                    </a></li>
-                                    <li><a class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 flex items-center group">
-                                        <i class="fas fa-chevron-right text-xs mr-2 group-hover:text-blue-400"></i>Organisasi Perusahaan
-                                    </a></li>
-                                    <li><a class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 flex items-center group">
-                                        <i class="fas fa-chevron-right text-xs mr-2 group-hover:text-blue-400"></i>Referensi
-                                    </a></li>
-                                    <li><a class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 flex items-center group">
-                                        <i class="fas fa-chevron-right text-xs mr-2 group-hover:text-blue-400"></i>Kontak
-                                    </a></li>
-                                </ul>
+                        <!-- Phone -->
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <a href="tel:0751-8959999" i class="fas fa-phone text-green-400 text-sm"></i></a>
                             </div>
-
-                            <!-- Job Vacancy -->
-                            <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-white mb-4 relative">
-                                    Job Vacancy
-                                    <div class="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                                </h3>
-                                <ul class="space-y-3">
-                                    <li><a class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 flex items-center group">
-                                        <i class="fas fa-chevron-right text-xs mr-2 group-hover:text-blue-400"></i>Programmer
-                                    </a></li>
-                                    <li><a class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 flex items-center group">
-                                        <i class="fas fa-chevron-right text-xs mr-2 group-hover:text-blue-400"></i>Admin
-                                    </a></li>
-                                    <li><a class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 flex items-center group">
-                                        <i class="fas fa-chevron-right text-xs mr-2 group-hover:text-blue-400"></i>SPG Reguler & Event
-                                    </a></li>
-                                    <li><a class="text-gray-300 hover:text-white hover:translate-x-1 transition-all duration-200 flex items-center group">
-                                        <i class="fas fa-chevron-right text-xs mr-2 group-hover:text-blue-400"></i>Sekretaris
-                                    </a></li>
-                                    <li><a href="#" class="text-blue-400 hover:text-blue-300 hover:translate-x-1 transition-all duration-200 flex items-center group font-medium">
-                                        <i class="fas fa-chevron-right text-xs mr-2"></i>View All
-                                    </a></li>
-                                </ul>
-                            </div>
-
-                            <!-- Contact -->
-                            <div class="space-y-4">
-                                <h3 class="text-lg font-semibold text-white mb-4 relative">
-                                    Contact
-                                    <div class="absolute -bottom-2 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
-                                </h3>
-                                <div class="space-y-4">
-                                    <!-- Head Office -->
-                                    <div class="space-y-2">
-                                        <p class="text-white font-medium text-sm">Head Office:</p>
-                                        <p class="text-gray-300 text-sm leading-relaxed">
-                                            Batang Anai 2A Komplek GOR Haji Agus Salim<br>
-                                            Padang, Sumatra Barat
-                                        </p>
-                                    </div>
-
-                                    <!-- Contact Info -->
-                                    <div class="space-y-3">
-                                        <a href="tel:0751-8959999" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors group">
-                                            <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
-                                                <i class="fas fa-phone text-green-400 text-sm"></i>
-                                            </div>
-                                            <span class="text-sm">0751-8959999</span>
-                                        </a>
-
-                                        <a href="https://wa.me/6282382541525" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors group">
-                                            <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
-                                                <i class="fab fa-whatsapp text-green-400 text-sm"></i>
-                                            </div>
-                                            <span class="text-sm">+62 823-8254-1525</span>
-                                        </a>
-
-                                        <a href="mailto:admin@transnetsumbar.id" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors group">
-                                            <div class="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
-                                                <i class="fas fa-envelope text-green-400 text-sm"></i>
-                                            </div>
-                                            <span class="text-sm">admin@transnetsumbar.id</span>
-                                        </a>
-                                        <a  href="mailto:marawatransmisimedia@gmail.com" class="flex items-center space-x-3 text-gray-300 hover:text-white transition-colors group">
-                                            <span class="text-sm">marawatransmisimedia@gmail.com</span>
-                                        </a>
-                                    </div>
-                                </div>
+                            <div class="text-sm">
+                                <a href="tel:0751-8959999" class="text-gray-300 hover:text-white transition-colors duration-200">
+                                    0751-8959999
+                                </a>
                             </div>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- Bottom Bar -->
-                <div class="border-t border-white/10 pt-8">
-                    <div class="text-center">
-                        <div class="text-gray-400 text-sm mb-4">
-                            © 2025 Transnet Sumbar. All rights reserved.
+
+                        <!-- WhatsApp -->
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <a href="https://wa.me/6282382541525" i class="fab fa-whatsapp text-green-400 text-sm"></i></a>
+                            </div>
+                            <div class="text-sm">
+                                <a href="https://wa.me/6282382541525" class="text-gray-300 hover:text-white transition-colors duration-200">
+                                    +62 823-8254-1525
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <a href="mailto:marawatransmisimedia@gmail.com" i class="fas fa-envelope text-blue-400 text-sm"></i></a>
+                            </div>
+                            <div class="text-sm">
+                                <a href="mailto:admin@transnetsumbar.id" class="text-gray-300 hover:text-white transition-colors duration-200 block">
+                                    admin@transnetsumbar.id
+                                </a>
+                                <a href="mailto:marawatransmisimedia@gmail.com" class="text-gray-400 hover:text-gray-300 transition-colors duration-200 block">
+                                    marawatransmisimedia@gmail.com
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                  
+                <!-- Copyright -->
+                    <div class="w-full flex justify-center">
+                        <p class="text-center text-gray-400 text-sm">
+                            © 2025 <span class="text-white font-medium">PT. Marawa Transmisi Media</span>. All rights reserved.
+                        </p>
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top Button -->
+        <button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-200 opacity-0 invisible">
+            <i class="fas fa-chevron-up"></i>
+        </button>
     </footer>
+
+    <script>
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
+
 </body>
 </html>

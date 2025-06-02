@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ZoneController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AboutusController;
 
 //Route Home
 Route::get('/', [ContentController::class, 'index']);
@@ -55,3 +56,18 @@ Route::post('/order', [OrderController::class, 'setOrder'])->middleware('auth')-
 
 //Route Profile
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile');
+
+//Route About us
+Route::get('/aboutus', function () {
+    return view('front.aboutus');
+});
+
+//Route Visi Misi
+Route::get('/visimisi', function () {
+    return view('front.visimisi');
+});
+
+//Route Budaya Perusahaan
+Route::get('/companyculture', function () {
+    return view('front.companyculture');
+});

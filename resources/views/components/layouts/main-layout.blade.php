@@ -35,7 +35,7 @@
     @vite('resources/css/app.css')
 </head>
 <body class="text-gray-800 antialiased">
-    <x-header/>
+    <x-header2/>
         {{ $slot }}
     <x-footer/>
 </body>

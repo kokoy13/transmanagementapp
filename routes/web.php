@@ -42,27 +42,23 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard/fintech', [DashboardController::class, 'fintech'])->name('fintech');
 
     //Monitoring Route
-    Route::get('/tx-rx', [MonitoringController::class, 'index'])->name('txrx');
-    Route::get('/traffic/{id}', [MonitoringController::class, 'traffic'])->name('monitor.traffic');
-    Route::get('/interface-traffic/data/{id}', [MonitoringController::class, 'getTxRx']);
-
-
+    Route::get('/tx-rx', [MonitoringController::class, 'getTxRx'])->name('txrx');
     Route::get('/active-connection', [MonitoringController::class, 'getActiveConnection'])->name('active-connection');
 
     //Customer Route
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
-    Route::post('/customers', [CustomerController::class, 'action'])->name('customer.action');
 
     //Orders Route
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');
+    Route::get('/order/create', [OrderController::class, 'create'])->name('order.create');
+    Route::post('/order', [OrderController::class, 'store'])->name('order.store');
+    Route::get('/order/edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
+    Route::get('/order/delete/{id}', [OrderController::class, 'delete'])->name('order.delete');
+    Route::put('/order/{id}', [OrderController::class, 'update'])->name('order.update');
+
 
     //Payment Route
     Route::get('/payments', [PaymentController::class, 'index'])->name('payments');
-    Route::get('/payment/create', [PaymentController::class, 'create'])->name('payment.create');
-    Route::post('/payment', [PaymentController::class, 'store'])->name('payments.store');
-    Route::get('/payment/edit/{id}', [PaymentController::class, 'edit'])->name('payment.edit');
-    Route::put('/payment/{id}', [PaymentController::class, 'update'])->name('payment.update');
-    Route::get('/payment/delete/{id}', [PaymentController::class, 'delete'])->name('payment.delete');
 
     //Notification Route
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
@@ -88,11 +84,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //User Route
     Route::get('/users', [UserController::class, 'index'])->name('users');
-    Route::get('/users/create', [UserController::class, 'create'])->name('user.create');
-    Route::post('/user', [UserController::class, 'store'])->name('user.store');
-    Route::get('/user/{id}', [UserController::class, 'edit'])->name('user.edit');
-    Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
-    Route::get('/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
 
     //Reboot Route
     Route::get('/reboot', [RebootController::class, 'index'])->name('reboot');

@@ -3,9 +3,9 @@
         <div class="sm:flex sm:justify-between sm:items-center mb-8">
                 <!-- Left: Title -->
                 <div class="mb-4 sm:mb-0">
-                    <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Edit Order</h1>
+                    <h1 class="text-2xl md:text-3xl text-gray-800 dark:text-gray-100 font-bold">Create Order</h1>
                 </div>
         </div>
-        <x-form-edit-order :order="$order" :customers="$customers"></x-form-edit-order>
+        <x-form-create-order :orders="$orders" :customers="$customers"/>
     </div>
 </x-app-layout>

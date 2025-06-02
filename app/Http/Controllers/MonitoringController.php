@@ -16,15 +16,15 @@ class MonitoringController extends Controller
 
     public function index(){
         //Untuk Menampilkan data secret yang tidak ada trafficnya
-        // $data = $this->mikrotik->getSecret();
+        $data = $this->mikrotik->getSecret();
 
         //Untuk Menampilkan data interface dengan tujuan mendapatkan traffic
-        $data = $this->mikrotik->getInterfaces();
+        // $data = $this->mikrotik->getInterfaces();
         return view('pages.monitoring.tx-rx.index')->with(compact('data'));
     }
 
     public function traffic($id){
-        $data = $this->mikrotik->getInterfaceById($id);
+        $data = $this->mikrotik->getSecretById($id);
         return view('pages.monitoring.tx-rx.traffic', ['data' => $data[0]]);
     }
 
@@ -48,7 +48,6 @@ class MonitoringController extends Controller
             }
 
             $data = $result[0] ?? [];
-
             return response()->json([
                 'rx' => (int) ($data['rx-bits-per-second'] ?? 0),
                 'tx' => (int) ($data['tx-bits-per-second'] ?? 0),

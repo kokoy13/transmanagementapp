@@ -71,20 +71,18 @@ class MikrotikApiService
     public function getTraffic($id)
     {
     try {
-        $interfaceData = $this->getInterfaceById($id);
-
-        if (empty($interfaceData)) {
+        $secretData = $this->getSecretById($id);
+        if (empty($secretData)) {
             return ['error' => 'Interface not found'];
         }
 
-        $interfaceName = $interfaceData[0]['name'] ?? null;
+        $secretName = $secretData[0]['name'] ?? null;
 
-        if (!$interfaceName) {
+        if (!$secretName) {
             return ['error' => 'Interface name not found'];
         }
-
         $query = (new Query('/interface/monitor-traffic'))
-            ->equal('interface', $interfaceName)
+            ->equal('interface', '<pppoe-'.$secretName.'>')
                 ->equal('once', '');
 
             return $this->client->query($query)->read();
@@ -134,6 +132,17 @@ class MikrotikApiService
 
         return $this->client->query($query)->read();
         } catch (\Exception $e) {
+            dd("Error: " . $e->getMessage());
+        }
+    }
+
+    public function getSecretById($id){
+        try{
+            $query = (new Query('/ppp/secret/print'))
+                ->where('.id', $id)
+                ->equal('.proplist', '.id,name');
+            return $this->client->query($query)->read();
+        }catch(\Exception $e){
             dd("Error: " . $e->getMessage());
         }
     }

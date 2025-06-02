@@ -17,7 +17,7 @@
                         </th>
                         <th class="p-2 whitespace-nowrap">
                             <div class="font-semibold text-left">Name</div>
-                        {{-- </th>
+                        </th>
                         <th class="p-2 whitespace-nowrap">
                             <div class="font-semibold text-left">Packet</div>
                         </th>
@@ -27,7 +27,7 @@
                         <th class="p-2 whitespace-nowrap">
                             <div class="font-semibold text-center">Last Logout</div>
                         </th>
-                        <th></th> --}}
+                        <th></th>
                     </tr>
                 </thead>
                 <!-- Table body -->
@@ -43,12 +43,6 @@
                                     @endif
                                 >
                                     <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left">{{ $customer['.id'] }}</div>
-                                    </td>
-                                    <td class="p-2 whitespace-nowrap">
-                                        <div class="text-left">{{ $customer['name'] }}</div>
-                                    </td>
-                                    {{-- <td class="p-2 whitespace-nowrap">
                                         <div class="text-left">{{ $customer['name'] }}</div>
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
@@ -67,7 +61,7 @@
                                     </td>
                                     <td class="p-2 whitespace-nowrap">
                                         <div class="text-center">{{ ucfirst($customer['last-logged-out']) }}</div>
-                                    </td> --}}
+                                    </td>
                                 </tr>
                     @empty
                         <tr>

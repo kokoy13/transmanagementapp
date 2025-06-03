@@ -1,0 +1,99 @@
+
+    <nav
+
+        class="flex flex-wrap items-center bg-gray-800 justify-between px-2 py-6 relative top-0 w-full transition-colors duration-800 ease-in-out z-50"
+    >
+        @if (session('success'))
+            <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition class="flex items-center p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg absolute z-[99] right-1/2 translate-x-1/2" role="alert">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V7a1 1 0 10-2 0v2a1 1 0 001 1h1a1 1 0 100-2h-1zm0 4a1 1 0 10-2 0v2a1 1 0 002 0v-2z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="sr-only">Success</span>
+                <div>
+                    {{ session('success') }}
+                </div>
+            </div>
+        @endif
+        <div
+            class="container  w-full lg:px-18 xl:px-24  lg:mx-5 xl:mx-auto flex flex-wrap items-center justify-between"
+        >
+            <div
+            class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
+            >
+                <li data-aos="fade-down"
+                    class="list-none"
+                >
+                    <a
+                        href="/"
+                    >
+                        <img
+                            src="/assets/img/logo.png"
+                            alt=""
+                            class="w-48"
+                        >
+                    </a>
+                </li>
+                <button
+                    class="cursor-pointer md:text-xl lg:text-lg leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
+                    type="button"
+                    onclick="toggleNavbar('example-collapse-navbar')"
+                >
+                    <i class="text-white fas fa-bars"></i>
+                </button>
+            </div>
+            <div
+            class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
+            id="example-collapse-navbar"
+            >
+                <ul class="flex flex-col lg:items-center gap-10 lg:flex-row list-none lg:ml-auto">
+                    <li data-aos="fade-down">
+                        <a href="" class="text-white font-bold md:text-xl lg:text-base">
+                            Tentang Kami
+                        </a>
+                    </li>
+                    <li data-aos="fade-down">
+                        <a href="" class="text-white font-bold md:text-xl lg:text-base">
+                            Layanan Kami
+                        </a>
+                    </li>
+                    <li data-aos="fade-down">
+                        <a href="" class="text-white font-bold md:text-xl lg:text-base">
+                            Organisasi Perusahaan
+                        </a>
+                    </li>
+                    <li data-aos="fade-down">
+                        <a href="" class="text-white font-bold md:text-xl lg:text-base">
+                            Referensi
+                        </a>
+                    </li>
+                    <li data-aos="fade-down">
+                        <a href="" class="text-white font-bold md:text-xl lg:text-base">
+                            Kontak
+                        </a>
+                    </li>
+                    @if(Auth::check())
+                        <div data-aos="fade-down" x-data="{ open: false }" class="relative">
+                            <img @click="open = !open" src="{{ Auth::user()->avatar }}" alt="Avatar" class="rounded-full w-10 h-10 cursor-pointer">
+                            <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg z-10">
+                                <a href="/dashboard" class="block px-4 py-2 hover:bg-gray-100">Dashboard</a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="block w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+                                </form>
+                            </div>
+                        </div>
+                    @else
+                        <li data-aos="fade-down" class="flex items-center">
+                            <a href="/sign-in"
+                                class="bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3"
+                                type="button"
+                                style="transition: all 0.15s ease 0s;"
+                            > Log in
+                            </a>
+                        </li>
+                    @endif
+                </ul>
+            </div>
+        </div>
+    </nav>
+

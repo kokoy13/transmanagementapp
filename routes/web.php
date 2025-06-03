@@ -35,6 +35,21 @@ Route::get('/map', function () {
     return view('zone');
 });
 
+//ROute Order Form
+Route::get('/order-form', function () {
+    return view('form-order');
+});
+
+//ROute Notification
+Route::get('/notification', function () {
+    return view('notification.index');
+});
+
+//ROute Request Bandwidth
+Route::get('/bandwidth-request', function () {
+    return view('request.request-bandwidth');
+});
+
 //Route redirect auth socialite
 Route::get('/auth/redirect/{provider}',[AuthController::class, 'redirect'])->name('auth.redirect');
 

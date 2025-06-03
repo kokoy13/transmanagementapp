@@ -1,154 +1,228 @@
-<footer class="relative bg-gray-300 pt-8 pb-6">
-    <div
-      class="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-      style="height: 80px;"
-    >
-      <svg
-        class="absolute bottom-0 overflow-hidden"
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-        version="1.1"
-        viewBox="0 0 2560 100"
-        x="0"
-        y="0"
-      >
-        <polygon
-          class="text-gray-300 fill-current"
-          points="2560 0 2560 100 0 100"
-        ></polygon>
-      </svg>
-    </div>
-    <div class="container mx-auto px-4">
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-6/12 px-4">
-          <h4 class="text-3xl font-semibold">Let's keep in touch!</h4>
-          <h5 class="text-lg mt-0 mb-2 text-gray-700">
-            Find us on any of these platforms, we respond 1-2 business days.
-          </h5>
-          <div class="mt-6">
-            <button
-              class="bg-white text-blue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-              type="button"
-            >
-              <i class="flex fab fa-twitter"></i>
-            </button>
-            <button
-              class="bg-white text-blue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-              type="button"
-            >
-              <i class="flex fab fa-facebook-square"></i>
-            </button>
-            <button
-              class="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-              type="button"
-            >
-              <i class="flex fab fa-dribbble"></i>
-            </button>
-            <button
-              class="bg-white text-gray-900 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2 p-3"
-              type="button"
-            >
-              <i class="flex fab fa-github"></i>
-            </button>
-          </div>
-        </div>
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="flex flex-wrap items-top mb-6">
-            <div class="w-full lg:w-4/12 px-4 ml-auto">
-              <span class="block uppercase text-gray-600 text-sm font-semibold mb-2">
-                Useful Links
-              </span>
-              <ul class="list-unstyled">
-                <li>
-                  <a
-                    class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                    href="https://www.creative-tim.com/presentation"
-                  >
-                    About Us
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                    href="https://blog.creative-tim.com"
-                  >
-                    Blog
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                    href="https://www.github.com/creativetimofficial"
-                  >
-                    Github
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                    href="https://www.creative-tim.com/bootstrap-themes/free"
-                  >
-                    Free Products
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="w-full lg:w-4/12 px-4">
-              <span class="block uppercase text-gray-600 text-sm font-semibold mb-2">
-                Other Resources
-              </span>
-              <ul class="list-unstyled">
-                <li>
-                  <a
-                    class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                    href="https://github.com/creativetimofficial/argon-design-system/blob/master/LICENSE.md"
-                  >
-                    MIT License
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                    href="https://creative-tim.com/terms"
-                  >
-                    Terms &amp; Conditions
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                    href="https://creative-tim.com/privacy"
-                  >
-                    Privacy Policy
-                  </a>
-                </li>
-                <li>
-                  <a
-                    class="text-gray-700 hover:text-gray-900 font-semibold block pb-2 text-sm"
-                    href="https://creative-tim.com/contact-us"
-                  >
-                    Contact Us
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <hr class="my-6 border-gray-400" />
-      <div class="flex flex-wrap items-center md:justify-between justify-center">
-        <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-          <div class="text-sm text-gray-600 font-semibold py-1">
-            Copyright © 2019 Tailwind Starter Kit by
-            <a
-              href="https://www.creative-tim.com"
-              class="text-gray-600 hover:text-gray-900"
-            >
-              Creative Tim
-            </a>.
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
+<footer class="bg-gray-50 font-sans">
 
+    <!-- Responsive Footer -->
+    <div class="bg-gray-900 text-white">
+        <!-- Main Footer Content -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Company Info -->
+                <div class="lg:col-span-1">
+                    <!-- Logo -->
+                    <li data-aos="fade-down"
+                    class="list-none"
+                >
+                    <a
+                        href="/"
+                    >
+                        <img
+                            src="/assets/img/logo.png"
+                            alt=""
+                            class="w-48"
+                        >
+                    </a>
+                </li>
+
+                    <br>
+
+                    <!-- Company Description -->
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                        PT. Marawa Transmisi Media (Transnet) adalah perusahaan telekomunikasi dan IT terpercaya yang berkomitmen memberikan solusi inovatif untuk masa depan yang lebih terhubung.
+                    </p>
+
+                    <!-- Social Media -->
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors duration-200">
+                            <i class="fab fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition-colors duration-200">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors duration-200">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors duration-200">
+                            <i class="fab fa-whatsapp text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-lg font-semibold mb-6">Menu Utama</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
+                                Tentang Kami
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
+                                Layanan Kami
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
+                                Organisasi Perusahaan
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
+                                Referensi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
+                                Kontak
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Services -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-lg font-semibold mb-6">Layanan</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                                Jaringan Telekomunikasi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                                Solusi IT
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                                Konsultasi Teknologi
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                                Maintenance & Support
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
+                                Training & Development
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="lg:col-span-1">
+                    <h3 class="text-lg font-semibold mb-6">Hubungi Kami</h3>
+                    <div class="space-y-4">
+                        <!-- Address -->
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <i class="fas fa-map-marker-alt text-red-400 text-sm"></i>
+                            </div>
+                            <div class="text-sm">
+                                <p class="text-gray-300 leading-relaxed">
+                                    Jl. Batang Anai 2A Komplek GOR Haji Agus Salim Padang, Sumatera Barat, Indonesia
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <a href="tel:0751-8959999" i class="fas fa-phone text-green-500 text-sm"></i></a>
+                            </div>
+                            <div class="text-sm">
+                                <a href="tel:0751-8959999" class="text-gray-300 hover:text-white transition-colors duration-200">
+                                    0751-8959999
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp -->
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <a href="https://wa.me/6282382541525" class="fab fa-whatsapp text-green-500 text-sm"></i></a>
+                            </div>
+                            <div class="text-sm">
+                                <a href="https://wa.me/6282382541525" class="text-gray-300 hover:text-white transition-colors duration-200">
+                                    +62 823-8254-1525
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <a href="mailto:marawatransmisimedia@gmail.com" i class="fas fa-envelope text-blue-400 text-sm"></i></a>
+                            </div>
+                            <div class="text-sm">
+                                <a href="mailto:admin@transnetsumbar.id" class="text-gray-300 hover:text-white transition-colors duration-200 block">
+                                    admin@transnetsumbar.id
+                                </a>
+                                <a href="mailto:marawatransmisimedia@gmail.com" class="text-gray-400 hover:text-gray-300 transition-colors duration-200 block">
+                                    marawatransmisimedia@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Footer -->
+        <div class="border-t border-gray-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+
+                <!-- Copyright -->
+                    <div class="w-full flex justify-center">
+                        <p class="text-center text-gray-400 text-sm">
+                            © 2025 <span class="text-white font-medium">PT. Marawa Transmisi Media</span>. All rights reserved.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Back to Top Button -->
+        <button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-200 opacity-0 invisible">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+    </div>
+
+    <script>
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible');
+                backToTopBtn.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible');
+                backToTopBtn.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</footer>

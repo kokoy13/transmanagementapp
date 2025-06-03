@@ -1,11 +1,14 @@
 
     <nav
-
-        class="flex flex-wrap items-center justify-center px-2 py-6 fixed top-0 w-full transition-colors duration-800 ease-in-out z-50"
-        x-data="{ scrolled: false }"
+    class="flex flex-wrap items-center justify-center px-2 py-6 fixed bg-gray-800 top-0 w-full transition-colors duration-800 ease-in-out z-50"
+    x-data="{ scrolled: false }"
+    @if(request()->is('/'))
         x-init="window.addEventListener('scroll', () => { scrolled = window.scrollY > 10 })"
-        :class="scrolled ? 'bg-gray-800 shadow-md' : 'bg-transparent'"
-    >
+        :class="!scrolled ? 'bg-transparent' : 'shadow-md'"
+    @else
+        class="shadow-md"
+    @endif
+>
         @if (session('success'))
             <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 3000)" x-show="show" x-transition class="flex items-center p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg absolute z-[99] right-1/2 translate-x-1/2" role="alert">
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -79,7 +82,7 @@
                             <img @click="open = !open" src="{{ Auth::user()->avatar }}" alt="Avatar" class="rounded-full w-10 h-10 cursor-pointer">
                             <div x-show="open" @click.away="open = false" class="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg z-10">
                                 <a href="/profile" class="block px-4 py-2 hover:bg-gray-100">Profile</a>
-                                <a href="/check-order" class="block px-4 py-2 hover:bg-gray-100">My Orders</a>
+                                <a href="{{ route('order.check') }}" class="block px-4 py-2 hover:bg-gray-100">My Orders</a>
                                 <a href="/" class="block px-4 py-2 hover:bg-gray-100">Notification</a>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf

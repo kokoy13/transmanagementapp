@@ -51,4 +51,8 @@ class OrderController extends Controller
 
         return redirect('/')->with('success', 'Order created successfully');
     }
+
+    public function checkOrder(){
+        return view('order.check-order');
+    }
 }

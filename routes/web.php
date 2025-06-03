@@ -53,6 +53,9 @@ Route::get('/order/{id}', [OrderController::class, 'getOrder'])->middleware('aut
 //Route Order Create
 Route::post('/order', [OrderController::class, 'setOrder'])->middleware('auth')->name('order.set');
 
+//Route Check Order
+Route::get('/check-order', [OrderController::class, 'checkOrder'])->name('order.check');
+
 //Route Profile
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile');
 Route::put('/profile', [ProfileController::class, 'edit'])->middleware('auth')->name('profile.edit');

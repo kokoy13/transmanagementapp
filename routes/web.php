@@ -55,3 +55,4 @@ Route::post('/order', [OrderController::class, 'setOrder'])->middleware('auth')-
 
 //Route Profile
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile');
+Route::put('/profile', [ProfileController::class, 'edit'])->middleware('auth')->name('profile.edit');

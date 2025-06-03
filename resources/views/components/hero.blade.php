@@ -11,8 +11,7 @@
             @foreach ($banners as $banner)
                 <!-- Item 1 -->
                 <div class="hidden duration-12000 ease-in-out h-full" data-carousel-item>
-                    <img src="{{ Storage::url($banner->img) }}" class="absolute block w-full h-full" alt="...">
-                    <h1 class="absolute">Hello Guys</h1>
+                    <img src="{{ Storage::url('banners/'.$banner->img) }}" class="absolute block w-full h-full" alt="...">
                 </div>
             @endforeach
         </div>

@@ -1,40 +1,10 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Header - TransNet Sumbar</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4338ca',
-                        secondary: '#8b5cf6',
-                        accent: '#f59e0b',
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-gray-100 min-h-screen">
+<div class="bg-gray-100">
     <!-- Navigation Header -->
-    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 ease-in-out bg-gray-800/95 backdrop-blur-md border-b border-gray-700/50">
+    <nav id="navbar" class="fixed top-0 w-full z-50 h-20 transition-all duration-300 ease-in-out bg-gray-800/95 backdrop-blur-md border-b border-gray-700/50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 
                 <!-- Logo Section -->
-                    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 lg:h-20">
-                      <div
-            class="container w-full px-18 flex items-center justify-between"
-        >
-            <div
-            class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
-            >
                 <li data-aos="fade-down"
                     class="list-none"
                 >
@@ -48,21 +18,12 @@
                         >
                     </a>
                 </li>
-                <button
-                    class="cursor-pointer md:text-xl lg:text-lg leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-                    type="button"
-                    onclick="toggleNavbar('example-collapse-navbar')"
-                >
-                    <i class="text-white fas fa-bars"></i>
-                </button>
-            </div>
-
 
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
                     <!-- Tentang Kami Dropdown -->
                     <div class="relative group">
-                        <button class="flex items-center space-x-1 text-white hover:text-blue-400 transition-colors duration-200 font-medium py-2">
+                        <button class="flex items-center space-x-1 text-white hover:text-blue-500 transition-colors duration-200 font-medium py-2">
                             <span>Tentang Kami</span>
                             <i class="fas fa-chevron-down text-xs transition-transform duration-200 group-hover:rotate-180"></i>
                         </button>
@@ -75,17 +36,18 @@
                         </div>
                     </div>
 
-                    <a href="/layanan" class="text-white hover:text-blue-400 transition-colors duration-200 font-medium">Layanan Kami</a>
-                    <a href="/organisasi" class="text-white hover:text-blue-400 transition-colors duration-200 font-medium">Organisasi Perusahaan</a>
-                    <a href="/referensi" class="text-white hover:text-blue-400 transition-colors duration-200 font-medium">Referensi</a>
-                    <a href="/kontak" class="text-white hover:text-blue-400 transition-colors duration-200 font-medium">Kontak</a>
+                    <a href="/layanan" class="text-white hover:text-blue-500 transition-colors duration-200 font-medium">Layanan Kami</a>
+                    <a href="/organisasi" class="text-white hover:text-blue-500 transition-colors duration-200 font-medium">Organisasi Perusahaan</a>
+                    <a href="/referensi" class="text-white hover:text-blue-500 transition-colors duration-200 font-medium">Referensi</a>
+                    <a href="/kontak" class="text-white hover:text-blue-500 transition-colors duration-200 font-medium">Kontak</a>
 
                     <!-- User Profile / Login -->
                     <div class="flex items-center space-x-4">
                         <!-- User Profile Dropdown (when logged in) -->
-                        <div class="relative group hidden" id="userProfile">
-                            <button class="flex items-center space-x-2 text-white hover:text-blue-400 transition-colors duration-200">
-                                <img src="/placeholder.svg?height=32&width=32" alt="Avatar" class="w-8 h-8 rounded-full border-2 border-gray-600">
+                        @if(Auth::check())
+                        <div class="relative group" id="userProfile">
+                            <button class="flex items-center space-x-2 text-white hover:text-blue-500 transition-colors duration-200">
+                                <img src="{{ Auth::user()->avatar }}" alt="Avatar" class="w-8 h-8 rounded-full border-2 border-gray-600">
                                 <i class="fas fa-chevron-down text-xs"></i>
                             </button>
                             <div class="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
@@ -106,19 +68,20 @@
                                 </div>
                             </div>
                         </div>
-
+                        @else
                         <!-- Login Button (when not logged in) -->
                         <div id="loginButton">
-                            <a href="/login" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 hover:shadow-lg hover:scale-105 transition-all duration-200 font-medium">
+                            <a href="/sign-in" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 hover:shadow-lg hover:scale-105 transition-all duration-200 font-medium">
                                 <i class="fas fa-sign-in-alt mr-2"></i>Login
                             </a>
                         </div>
+                        @endif
                     </div>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="lg:hidden">
-                    <button id="mobileMenuBtn" class="text-white hover:text-blue-400 focus:outline-none transition-colors duration-200 p-2">
+                    <button id="mobileMenuBtn" class="text-white hover:text-blue-500 focus:outline-none transition-colors duration-200 p-2">
                         <i id="menuIcon" class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
@@ -149,10 +112,10 @@
                 </div>
 
                 <!-- Mobile Navigation Links -->
-                <a href="/layanan" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-400 transition-colors duration-200">
+                <a href="/layanan" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-500 transition-colors duration-200">
                     <i class="fas fa-cogs mr-2 text-blue-400"></i>Layanan Kami
                 </a>
-                <a href="/organisasi" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-400 transition-colors duration-200">
+                <a href="/organisasi" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-500 transition-colors duration-200">
                     <i class="fas fa-sitemap mr-2 text-blue-400"></i>Organisasi Perusahaan
                 </a>
                 <a href="/referensi" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-400 transition-colors duration-200">
@@ -165,40 +128,157 @@
                 <!-- Mobile User Section -->
                 <div class="pt-4 border-t border-gray-700">
                     <!-- Mobile User Profile (when logged in) -->
-                    <div class="hidden" id="mobileUserProfile">
+                    @if(Auth::check())
+                    <div id="mobileUserProfile">
                         <div class="flex items-center space-x-3 mb-4 p-3 bg-gray-700/50 rounded-lg">
-                            <img src="/placeholder.svg?height=40&width=40" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-gray-600">
+                            <img src="{{ Auth::user()->avatar }}" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-gray-600">
                             <div>
-                                <p class="text-white font-medium">John Doe</p>
-                                <p class="text-gray-400 text-sm">john@example.com</p>
+                                <p class="text-white font-medium">{{ Auth::user()->name }}</p>
+                                <p class="text-gray-400 text-sm">{{ Auth::user()->email }}</p>
                             </div>
                         </div>
                         <div class="space-y-2">
                             <a href="/profile" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
-                                <i class="fas fa-user mr-2 text-blue-400"></i>Profile
+                                <i class="fas fa-user mr-2 text-blue-500"></i>Profile
                             </a>
                             <a href="/orders" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
-                                <i class="fas fa-shopping-bag mr-2 text-blue-400"></i>My Orders
+                                <i class="fas fa-shopping-bag mr-2 text-blue-500"></i>My Orders
                             </a>
                             <a href="/notifications" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
-                                <i class="fas fa-bell mr-2 text-blue-400"></i>Notifications
+                                <i class="fas fa-bell mr-2 text-blue-500"></i>Notifications
                             </a>
                             <button onclick="logout()" class="block text-red-400 hover:text-red-300 py-2 transition-colors duration-200">
                                 <i class="fas fa-sign-out-alt mr-2"></i>Logout
                             </button>
                         </div>
                     </div>
-
+                    @else
                     <!-- Mobile Login Button (when not logged in) -->
                     <div id="mobileLoginButton">
-                        <a href="/login" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white text-center py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200">
+                        <a href="/sign-in" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white text-center py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200">
                             <i class="fas fa-sign-in-alt mr-2"></i>Login
                         </a>
                     </div>
+                    @endif
                 </div>
             </div>
         </div>
     </nav>
 
-</body>
-</html>
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        let isMobileMenuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            isMobileMenuOpen = !isMobileMenuOpen;
+            
+            if (isMobileMenuOpen) {
+                mobileMenu.classList.remove('-translate-y-full', 'opacity-0');
+                mobileMenu.classList.add('translate-y-0', 'opacity-100');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden'; // Prevent body scroll
+            } else {
+                mobileMenu.classList.remove('translate-y-0', 'opacity-100');
+                mobileMenu.classList.add('-translate-y-full', 'opacity-0');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+                document.body.style.overflow = 'auto'; // Restore body scroll
+            }
+        });
+
+        // Mobile Dropdown Toggle
+        const tentangKamiBtn = document.getElementById('tentangKamiBtn');
+        const tentangKamiDropdown = document.getElementById('tentangKamiDropdown');
+        const tentangKamiIcon = document.getElementById('tentangKamiIcon');
+
+        tentangKamiBtn.addEventListener('click', () => {
+            tentangKamiDropdown.classList.toggle('hidden');
+            tentangKamiIcon.classList.toggle('rotate-180');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target) && isMobileMenuOpen) {
+                mobileMenuBtn.click();
+            }
+        });
+
+        // Close mobile menu when window is resized to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024 && isMobileMenuOpen) {
+                mobileMenuBtn.click();
+            }
+        });
+
+        // Navbar Scroll Effect
+        let lastScrollTop = 0;
+        const navbar = document.getElementById('navbar');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                navbar.classList.add('bg-gray-900/95');
+                navbar.classList.remove('bg-gray-800/95');
+            } else {
+                navbar.classList.remove('bg-gray-900/95');
+                navbar.classList.add('bg-gray-800/95');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
+
+        // Demo Functions
+        let isLoggedIn = false;
+
+        function toggleAuth() {
+            isLoggedIn = !isLoggedIn;
+            const userProfile = document.getElementById('userProfile');
+            const loginButton = document.getElementById('loginButton');
+            const mobileUserProfile = document.getElementById('mobileUserProfile');
+            const mobileLoginButton = document.getElementById('mobileLoginButton');
+
+            if (isLoggedIn) {
+                userProfile.classList.remove('hidden');
+                loginButton.classList.add('hidden');
+                mobileUserProfile.classList.remove('hidden');
+                mobileLoginButton.classList.add('hidden');
+            } else {
+                userProfile.classList.add('hidden');
+                loginButton.classList.remove('hidden');
+                mobileUserProfile.classList.add('hidden');
+                mobileLoginButton.classList.remove('hidden');
+            }
+        }
+
+        function logout() {
+            if (isLoggedIn) {
+                toggleAuth();
+            }
+        }
+
+        function changeNavbarColor() {
+            const colors = ['bg-gray-800/95', 'bg-blue-800/95', 'bg-purple-800/95', 'bg-green-800/95'];
+            const currentColor = navbar.className.match(/bg-\w+-\d+\/\d+/)[0];
+            const currentIndex = colors.indexOf(currentColor);
+            const nextIndex = (currentIndex + 1) % colors.length;
+            
+            navbar.classList.remove(currentColor);
+            navbar.classList.add(colors[nextIndex]);
+        }
+
+        // Prevent scroll when mobile menu is open
+        function preventScroll(e) {
+            if (isMobileMenuOpen) {
+                e.preventDefault();
+            }
+        }
+
+        // Add touch event listeners for mobile
+        document.addEventListener('touchmove', preventScroll, { passive: false });
+    </script>
+</div>

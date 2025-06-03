@@ -32,10 +32,10 @@
         }
     </style>
     <title>{{ $title}}</title>
-    @vite('resources/css/app.css')
+    @vite('resources/css/app.css', 'resources/js/app.js')
 </head>
 <body class="text-gray-800 antialiased">
-    <x-header2/>
+    <x-header/>
         {{ $slot }}
     <x-footer/>
 </body>

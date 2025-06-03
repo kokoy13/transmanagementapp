@@ -1,30 +1,8 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Footer - TransNet Sumbar</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4338ca',
-                        secondary: '#8b5cf6',
-                        accent: '#f59e0b',
-                        orange: '#ea580c',
-                    }
-                }
-            }
-        }
-    </script>
-</head>
-<body class="bg-gray-50 font-sans">
+
+<footer class="bg-gray-50 font-sans">
 
     <!-- Responsive Footer -->
-    <footer class="bg-gray-900 text-white">
+    <div class="bg-gray-900 text-white">
         <!-- Main Footer Content -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -166,7 +144,7 @@
                         <!-- Phone -->
                         <div class="flex items-center space-x-3">
                             <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <a href="tel:0751-8959999" i class="fas fa-phone text-green-400 text-sm"></i></a>
+                                <a href="tel:0751-8959999" class="fas fa-phone text-green-400 text-sm"></i></a>
                             </div>
                             <div class="text-sm">
                                 <a href="tel:0751-8959999" class="text-gray-300 hover:text-white transition-colors duration-200">
@@ -178,7 +156,7 @@
                         <!-- WhatsApp -->
                         <div class="flex items-center space-x-3">
                             <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <a href="https://wa.me/6282382541525" i class="fab fa-whatsapp text-green-400 text-sm"></i></a>
+                                <a href="https://wa.me/6282382541525" class="fab fa-whatsapp text-green-400 text-sm"></i></a>
                             </div>
                             <div class="text-sm">
                                 <a href="https://wa.me/6282382541525" class="text-gray-300 hover:text-white transition-colors duration-200">
@@ -224,10 +202,10 @@
         </div>
 
         <!-- Back to Top Button -->
-        <button id="backToTop" class="fixed bottom-6 right-6 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-200 opacity-0 invisible">
+        <button id="backToTop" class="fixed bottom-6 z-50 right-6 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-200 opacity-0 invisible">
             <i class="fas fa-chevron-up"></i>
         </button>
-    </footer>
+    </div>
 
     <script>
         // Back to Top Button
@@ -250,8 +228,4 @@
             });
         });
     </script>
-</body>
-</html>
-
-</body>
-</html>
+</footer>

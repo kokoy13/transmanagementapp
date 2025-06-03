@@ -23,7 +23,7 @@
 </head>
 <body class="bg-gray-50 font-sans">
 
-<x-header2></x-header2>
+<x-header></x-header>
 
     <!-- Hero Section -->
     <section class="bg-gradient-to-r from-orange-500 to-red-500 overflow-hidden">

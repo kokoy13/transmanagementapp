@@ -11,7 +11,6 @@
     {{-- Fonts and Styles --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     {{-- Vite --}}
@@ -33,6 +32,9 @@
         .gradient-bg {
             background: linear-gradient(135deg, #4338ca, #3b82f6);
         }
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
 
     <title>{{ $title }}</title>
@@ -49,9 +51,7 @@
     <x-footer />
 
     {{-- Scripts --}}
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 
     @stack('scripts')
 </body>

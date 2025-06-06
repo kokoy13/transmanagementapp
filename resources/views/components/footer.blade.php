@@ -32,19 +32,19 @@
 
                     <!-- Social Media -->
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors duration-200">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600! transition-colors duration-200">
                             <i class="fab fa-facebook-f text-sm"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition-colors duration-200">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400! transition-colors duration-200">
                             <i class="fab fa-twitter text-sm"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors duration-200">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-700! transition-colors duration-200">
                             <i class="fab fa-linkedin-in text-sm"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-colors duration-200">
+                        <a href="https://www.instagram.com/transnetofficial/" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600! transition-colors duration-200">
                             <i class="fab fa-instagram text-sm"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600 transition-colors duration-200">
+                        <a href="https://wa.me/6282382541525" target="_blank" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-600! transition-colors duration-200">
                             <i class="fab fa-whatsapp text-sm"></i>
                         </a>
                     </div>
@@ -55,33 +55,27 @@
                     <h3 class="text-lg font-semibold mb-6">Menu Utama</h3>
                     <ul class="space-y-3">
                         <li>
-                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                            <a href="/" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
                                 <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
                                 Tentang Kami
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                            <a href="/packets" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
                                 <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
                                 Layanan Kami
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                            <a href="{{ route('news') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
                                 <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
-                                Organisasi Perusahaan
+                                Berita Terbaru
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                            <a href="{{ route('pelanggan-prioritas') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
                                 <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
-                                Referensi
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
-                                Kontak
+                                Pelanggan Prioritas
                             </a>
                         </li>
                     </ul>
@@ -89,36 +83,24 @@
 
                 <!-- Services -->
                 <div class="lg:col-span-1">
-                    <h3 class="text-lg font-semibold mb-6">Layanan</h3>
+                    <h3 class="text-lg font-semibold mb-6">Tentang Kami</h3>
                     <ul class="space-y-3">
                         <li>
-                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                            <a href="{{ route('sejarah-perusahaan') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
                                 <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
-                                Jaringan Telekomunikasi
+                                Sejarah Perusahaan
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                            <a href="{{ route('visimisi') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
                                 <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
-                                Solusi IT
+                                Visi dan Misi
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                            <a href="{{ route('budaya-perusahaan') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
                                 <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
-                                Konsultasi Teknologi
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
-                                Maintenance & Support
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
-                                <i class="fas fa-chevron-right text-xs mr-2 text-orange-400"></i>
-                                Training & Development
+                                Budaya Perusahaan
                             </a>
                         </li>
                     </ul>
@@ -155,10 +137,10 @@
                         <!-- WhatsApp -->
                         <div class="flex items-center space-x-3">
                             <div class="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <a href="https://wa.me/6282382541525" class="fab fa-whatsapp text-green-500 text-sm"></i></a>
+                                <a href="https://wa.me/6282382541525" target="_blank" class="fab fa-whatsapp text-green-500 text-sm"></i></a>
                             </div>
                             <div class="text-sm">
-                                <a href="https://wa.me/6282382541525" class="text-gray-300 hover:text-white transition-colors duration-200">
+                                <a href="https://wa.me/6282382541525" target="_blank" class="text-gray-300 hover:text-white transition-colors duration-200">
                                     +62 823-8254-1525
                                 </a>
                             </div>

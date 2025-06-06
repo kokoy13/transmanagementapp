@@ -69,7 +69,7 @@
             display: none; /* Chrome, Safari, Opera */
         }
     </style>
-    @vite('resources/css/app.css')
+    @vite('resources/css/app.css', 'resources/js/app.js')
     <title>{{ $title}}</title>
 </head>
 <body class="text-gray-800 antialiased">
@@ -77,18 +77,6 @@
         {{ $slot }}
     <x-footer></x-footer>
     <script src="{{ asset('js/check-order.js') }}"></script>
-    <script>
-        function toggleNavbar(collapseID) {
-        document.getElementById(collapseID).classList.toggle("hidden");
-        document.getElementById(collapseID).classList.toggle("block");
-        }
-
-    </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
 </body>
 </html>

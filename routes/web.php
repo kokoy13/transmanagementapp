@@ -5,9 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\PacketController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ZoneController;
 use App\Http\Controllers\Order\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RequestController;
 
 //Route Home
 Route::get('/', [ContentController::class, 'index']);
@@ -59,3 +61,31 @@ Route::get('/check-order', [OrderController::class, 'checkOrder'])->name('order.
 //Route Profile
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth')->name('profile');
 Route::put('/profile', [ProfileController::class, 'edit'])->middleware('auth')->name('profile.edit');
+
+//Route News
+Route::get('/news', [ContentController::class, 'news'])->name('news');
+
+//Route Request
+Route::get('/notificataions', [NotificationController::class, 'index'])->name('notifications');
+
+//Route Request
+Route::get('/request', [RequestController::class,'index'])->name('requests');
+
+//Route Budaya Perusahaan
+Route::get('/budaya-perusahaan', function(){
+    return view('front.budayaperusahaan');
+})->name('budaya-perusahaan');
+
+//Route Sejarah
+Route::get('/sejarah-perusahaan', function(){
+    return view('front.sejarah');
+})->name('sejarah-perusahaan');
+
+//Route Visi Misi
+Route::get('/visi-misi', function(){
+    return view('front.visimisi');
+})->name('visimisi');
+
+Route::get('/pelanggan-prioritas', function(){
+    return view('front.pelanggan-prioritas');
+})->name('pelanggan-prioritas');

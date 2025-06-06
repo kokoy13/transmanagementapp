@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\PacketController;
-use Illuminate\Http\Request;
+use App\Models\Content;
 
 class ContentController extends Controller
 {
@@ -16,5 +16,10 @@ class ContentController extends Controller
         $banners = $bannerController->getContent();
 
         return view('front.home',["packets"=>$packets, "banners"=>$banners]);
+    }
+
+    public function news(){
+        $contents = Content::all();
+        return view('front.news')->with(compact('contents'));
     }
 }

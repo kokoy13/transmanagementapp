@@ -1,6 +1,6 @@
 @props(['packets'])
 {{-- Service1 --}}
-<section class="pb-20 bg-gray-100 -mt-24">
+<section class="pb-20 -mt-24">
     <div class="container mx-auto px-4">
         <x-packet :packets="$packets"/>
         <div class="flex flex-wrap items-center mt-32">

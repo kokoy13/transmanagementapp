@@ -72,6 +72,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Content Route
     Route::get('/contents', [ContentController::class, 'index'])->name('contents');
+    Route::get('content/create', [ContentController::class, 'create'])->name('content.create');
+    Route::post('/content', [ContentController::class, 'store'])->name('content.store');
+    Route::get('/content/{id}', [ContentController::class, 'edit'])->name('content.edit');
+    Route::put('/content/{id}', [ContentController::class, 'update'])->name('content.update');
+    Route::get('/content/delete/{id}', [ContentController::class, 'delete'])->name('content.delete');
 
     //Banner Route
     Route::get('/banners', [BannerController::class, 'index'])->name('banners');

@@ -48,6 +48,8 @@ Route::get('/auth/{provider}/callback',[AuthController::class, 'callback']);
 
 //Route Price List
 Route::get('/packets',[PacketController::class, 'getPacket']);
+//Route Search Packet
+Route::post('/packets', [PacketController::class, 'searchPacket'])->name('packets.search');
 
 //Route Order Form
 Route::get('/order/{id}', [OrderController::class, 'getOrder'])->middleware('auth')->name('order.form');
@@ -64,6 +66,7 @@ Route::put('/profile', [ProfileController::class, 'edit'])->middleware('auth')->
 
 //Route News
 Route::get('/news', [ContentController::class, 'news'])->name('news');
+Route::post('/news', [ContentController::class, 'searchNews'])->name('search.news');
 
 //Route Request
 Route::get('/notificataions', [NotificationController::class, 'index'])->name('notifications');
@@ -86,6 +89,6 @@ Route::get('/visi-misi', function(){
     return view('front.visimisi');
 })->name('visimisi');
 
-Route::get('/pelanggan-prioritas', function(){
-    return view('front.pelanggan-prioritas');
-})->name('pelanggan-prioritas');
+Route::get('/contact', function(){
+    return view('front.contact');
+})->name('contact');

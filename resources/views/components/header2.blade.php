@@ -1,5 +1,5 @@
     <!-- Navigation Header -->
-    <nav id="navbar" class="fixed top-0 w-full z-[999999999] py-3 h-22 transition-colors duration-500 ease-in-out">
+    <nav id="navbar" class="fixed top-0 w-full z-[999999999] py-3 h-22 bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
 
@@ -22,32 +22,29 @@
                 <div class="hidden lg:flex items-center space-x-8">
                     <!-- Tentang Kami Dropdown -->
                     <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
-                        <button class="@if(Route::is('budaya-perusahaan') || Route::is('sejarah-perusahaan') || Route::is('visimisi')) text-blue-500 @else text-white hover:text-blue-400 transition-colors duration-200 @endif flex items-center space-x-1   font-medium py-2">
+                        <button class="flex items-center space-x-1 text-white hover:text-blue-400 transition-colors duration-200 font-medium py-2">
                             <span>Tentang Kami</span>
                             <i class="fas fa-chevron-down text-xs transition-transform duration-200" :class="{ 'rotate-180': open }"></i>
                         </button>
                         <div x-cloak class="absolute top-full left-0 mt-2 w-48 bg-white rounded-lg shadow-xl transition-all duration-200 transform"
                              :class="open ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-2'">
                             <div class="py-2">
-                                {{-- Sejarah Perusahaan --}}
-                                <a href="{{ route('sejarah-perusahaan') }}" class="@if(Route::is('sejarah-perusahaan')) text-blue-500 bg-blue-50 @else text-gray-700 hover:bg-blue-50 hover:text-blue-500! transition-colors duration-200 @endif block px-4 py-2">Sejarah Perusahaan</a>
+                                {{-- Sejarah Perusahan --}}
+                                <a href="{{ route('sejarah-perusahaan') }}" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-500! transition-colors duration-200">Sejarah Perusahaan</a>
                                 {{-- Visi Misi --}}
-                                <a href="{{ route('visimisi') }}" class="@if(Route::is('visimisi')) text-blue-500 bg-blue-50 @else text-gray-700 hover:bg-blue-50 hover:text-blue-500! transition-colors duration-200 @endif block px-4 py-2">Visi dan Misi</a>
-                                {{-- Budaya Perusahaan --}}
-                                <a href="{{ route('budaya-perusahaan') }}" class="@if(Route::is('budaya-perusahaan')) text-blue-500 bg-blue-50 @else text-gray-700 hover:bg-blue-50 hover:text-blue-500! transition-colors duration-200 @endif block px-4 py-2">Budaya Perusahaan</a>
+                                <a href="{{ route('visimisi') }}" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-500! transition-colors duration-200">Visi dan Misi</a>
+                                {{-- Budaya Perusahan --}}
+                                <a href="{{ route('budaya-perusahaan') }}" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-500! transition-colors duration-200">Budaya Perusahaan</a>
                             </div>
                         </div>
                     </div>
-                    {{-- Layanan Kami --}}
-                    <a href="/packets" class="text-white hover:text-blue-500! transition-colors duration-200 font-medium">Layanan Kami</a>
-                    {{-- Berita Terbaru --}}
-                    <a href="{{ route('news') }}" class="text-white hover:text-blue-500! transition-colors duration-200 font-medium">Berita Terbaru</a>
-                    {{-- Contact --}}
-                    <a href="{{ route('contact') }}" class="@if(Route::is('contact')) text-blue-500! @else text-white hover:text-blue-500! transition-colors duration-200 @endif font-medium">Contact</a>
+
+                    <a href="/packets" class="@if(request()->is('packets') || request()->is('packet-search')) text-blue-500! @else text-white hover:text-blue-500! transition-colors duration-200 @endif font-medium">Layanan Kami</a>
+                    <a href="{{ route('news') }}" class="@if(Route::is('news') || Route::is('search.news')) text-blue-500 @else text-white hover:text-blue-500! transition-colors duration-200 @endif font-medium">Berita Terbaru</a>
+                    <a href="{{ route('contact') }}" class="text-white hover:text-blue-500! transition-colors duration-200 font-medium">Contact</a>
 
                     <!-- User Profile / Login -->
                     <div class="flex items-center space-x-4">
-                        @if(Auth::check())
                         <!-- User Profile Dropdown (when logged in) -->
                         <div class="relative group hidden" id="userProfile">
                             <button class="flex items-center space-x-2 text-white hover:text-blue-400 transition-colors duration-200">
@@ -72,14 +69,13 @@
                                 </div>
                             </div>
                         </div>
-                        @else
+
                         <!-- Login Button (when not logged in) -->
                         <div id="loginButton">
                             <a href="/sign-in" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 hover:shadow-lg hover:scale-105 transition-all duration-200 font-medium">
                                 <i class="fas fa-sign-in-alt mr-2"></i>Login
                             </a>
                         </div>
-                        @endif
                     </div>
                 </div>
 
@@ -226,24 +222,6 @@
             }
         });
 
-        // Navbar Scroll Effect
-        let lastScrollTop = 0;
-        const navbar = document.getElementById('navbar');
-
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-            if (scrollTop > 100) {
-                navbar.classList.add('bg-gray-800');
-                navbar.classList.remove('bg-transparent');
-            } else {
-                navbar.classList.remove('bg-gray-800');
-                navbar.classList.add('bg-transparent');
-            }
-
-            lastScrollTop = scrollTop;
-        });
-
         // Demo Functions
         // let isLoggedIn = false;
 
@@ -265,16 +243,6 @@
         //         mobileUserProfile.classList.add('hidden');
         //         mobileLoginButton.classList.remove('hidden');
         //     }
-        // }
-
-        function changeNavbarColor() {
-            const colors = ['bg-gray-800/95', 'bg-blue-800/95', 'bg-purple-800/95', 'bg-green-800/95'];
-            const currentColor = navbar.className.match(/bg-\w+-\d+\/\d+/)[0];
-            const currentIndex = colors.indexOf(currentColor);
-            const nextIndex = (currentIndex + 1) % colors.length;
-
-            navbar.classList.remove(currentColor);
-            navbar.classList.add(colors[nextIndex]);
         }
 
         // Prevent scroll when mobile menu is open

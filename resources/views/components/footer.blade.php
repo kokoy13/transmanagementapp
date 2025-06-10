@@ -73,9 +73,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('pelanggan-prioritas') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
+                            <a href="{{ route('contact') }}" class="text-gray-300 hover:text-white transition-colors duration-200 text-sm flex items-center">
                                 <i class="fas fa-chevron-right text-xs mr-2 text-blue-400"></i>
-                                Pelanggan Prioritas
+                                Contact
                             </a>
                         </li>
                     </ul>

@@ -9,13 +9,6 @@
         @foreach ($packets as $packet)
         <div data-aos='fade-up' class="pricing-card bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border border-gray-100">
             <div class="gradient-bg px-6 py-8 text-white relative">
-                <div class="absolute top-0 right-0 mt-4 mr-4">
-                    @if ($packet->name == 'Family' && $packet->bandwidth == 10)
-                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white text-indigo-800">
-                            Most Popular
-                        </span>
-                    @endif
-                </div>
                 <h3 class="text-xl font-semibold uppercase">{{ $packet->name }}</h3>
                 <div class="mt-4 flex items-baseline">
                     <div class="speed-badge flex items-center justify-center bg-white text-indigo-700 rounded-full h-24 w-24 p-2 shadow-lg">

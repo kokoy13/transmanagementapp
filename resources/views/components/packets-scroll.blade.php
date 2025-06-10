@@ -1,8 +1,8 @@
-<section class="bg-gray-50 px-20 mx-5 rounded-xl py-5" x-data="{ scroll: 0 }">
+<section class="@if(!$packets) hidden @endif  bg-gray-50 px-20 mx-5 rounded-xl py-5" x-data="{ scroll: 0 }">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="section-header near-protocol text-2xl font-bold text-gray-700">{{ $title }}</h2>
                 <div class="flex gap-2">
-                    <button 
+                    <button
                         class="p-1 rounded-full bg-white hover:bg-gray-700 transition-colors"
                         @click="$refs.nearScroll.scrollBy({ left: -300, behavior: 'smooth' })"
                         :class="{ 'opacity-50 cursor-not-allowed': scroll <= 0 }"
@@ -12,7 +12,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                         </svg>
                     </button>
-                    <button 
+                    <button
                         class="p-1 rounded-full bg-white hover:bg-gray-700 transition-colors"
                         @click="$refs.nearScroll.scrollBy({ left: 300, behavior: 'smooth' })"
                         :class="{ 'opacity-50 cursor-not-allowed': scroll >= $refs.nearScroll.scrollWidth - $refs.nearScroll.clientWidth }"
@@ -24,8 +24,8 @@
                     </button>
                 </div>
             </div>
-            <div 
-                class="flex overflow-x-auto gap-4 scroll-container pb-4" 
+            <div
+                class="flex overflow-x-auto gap-4 scroll-container pb-4"
                 x-ref="nearScroll"
                 @scroll="scroll = $event.target.scrollLeft"
             >
@@ -90,7 +90,7 @@
                         </a>
                     </div>
                 </div>
-                    
+
                 @endforeach
             </div>
         </section>

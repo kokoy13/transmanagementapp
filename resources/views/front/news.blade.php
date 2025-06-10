@@ -1,23 +1,34 @@
-<x-layouts.main-layout>
+<x-layouts.order-layout>
     <!-- Content Section -->
     <div class="container mx-auto px-4 py-12 mt-15">
         <div class="flex -mx-4 w-full">
             <!-- Main Content -->
             <div class="flex flex-col gap-8 w-full mx-10">
-                @foreach ($contents as $post)
+                <!-- Breadcrumb -->
+                <nav class="flex items-center space-x-2 px-4 text-black/50 mt-8">
+                    <a href="/" class="hover:text-black! transition-colors duration-200">
+                        <i class="fas fa-home mr-1"></i>Home
+                    </a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span class="text-black font-medium">Berita Terbaru                                                                                                         </span>
+                </nav>
+                @forelse ($contents as $post)
                 <div class="w-full px-4">
                     <div class="bg-white rounded-lg shadow-sm">
                         <!-- Thumbnail -->
                         <div class="w-full h-[400px]">
                             <img class="w-full h-full rounded-t-lg" src="{{ asset('assets/img/news.jpg') }}" alt="">
                         </div>
+                        <div class="text-2xl text-gray-800 font-semibold mx-4 mt-4 p-4">
+                            "{{ $post->title }}"
+                        </div>
                         <!-- Excerpt -->
-                        <div class="text-lg text-gray-600 font-medium border-l-4 border-primary pl-4 italic">
+                        <div class="text-lg text-gray-600 bg-gray-100 font-medium border-l-2 border-blue-500! mx-4 mb-8 p-4 italic">
                             {{ $post->excerpt ?? ''}}
                         </div>
 
                         <!-- Content -->
-                        <div class="prose max-w-none md:p-8" x-data="{
+                        <div class="prose max-w-none md:px-8 md:pb-8" x-data="{
                             readingTime: '{{ ceil(str_word_count(strip_tags($post->content ?? '')) / 200) }} min read',
                             showComments: false,
                             likeCount: 42,
@@ -39,7 +50,7 @@
                             </div>
                             <!-- Article Footer -->
                             <div class="border-t border-gray-200 mt-10 pt-6 flex flex-wrap justify-between items-center">
-                                <div class="flex items-center space-x-4 mb-4 md:mb-0">
+                                <div class="flex items-center space-x-4 gap-5 mb-4 md:mb-0">
                                     <button @click="toggleLike()" class="flex items-center space-x-1 text-gray-600 hover:text-red-500 transition">
                                         <i class="fas" :class="liked ? 'fa-heart text-red-500' : 'fa-heart'"></i>
                                         <span x-text="likeCount"></span>
@@ -49,18 +60,6 @@
                                         <span>24</span>
                                     </button>
                                     <div class="text-gray-500 text-sm" x-text="readingTime"></div>
-                                </div>
-
-                                <div class="flex space-x-3">
-                                    <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                    <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                    <a href="#" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-primary hover:text-white transition">
-                                        <i class="fab fa-linkedin-in"></i>
-                                    </a>
                                 </div>
                             </div>
 
@@ -98,22 +97,16 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Author Bio -->
-                    {{-- <div class="bg-white rounded-lg shadow-sm p-6 md:p-8 mt-8 flex flex-col md:flex-row items-center md:items-start">
-                        <img src="https://i.pravatar.cc/100?u={{ $post->user_id ?? '' }}" alt="Author" class="w-24 h-24 rounded-full mb-4 md:mb-0 md:mr-6">
-                        <div>
-                            <h3 class="text-xl font-bold mb-2">{{ $post->user->name ?? 'Author Name' }}</h3>
-                            <p class="text-gray-600 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, eget aliquam nisl nisl sit amet nisl.</p>
-                            <div class="flex space-x-3">
-                                <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="text-gray-600 hover:text-primary"><i class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
-                @endforeach
+                @empty
+                <section class="flex items-center justify-center h-full">
+                    <div class="text-center max-w-md p-6 rounded-2xl">
+                        <img src="{{ asset('assets/img/notfound.png') }}" alt="">
+                        <h2 class="text-2xl font-semibold text-gray-700">Content tidak ditemukan</h2>
+                        <p class="text-sm text-gray-500 mt-2">Tidak ada hasil untuk keyword <span class="font-medium text-primary">"{{ $keyword }}"</span>. Coba gunakan kata kunci lain.</p>
+                    </div>
+                </section>
+                @endforelse
             </div>
 
             <!-- Sidebar -->
@@ -121,15 +114,17 @@
                 <!-- Search -->
                 <div class="bg-white rounded-lg shadow-sm p-6" x-data="{ search: '' }">
                     <h3 class="text-lg font-bold mb-4">Search</h3>
-                    <div class="relative">
+                    <form action="{{ route('search.news') }}" method="POST" class="relative">
+                        @csrf
                         <input
                             type="text"
+                            name="keyword"
                             x-model="search"
                             placeholder="Search articles..."
                             class="w-full border border-gray-300 rounded-lg pl-10 pr-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                         >
                         <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                    </div>
+                    </form>
                 </div>
 
                 <!-- Popular Posts -->
@@ -152,10 +147,10 @@
                 <div class="bg-white rounded-lg shadow-sm p-6 mt-6">
                     <h3 class="text-lg font-bold mb-4">Tags</h3>
                     <div class="flex flex-wrap gap-2">
-                        @foreach($tags ?? ['Design', 'Development', 'UX', 'UI', 'Technology', 'Business', 'Marketing', 'SEO', 'Tutorial'] as $tag)
-                        <a href="#" class="bg-gray-100 hover:bg-primary hover:text-white text-gray-700 px-3 py-1 rounded-full text-sm transition">
+                        @foreach($tags ?? ['InternetProvider', 'LayananInternet', 'ISPIndonesia', 'JaringanFiberOptik', 'KecepatanInternet', 'GangguanInternet', 'InternetUnlimited', 'PaketInternetMurah', 'TeknologiISP', 'BeritaISP'] as $tag)
+                        <div class="bg-gray-100 hover:bg-gray-800! hover:text-white text-gray-700 px-3 py-1 rounded-full text-sm transition">
                             {{ is_string($tag) ? $tag : $tag->name }}
-                        </a>
+                        </div>
                         @endforeach
                     </div>
                 </div>

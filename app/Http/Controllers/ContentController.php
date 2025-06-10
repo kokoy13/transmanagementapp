@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Content;
+use Illuminate\Http\Request;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\PacketController;
-use App\Models\Content;
 
 class ContentController extends Controller
 {
@@ -21,5 +22,13 @@ class ContentController extends Controller
     public function news(){
         $contents = Content::all();
         return view('front.news')->with(compact('contents'));
+    }
+
+    public function searchNews(Request $request){
+        $keyword = $request->keyword;
+        $contents = Content::where('title','like',"%$keyword%")
+                        ->orWhere('excerpt','like',"%$keyword%")
+                        ->get();
+        return view('front.news')->with(compact('contents', 'keyword'));
     }
 }

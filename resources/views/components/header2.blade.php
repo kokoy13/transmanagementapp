@@ -46,36 +46,62 @@
                     <!-- User Profile / Login -->
                     <div class="flex items-center space-x-4">
                         <!-- User Profile Dropdown (when logged in) -->
-                        <div class="relative group hidden" id="userProfile">
-                            <button class="flex items-center space-x-2 text-white hover:text-blue-400 transition-colors duration-200">
-                                <img src="/placeholder.svg?height=32&width=32" alt="Avatar" class="w-8 h-8 rounded-full border-2 border-gray-600">
-                                <i class="fas fa-chevron-down text-xs"></i>
-                            </button>
-                            <div class="absolute top-full right-0 mt-2 w-48 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                <div class="py-2">
-                                    <a href="/profile" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200">
-                                        <i class="fas fa-user mr-2"></i>Profile
-                                    </a>
-                                    <a href="/orders" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200">
-                                        <i class="fas fa-shopping-bag mr-2"></i>My Orders
-                                    </a>
-                                    <a href="/notifications" class="block px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200">
-                                        <i class="fas fa-bell mr-2"></i>Notifications
-                                    </a>
-                                    <hr class="my-2">
-                                    <button onclick="logout()" class="block w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 transition-colors duration-200">
-                                        <i class="fas fa-sign-out-alt mr-2"></i>Logout
-                                    </button>
+                        @if(Auth::check())
+                            <!-- User Profile Dropdown (when logged in) -->
+                            <div x-data="{ isOpen: false, openedWithKeyboard: false }" x-on:keydown.esc.window="isOpen = false, openedWithKeyboard = false" class="relative w-fit">
+                                <!-- Toggle Button -->
+                                <button type="button" x-on:click="isOpen = ! isOpen" x-on:keydown.space.prevent="openedWithKeyboard = true" x-on:keydown.enter.prevent="openedWithKeyboard = true" x-on:keydown.down.prevent="openedWithKeyboard = true" class="inline-flex items-center relative gap-2 whitespace-nowrap px-4 py-2 text-sm font-medium tracking-wide transition hover:opacity-75" x-bind:aria-expanded="isOpen || openedWithKeyboard" aria-haspopup="true">
+                                    <div class="p-2 bg-blue-500 rounded-full absolute top-1 left-10"></div>
+                                    <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->avatar }}" alt="">
+                                    <svg aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4 rotate-0 text-white">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+                                    </svg>
+                                </button>
+                                <!-- Dropdown Menu -->
+                                <div x-cloak x-show="isOpen || openedWithKeyboard" x-transition x-trap="openedWithKeyboard" x-on:click.outside="isOpen = false, openedWithKeyboard = false" x-on:keydown.down.prevent="$focus.wrap().next()" x-on:keydown.up.prevent="$focus.wrap().previous()" class="absolute top-11 flex w-fit min-w-48 flex-col divide-y divide-outline overflow-hidden rounded-radius border border-outline bg-surface-alt" role="menu">
+                                    <!-- Dropdown Section -->
+                                    <div class="flex flex-col py-1.5">
+                                        <a href="{{ route('profile') }}" class="flex items-center gap-2 bg-surface-alt px-4 py-2 text-sm text-gray-800 hover:bg-surface-dark-alt/5 hover:text-on-surface-strong focus-visible:bg-surface-dark-alt/10 focus-visible:text-on-surface-strong focus-visible:outline-hidden " role="menuitem">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"  class="size-4">
+                                                <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd"/>
+                                            </svg>
+                                            Profile
+                                        </a>
+                                        <a href="{{ route('order.check') }}" class="flex items-center gap-2 bg-surface-alt px-4 py-2 text-sm text-on-surface hover:bg-surface-dark-alt/5 hover:text-on-surface-strong focus-visible:bg-surface-dark-alt/10 focus-visible:text-on-surface-strong focus-visible:outline-hidden " role="menuitem">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag-fill" viewBox="0 0 16 16">
+                                                <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4z"/>
+                                            </svg>
+                                            My Orders
+                                        </a>
+                                        <a href="{{ route('notifications') }}" class="flex items-center gap-2 bg-surface-alt px-4 py-2 text-sm text-on-surface hover:bg-surface-dark-alt/5 hover:text-on-surface-strong focus-visible:bg-surface-dark-alt/10 focus-visible:text-on-surface-strong focus-visible:outline-hidden " role="menuitem">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
+                                            </svg>
+                                            <div class="flex justify-between items-center w-full">
+                                                <h1>Notifications</h1>
+                                                <span class="rounded-full w-fit border border-blue-500 bg-blue-500 px-2 py-1 text-xs font-medium text-on-primary ">1</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <!-- Dropdown Section -->
+                                    <div class="flex flex-col py-1.5">
+                                        <a href="{{ route('logout') }}" class="flex items-center gap-2 bg-surface-alt px-4 py-2 text-sm text-on-surface hover:bg-surface-dark-alt/5 hover:text-on-surface-strong focus-visible:bg-surface-dark-alt/10 focus-visible:text-on-surface-strong focus-visible:outline-hidden " role="menuitem">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"  class="size-4">
+                                                <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd"/>
+                                            </svg>
+                                            Log out
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Login Button (when not logged in) -->
-                        <div id="loginButton">
-                            <a href="/sign-in" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 hover:shadow-lg hover:scale-105 transition-all duration-200 font-medium">
-                                <i class="fas fa-sign-in-alt mr-2"></i>Login
-                            </a>
-                        </div>
+                        @else
+                            <!-- Login Button (when not logged in) -->
+                            <div id="loginButton">
+                                <a href="/sign-in" class="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 hover:shadow-lg hover:scale-105 transition-all duration-200 font-medium">
+                                    <i class="fas fa-sign-in-alt mr-2"></i>Login
+                                </a>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -223,26 +249,26 @@
         });
 
         // Demo Functions
-        // let isLoggedIn = false;
+        let isLoggedIn = false;
 
-        // function toggleAuth() {
-        //     isLoggedIn = !isLoggedIn;
-        //     const userProfile = document.getElementById('userProfile');
-        //     const loginButton = document.getElementById('loginButton');
-        //     const mobileUserProfile = document.getElementById('mobileUserProfile');
-        //     const mobileLoginButton = document.getElementById('mobileLoginButton');
+        function toggleAuth() {
+            isLoggedIn = !isLoggedIn;
+            const userProfile = document.getElementById('userProfile');
+            const loginButton = document.getElementById('loginButton');
+            const mobileUserProfile = document.getElementById('mobileUserProfile');
+            const mobileLoginButton = document.getElementById('mobileLoginButton');
 
-        //     if (isLoggedIn) {
-        //         userProfile.classList.remove('hidden');
-        //         loginButton.classList.add('hidden');
-        //         mobileUserProfile.classList.remove('hidden');
-        //         mobileLoginButton.classList.add('hidden');
-        //     } else {
-        //         userProfile.classList.add('hidden');
-        //         loginButton.classList.remove('hidden');
-        //         mobileUserProfile.classList.add('hidden');
-        //         mobileLoginButton.classList.remove('hidden');
-        //     }
+            if (isLoggedIn) {
+                userProfile.classList.remove('hidden');
+                loginButton.classList.add('hidden');
+                mobileUserProfile.classList.remove('hidden');
+                mobileLoginButton.classList.add('hidden');
+            } else {
+                userProfile.classList.add('hidden');
+                loginButton.classList.remove('hidden');
+                mobileUserProfile.classList.add('hidden');
+                mobileLoginButton.classList.remove('hidden');
+            }
         }
 
         // Prevent scroll when mobile menu is open

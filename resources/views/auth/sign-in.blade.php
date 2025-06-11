@@ -9,29 +9,21 @@
 </head>
 <body class="bg-gray-50">
     <div class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <!-- Back button -->
-        <div class="fixed top-5 left-5 z-20">
-            <a href="/" class="group px-4 py-2 flex items-center gap-2 bg-white rounded-full shadow-md transition-all hover:shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-gray-700 group-hover:text-blue-600 transition-colors" viewBox="0 0 16 16">
-                    <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
-                </svg>
-                <span class="text-gray-700 group-hover:text-blue-600 font-medium transition-colors">Back to Home</span>
-            </a>
-        </div>
+
 
         <!-- Main container -->
         <div class="w-full max-w-6xl overflow-hidden bg-white rounded-2xl shadow-xl">
             <!-- Error message -->
-            <div x-data="{ show: {{ session('error') ? 'true' : 'false' }} }" 
-                 x-init="setTimeout(() => show = false, 3000)" 
-                 x-show="show" 
+            <div x-data="{ show: {{ session('error') ? 'true' : 'false' }} }"
+                 x-init="setTimeout(() => show = false, 3000)"
+                 x-show="show"
                  x-transition:enter="transition ease-out duration-300"
                  x-transition:enter-start="opacity-0 transform -translate-y-4"
                  x-transition:enter-end="opacity-100 transform translate-y-0"
                  x-transition:leave="transition ease-in duration-300"
                  x-transition:leave-start="opacity-100 transform translate-y-0"
                  x-transition:leave-end="opacity-0 transform -translate-y-4"
-                 class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 flex items-center p-4 text-sm text-red-700 bg-red-100 rounded-lg shadow-md" 
+                 class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 flex items-center p-4 text-sm text-red-700 bg-red-100 rounded-lg shadow-md"
                  role="alert">
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V7a1 1 0 10-2 0v2a1 1 0 001 1h1a1 1 0 100-2h-1zm0 4a1 1 0 10-2 0v2a1 1 0 002 0v-2z" clip-rule="evenodd"></path>
@@ -43,8 +35,19 @@
             </div>
 
             <div class="flex flex-col md:flex-row">
-                <!-- Left side - Image -->
+
+                <!-- Left side - Image   -->
                 <div class="relative h-48 md:h-auto md:w-1/2 bg-gradient-to-br from-blue-500 to-indigo-600">
+                    <div class="absolute inset-0 bg-black"></div>
+                     <!-- Back button -->
+                    <div class="absolute top-5 left-5 z-20">
+                        <a href="/" class="group px-4 py-2 flex items-center gap-2 bg-white rounded-full shadow-md transition-all hover:shadow-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-gray-700 transition-colors" viewBox="0 0 16 16">
+                                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                            </svg>
+                            <span class="text-gray-700 font-sm transition-colors">Back to Home</span>
+                        </a>
+                    </div>
                     <div class="absolute inset-0 bg-cover bg-center opacity-80" style="background-image: url('/assets/img/hero-s.png');"></div>
                     <div class="relative h-full flex flex-col justify-center items-center p-8 text-white">
                         <div class="max-w-md text-center">
@@ -58,7 +61,7 @@
                 <div class="w-full md:w-1/2 py-12 px-6 sm:px-10 lg:px-16">
                     <form method="post" action="/sign-in" class="space-y-6">
                         @csrf
-                        
+
                         <div class="flex justify-center mb-6">
                             <img class="w-auto h-10" src="/assets/img/logo.png" alt="Transnet Sumbar Logo">
                         </div>
@@ -92,9 +95,9 @@
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                     </svg>
                                 </div>
-                                <input name="password" id="loggingPassword" 
-                                       :type="showPassword ? 'text' : 'password'" 
-                                       class="pl-10 block w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors" 
+                                <input name="password" id="loggingPassword"
+                                       :type="showPassword ? 'text' : 'password'"
+                                       class="pl-10 block w-full px-4 py-3 text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
                                        placeholder="••••••••" />
                                 <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
                                     <button type="button" @click="showPassword = !showPassword" class="text-gray-400 hover:text-gray-600 focus:outline-none">
@@ -112,7 +115,7 @@
 
                         <!-- Sign in button -->
                         <div>
-                            <button class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-all duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md hover:shadow-lg" type="submit" name="submit">
+                            <button class="w-full hover:cursor-pointer px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-all duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md hover:shadow-lg" type="submit" name="submit">
                                 Sign In
                             </button>
                         </div>
@@ -148,7 +151,7 @@
 
                         <!-- Sign up link -->
                         <div class="text-center mt-8">
-                            <a href="sign-up" class="text-sm text-gray-600 hover:text-blue-600 transition-colors">
+                            <a href="sign-up" class="text-sm text-gray-600 transition-colors">
                                 Don't have an account? <span class="font-medium text-blue-600 hover:underline">Create account</span>
                             </a>
                         </div>

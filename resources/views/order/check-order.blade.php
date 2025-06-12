@@ -1,5 +1,5 @@
 <x-layouts.order-layout>
-<div class="bg-gray-50 my-20">
+<div class="bg-gray-50 mt-20">
     <div x-data="orderManager()" class="min-h-screen">
         <!-- Header -->
         <header class="bg-white shadow-sm border-b border-gray-200">
@@ -67,16 +67,8 @@
                 <div class="px-6 py-4 border-b border-gray-200">
                     <div class="flex justify-between items-center">
                         <h2 class="text-lg font-semibold text-gray-900">
-                            Orders (<span x-text="filteredOrders.length"></span>)
+                            Orders (<span>{{ $orderCount }}</span>)
                         </h2>
-                        <div class="flex space-x-2">
-                            <button class="text-gray-500 hover:text-gray-700 p-2">
-                                <i class="fas fa-download"></i>
-                            </button>
-                            <button class="text-gray-500 hover:text-gray-700 p-2">
-                                <i class="fas fa-filter"></i>
-                            </button>
-                        </div>
                     </div>
                 </div>
 
@@ -92,7 +84,7 @@
                                     </button>
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Customer ID
+                                    User ID
                                 </th>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     <button @click="sortBy('order_date')" class="flex items-center space-x-1 hover:text-gray-700">
@@ -116,52 +108,54 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             <template x-for="order in paginatedOrders" :key="order.id">
-                                <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        <span x-text="order.id"></span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <span x-text="order.customer_id"></span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <span x-text="formatDate(order.order_date)"></span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            :class="getStatusClass(order.status)"
-                                            class="inline-flex px-2 py-1 text-xs font-semibold rounded-full"
-                                            x-text="order.status"
-                                        ></span>
-                                    </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                        <span x-text="order.installation_address"></span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <span x-text="getPackageName(order.packet_id)"></span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button
-                                                @click="viewOrder(order)"
-                                                class="text-indigo-600 hover:text-indigo-900"
-                                            >
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                            <button
-                                                @click="editOrder(order)"
-                                                class="text-green-600 hover:text-green-900"
-                                            >
-                                                <i class="fas fa-edit"></i>
-                                            </button>
-                                            <button
-                                                @click="deleteOrder(order.id)"
-                                                class="text-red-600 hover:text-red-900"
-                                            >
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @foreach ($orders as $order)
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            <span">{{ $order->id }}</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <span x-text="order.customer_id"></span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <span x-text="formatDate(order.order_date)"></span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                :class="getStatusClass(order.status)"
+                                                class="inline-flex px-2 py-1 text-xs font-semibold rounded-full"
+                                                x-text="order.status"
+                                            ></span>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                            <span x-text="order.installation_address"></span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <span x-text="getPackageName(order.packet_id)"></span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <div class="flex space-x-2 gap-2">
+                                                <button
+                                                    @click="viewOrder(order)"
+                                                    class="text-indigo-600 hover:text-indigo-900"
+                                                >
+                                                    <i class="fas fa-eye"></i>
+                                                </button>
+                                                <button
+                                                    @click="editOrder(order)"
+                                                    class="text-green-600 hover:text-green-900"
+                                                >
+                                                    <i class="fas fa-edit"></i>
+                                                </button>
+                                                <button
+                                                    @click="deleteOrder(order.id)"
+                                                    class="text-red-600 hover:text-red-900"
+                                                >
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </template>
                         </tbody>
                     </table>

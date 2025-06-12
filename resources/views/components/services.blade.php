@@ -176,7 +176,7 @@
                     class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-800 indent-6"
                     data-aos="fade-up"
                 >
-                    Kami menyediakan koneksi internet berkualitas tinggi duntuk mendukung kebutuhan live streaming pertandingan bola.
+                    Kami menyediakan koneksi internet berkualitas tinggi untuk mendukung kebutuhan live streaming pertandingan bola.
                 </p>
                 <p
                     class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-800 indent-6"

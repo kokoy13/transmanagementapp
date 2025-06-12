@@ -1,7 +1,7 @@
 <x-layouts.main-layout>
 
     <!-- Hero Section -->
-    <section class="overflow-hidden bg-cover bg-center" style="background-image: url('{{ asset('assets/img/culture.jpg') }}')">
+    <section class="overflow-hidden bg-cover bg-center pt-20" style="background-image: url('{{ asset('assets/img/culture.jpg') }}')">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <!-- Breadcrumb -->
             <nav class="flex items-center space-x-2 text-white/80 text-sm mb-5">
@@ -17,7 +17,7 @@
                 <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
                     Budaya Perusahaan
                 </h1>
-                <div class="w-24 h-1 bg-gray-800 rounded-full"></div>
+                <div class="w-24 h-1 bg-white rounded-full"></div>
             </div>
         </div>
     </section>

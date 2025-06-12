@@ -61,4 +61,8 @@ class User extends Authenticatable
     public function content():HasMany{
         return $this->hasMany(Content::class);
     }
+
+    public function notification():HasMany{
+        return $this->hasMany(Notification::class);
+    }
 }

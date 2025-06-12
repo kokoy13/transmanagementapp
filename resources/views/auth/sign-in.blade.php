@@ -6,6 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
     <title>Transnet Sumbar</title>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 </head>
 <body class="bg-gray-50">
     <div class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">

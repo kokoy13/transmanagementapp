@@ -28,7 +28,7 @@ class OrderController extends Controller
         $packet = Packet::where('name', $request->packetName)->where('bandwidth', $request->bandwidth)->first();
         $order = Order::create([
             'id' => 'TN' . Str::upper(Str::random(5)),
-            'customer_id' => Auth::user()->id,
+            'user_id' => Auth::user()->id,
             'order_date' => now(),
             'installation_address' => $request->installationAddress,
             'packet_id' => $packet->id,

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 11, 2025 at 11:52 AM
+-- Generation Time: Jun 12, 2025 at 10:58 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -552,7 +552,26 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2025_05_19_152726_change_type_of_customer_id_in_orders_table', 2),
 (15, '2022_05_11_154250_create_datafeeds_table', 3),
 (16, '2025_05_27_220907_add_fields_in_users_table', 4),
-(17, '2025_06_04_122346_create_table_contents', 5);
+(17, '2025_06_04_122346_create_table_contents', 5),
+(18, '2025_06_12_020333_create_notifications_table', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `type` enum('order','payment','bandwidth_request') NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `message` text DEFAULT NULL,
+  `is_read` tinyint(1) NOT NULL DEFAULT 0,
+  `read_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -562,7 +581,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `orders` (
   `id` varchar(255) NOT NULL,
-  `customer_id` varchar(255) NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
   `order_date` date NOT NULL,
   `status` varchar(255) NOT NULL DEFAULT 'pending',
   `installation_address` varchar(255) NOT NULL,
@@ -570,17 +589,6 @@ CREATE TABLE `orders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `customer_id`, `order_date`, `status`, `installation_address`, `packet_id`, `created_at`, `updated_at`) VALUES
-('TN4BA5Y', 'CUS8TBSG', '2025-06-03', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 1, '2025-06-03 14:47:28', '2025-06-03 14:47:28'),
-('TNA03W2F', 'CUS8TBSG', '2025-05-20', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 1, '2025-05-20 11:53:29', '2025-05-20 11:53:29'),
-('TNBE7UYC', 'CUS4WV0K', '2025-05-21', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 28, '2025-05-21 05:55:50', '2025-05-21 05:55:50'),
-('TNGDMDHH', 'CUS8TBSG', '2025-05-21', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 3, '2025-05-20 18:20:33', '2025-05-20 18:20:33'),
-('TNIZCJD', 'CUSXMCIN', '2025-05-30', 'pending', 'Di bukik', 2, '2025-05-29 19:16:42', '2025-05-29 19:16:42');
 
 -- --------------------------------------------------------
 
@@ -699,10 +707,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('LWXNKfU89ushGRZLQXLrxxZAmiWUt9C3HTBfeQtF', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTmNHNjJDSUhIcXdROHVua0dhVGVncnN0ck1yeWJkdVlZS3JHa1lwQyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zaWduLXVwIjt9czo1OiJzdGF0ZSI7czo0MDoiSTd1dFEyaGNLbGtrWmVWUnZXZHBNRkhJWm9QQ0tVcU13S2NQTDVlViI7fQ==', 1749632546),
-('QcVSANujQYtTJf6WoF58e72THZMLyycmFE1JDQeB', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYWFYM2FqZ2hIM2JSY2FPMWhNY2xpbHRZRGtIeVFydmo0T05QNEQyOSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9zaWduLWluIjt9fQ==', 1749626112),
-('Sr360Nyo2U7q5bozPxanGcUD8GG3JZQo4XY8HvRR', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWUg3V2tvdFgwRmdwaGVsdkZiRjNSaDhqellrNnVYbHcweEw1VHNrMiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1749631721),
-('v8Fshk13Ufnzvk8Fh34I7EjTLpY9aZLyohfvI42Z', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZnNTUWRVRWFRdENaWmoyQm9NblVMOXQ0OU0yM3dsanJxUVJDOHlIVyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1749631626);
+('5aT5JTprr8m9VVW2FPFQXKbbPy1e2R7N8EGshc4K', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidlFrV3ZNQjZYa1d0RWhGTnpPVXFzMEVKejBPcGpQVTVqbkZJTFBmdiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1749703094),
+('K45zxHzp8E82ISJk0XNePZmbAntxpsyhfTF3vFeB', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZ01BZDB5R3hiMFV3V0hkbnlCRGdkRXJ1TXhjU091czhSeTdzNkZQYiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9maWxlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1749718719),
+('Sbe0zWKx8XuJGE8EWx5hvZTt6WMWAXAnltXELdsT', 5, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoib1dhSFk4WnJBTGROSloycGNGZXM0cWczTU82NVRyQkg3MjBEOTBWTCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9jaGVjay1vcmRlciI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjU7fQ==', 1749703035);
 
 -- --------------------------------------------------------
 
@@ -737,7 +744,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone_number`, `address`, `email_ve
 (2, 'transnetsumbar', 'transnetsumbar@gmail.com', NULL, NULL, NULL, '$2y$12$tYd0AlfNg.SIVEG7nBvlTu1HZk1pnui1rrUjP7scP1n6tQLYc6C9i', 'admin', 'https://ui-avatars.com/api/?name=transnetsumbar&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, '2025-05-27 17:01:56', NULL),
 (3, 'marketing', 'transnetmarketing@gmail.com', NULL, NULL, NULL, '$2y$12$oJEo3FjCaEpoB9op1pH6beTQzv58lGTZ3WedMTQapRaa9flkmIBMK', 'marketing', 'https://ui-avatars.com/api/?name=marketing&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, '2025-05-27 17:02:02', NULL),
 (4, 'Andika', 'limacastle@gmail.com', NULL, NULL, NULL, '$2y$12$gDY.aqEIJYfuMkaiAo8Ev.PO4nZqHPk4iWKTnDWZKddbsnsPuZ5zW', 'customer', 'https://lh3.googleusercontent.com/a/ACg8ocLPd5_qEakcQv8dvOiJfOcvtMalMv1JiBj6gT6V8IVw2qiBQ1I=s96-c', '102696651449371847249', 'ya29.a0AW4Xtxhq8u1pciPshA_C4PIyRGMVypWrDnI96zs4B_kgRZl2L2xp_jfDuhU8jgwf2FePvAzNNiu3MAlrIKkxhSOfaeGQS1BKaU1dmkErucGPO01XHHxFj6RuVMu40nRXa9coXn61iym8Nc2WJqnCspQsZVeVf5KcJ4ss8w-rxgaCgYKAeMSARYSFQHGX2Mi4qo4wsjArZCtUw28FUZZvg0177', NULL, NULL, '2025-05-17 09:40:33', '2025-05-17 09:40:33'),
-(5, 'Andika Firansyah', 'andikafiransyah1905@gmail.com', '-', '-', NULL, '$2y$12$9ncbZUA7fT62FuvVySTvVOPNOU5OCQPafw1wWaouwIdUwMZnqsIgG', 'customer', 'https://lh3.googleusercontent.com/a/ACg8ocLJFZTZOKqxyz7JsSV8K8JNtyMKugPFloYPCtEoWOfEcpzU_GZN=s96-c', '104923517099955748015', 'ya29.a0AW4Xtxib2XCEnIn45NB6HcIwnziTcSWJrc6BVb5UFZEDf20ItS-4XsHuN7ot5gwHx_0WRqPfi_WYCMfRgv9-2rBOhoORt1G4xW2_wEFrlzrL7P-lewRU-LmbTWEatBd3S9HDB5Cxdek-YPWnonRynMHPf5QDiFpGzpSHRPKkjQaCgYKAQcSARISFQHGX2MimBtldnWEkhicc0b9ELQAYw0177', NULL, NULL, '2025-05-18 18:23:49', '2025-06-03 14:46:46'),
+(5, 'Andika Firansyah', 'andikafiransyah1905@gmail.com', '-', '-', NULL, '$2y$12$9ncbZUA7fT62FuvVySTvVOPNOU5OCQPafw1wWaouwIdUwMZnqsIgG', 'customer', 'https://lh3.googleusercontent.com/a/ACg8ocLJFZTZOKqxyz7JsSV8K8JNtyMKugPFloYPCtEoWOfEcpzU_GZN=s96-c', '104923517099955748015', 'ya29.a0AW4Xtxib2XCEnIn45NB6HcIwnziTcSWJrc6BVb5UFZEDf20ItS-4XsHuN7ot5gwHx_0WRqPfi_WYCMfRgv9-2rBOhoORt1G4xW2_wEFrlzrL7P-lewRU-LmbTWEatBd3S9HDB5Cxdek-YPWnonRynMHPf5QDiFpGzpSHRPKkjQaCgYKAQcSARISFQHGX2MimBtldnWEkhicc0b9ELQAYw0177', NULL, NULL, '2025-05-18 18:23:49', '2025-06-12 02:57:32'),
 (6, 'Aldo', 'aldoerianda@gmail.com', NULL, NULL, NULL, '$2y$12$r6.gYZp8iqObzHfd7b3kwOrHfl1ccmukxP3tMzk.SIefUl4CSzUy.', 'customer', 'https://ui-avatars.com/api/?name=Aldo&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, '2025-05-20 08:26:30', '2025-05-20 08:26:30'),
 (7, 'Triyan Eka Putra', 'triyanekamahaputra', NULL, NULL, NULL, '$2y$12$hLdcAhR66KY4bewQ5KGduuIBkvhChJsjtgAEEW/LhsFA00N3nEhiO', 'customer', 'https://ui-avatars.com/api/?name=Triyan Eka Putra&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, '2025-05-21 07:25:49', '2025-05-21 07:25:49'),
 (8, 'Andika Firansyah', 'andikafiransyah@gmail.com', NULL, NULL, NULL, '$2y$12$1J7RsK1UyUAObJT0oieHs.u9v0v0CHHo.ODS76prdwQVU2f9DW5ga', 'customer', NULL, NULL, NULL, NULL, NULL, '2025-05-23 12:37:09', '2025-05-23 12:37:09'),
@@ -829,12 +836,19 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `notifications_user_foreign` (`user_id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
   ADD KEY `orders_packet_id_foreign` (`packet_id`),
-  ADD KEY `orders_customer_id_foreign` (`customer_id`);
+  ADD KEY `orders_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `packets`
@@ -913,7 +927,13 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `packets`
@@ -950,11 +970,17 @@ ALTER TABLE `customers`
   ADD CONSTRAINT `customers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_user_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `orders_packet_id_foreign` FOREIGN KEY (`packet_id`) REFERENCES `packets` (`id`);
+  ADD CONSTRAINT `orders_packet_id_foreign` FOREIGN KEY (`packet_id`) REFERENCES `packets` (`id`),
+  ADD CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

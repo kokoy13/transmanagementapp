@@ -17,10 +17,12 @@ class OrderController extends Controller
         $packet = Packet::find($request->id);
         $user = $request->user();
 
+        $packets = Packet::where('name',$packet->name)->get();
+
         if (!$packet || !$user) {
             return redirect()->back()->with('error', 'Packet not found');
         }
-        return view('order.form-order')->with(compact('packet', 'user'));
+        return view('order.form-order')->with(compact('packets', 'packet', 'user'));
     }
 
     public function setOrder(Request $request)

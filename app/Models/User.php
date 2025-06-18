@@ -65,4 +65,8 @@ class User extends Authenticatable
     public function notification():HasMany{
         return $this->hasMany(Notification::class);
     }
+
+    public function order():HasMany{
+        return $this->hasMany(Order::class);
+    }
 }

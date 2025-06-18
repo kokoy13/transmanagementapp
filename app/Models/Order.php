@@ -7,15 +7,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Order extends Model
-{   
+{
     protected $primaryKey = 'id';
     public $incrementing = false;
     protected $keyType = 'string';
-
-    public function customer():BelongsTo
-    {
-        return $this->belongsTo(Customer::class);
-    }
 
     public function payment():HasOne
     {
@@ -25,6 +20,10 @@ class Order extends Model
     public function packet():BelongsTo
     {
         return $this->belongsTo(Packet::class);
+    }
+
+    public function user():BelongsTo{
+        return $this->belongsTo(User::class);
     }
 
     protected $guarded = [];

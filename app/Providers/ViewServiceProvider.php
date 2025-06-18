@@ -17,14 +17,27 @@ class ViewServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $count = new MikrotikApiService();
-        $countCustomer = count($count->getSecret());
+        // $countCustomer = null;
+        // $count = new MikrotikApiService();
+        // if($count == null){
+        //     $countCustomer == 0;
+        // }
+        // $countCustomer = count($count->getSecret());
 
-        View::composer('layouts.app', function($view) use ($countCustomer) {
+        // View::composer('layouts.app', function($view) use ($countCustomer) {
+        //     $view->with([
+        //         'countPayment' => Payment::count(),
+        //         'countOrder' => Order::count(),
+        //         // 'countCustomer' => $countCustomer,
+        //         // 'notificationCount' => Notification::count()
+        //     ]);
+        // });
+
+        View::composer('layouts.app', function($view){
             $view->with([
                 'countPayment' => Payment::count(),
                 'countOrder' => Order::count(),
-                'countCustomer' => $countCustomer,
+                // 'countCustomer' => $countCustomer,
                 // 'notificationCount' => Notification::count()
             ]);
         });

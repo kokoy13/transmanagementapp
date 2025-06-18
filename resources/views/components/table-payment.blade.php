@@ -44,7 +44,7 @@
                             <td class="p-2 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="text-gray-800 dark:text-gray-200">
-                                        <span class="text-sm opacity-50">{{ $payment->order->id }}</span>
+                                        <span class="text-sm opacity-50">{{ $payment->order_id }}</span>
                                     </div>
                                 </div>
                             </td>

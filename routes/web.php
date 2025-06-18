@@ -38,8 +38,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Dashboard Route
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard/analytics', [DashboardController::class, 'analytics'])->name('analytics');
-    Route::get('/dashboard/fintech', [DashboardController::class, 'fintech'])->name('fintech');
 
     //Monitoring Route
     Route::get('/tx-rx', [MonitoringController::class, 'index'])->name('txrx');
@@ -81,6 +79,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Content Route
     Route::get('/contents', [ContentController::class, 'index'])->name('contents');
+    Route::get('content/create', [ContentController::class, 'create'])->name('content.create');
+    Route::post('/content', [ContentController::class, 'store'])->name('content.store');
+    Route::get('/content/{id}', [ContentController::class, 'edit'])->name('content.edit');
+    Route::put('/content/{id}', [ContentController::class, 'update'])->name('content.update');
+    Route::get('/content/delete/{id}', [ContentController::class, 'delete'])->name('content.delete');
 
     //Banner Route
     Route::get('/banners', [BannerController::class, 'index'])->name('banners');

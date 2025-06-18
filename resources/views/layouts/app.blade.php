@@ -50,7 +50,7 @@
             :variant="$attributes['sidebarVariant']"
             :countPayment="$countPayment"
             :countOrder="$countOrder"
-            :countCustomer="$countCustomer"
+            {{-- :countCustomer="$countCustomer" --}}
             />
 
             <!-- Content area -->

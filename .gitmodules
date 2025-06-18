@@ -1,0 +1,6 @@
+[submodule "frontend3"]
+	path = frontend3
+	url = https://github.com/kokoy13/transmanagementapp
+[submodule "backend3"]
+	path = backend3
+	url = https://github.com/kokoy13/transmanagementapp

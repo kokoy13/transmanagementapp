@@ -11,19 +11,59 @@ class ZoneSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(){
-        DB::table('zones')->insert([
-            'name' => 'Zona Cempaka Putih',
-            'status' => 'available',
-            'geojson' => json_encode([
-                "type" => "Polygon",
-                "coordinates" => [[
-                    [106.865036, -6.176655],
-                    [106.866550, -6.176655],
-                    [106.866550, -6.178000],
-                    [106.865036, -6.178000],
-                    [106.865036, -6.176655]
-                ]]
-            ])
-        ]);
+        // Insert kecamatan dulu
+        $kecamatan = [
+            'Padang Barat',
+            'Padang Timur',
+            'Padang Utara'
+        ];
+
+        $kelurahanData = [
+            'Padang Barat' => [
+                'Belakang Tangsi',
+                'Berok Nipah',
+                'Flamboyan Baru',
+                'Kampung Jao',
+                'Kampung Pondok',
+                'Purus',
+                'Rimbo Kaluang',
+                'Ujung Gurun'
+            ],
+            'Padang Timur' => [
+                'Simpang Haru',
+                'Sawahan',
+                'Sawahan Timur',
+                'Jati'
+            ],
+            'Padang Utara' => [
+                'Alai Parak Kopi',
+                'Gunung Pangilun',
+                'Lolong Belanti',
+                'Ulak Karang Selatan',
+                'Ulak Karang Utara'
+            ]
+        ];
+
+        foreach ($kecamatan as $namaKec) {
+            // Insert kecamatan
+            $kecId = DB::table('zones')->insertGetId([
+                'nama' => $namaKec,
+                'type' => 'kecamatan',
+                'parent_id' => null,
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+
+            // Insert kelurahan untuk kecamatan tersebut
+            foreach ($kelurahanData[$namaKec] as $namaKel) {
+                DB::table('zones')->insert([
+                    'nama' => $namaKel,
+                    'type' => 'kelurahan',
+                    'parent_id' => $kecId,
+                    'created_at' => now(),
+                    'updated_at' => now()
+                ]);
+            }
+        }
     }
 }

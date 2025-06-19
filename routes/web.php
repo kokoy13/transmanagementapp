@@ -32,13 +32,9 @@ Route::post('/sign-up', [RegisterController::class, 'register']);
 //Route Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-//Route search Availability Zone
-Route::get('/zones', [ZoneController::class, 'index']);
-
-//ROute create Zone
-Route::get('/map', function () {
-    return view('front.zone');
-});
+//Route Zone
+Route::get('/map',[ZoneController::class, 'index']);
+Route::post('/map', [ZoneController::class, 'checkZone'])->name('zone.checkzone');
 
 //Route redirect auth socialite
 Route::get('/auth/redirect/{provider}',[AuthController::class, 'redirect'])->name('auth.redirect');

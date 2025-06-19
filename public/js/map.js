@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
             [-0.9014396915394911, 100.35072286718808],
             [-0.9657901377779751, 100.35414031217988],
             [-0.9479015337884592, 100.37713047995359],
-            [-0.9026998865178185, 100.36340466830616]
+            [-0.8969057457528835, 100.36307470794728]
         ];
         // Tambahkan polygon ke peta
         const polygon = L.polygon(polygonCoords, {

@@ -63,7 +63,7 @@
                 <i class="fas fa-chevron-right"></i>
                 <span class="text-black font-medium">Availability Zone</span>
             </nav>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 h-[calc(100vh-200px)] mb-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
 
             <!-- Left Side - Search Form -->
             <div class="bg-white rounded-lg shadow-md p-6">

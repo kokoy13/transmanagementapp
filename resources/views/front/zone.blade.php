@@ -10,8 +10,8 @@
     />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-gray-50 min-h-screen mx-auto mt-8">
-    <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto relative">
+<body class="bg-gray-50 mx-auto mt-8">
+    <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
         <div
         x-data="{ show: true }"
         x-show="show"

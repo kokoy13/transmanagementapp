@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Content;
 use Illuminate\Http\Request;
 use App\Models\DataFeed;
+use App\Models\Notification;
 use App\Models\Order;
 use App\Models\Payment;
 
@@ -17,26 +18,16 @@ class DashboardController extends Controller
         $countPayment = Payment::all()->count();
         $banners = Banner::limit(3)->get();
         $content = Content::first();
-        return view('pages/dashboard/dashboard')->with(compact('countOrder', 'countPayment', 'banners', 'content'));
+        $notification = Notification::limit(5)->get();
+        return view('pages/dashboard/dashboard')->with(compact('countOrder', 'countPayment', 'banners', 'content', 'notification'));
     }
 
-    /**
-     * Displays the analytics screen
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function analytics()
-    {
-        return view('pages/dashboard/analytics');
-    }
-
-    /**
-     * Displays the fintech screen
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function fintech()
-    {
-        return view('pages/dashboard/fintech');
+    public function search(Request $request){
+        $key = strtolower($request->search);
+        try{
+            return redirect()->route($key);
+        }catch(\Exception $e){
+            return view('pages.utility.404');
+        }
     }
 }

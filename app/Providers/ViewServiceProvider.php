@@ -29,7 +29,7 @@ class ViewServiceProvider extends ServiceProvider
         //         'countPayment' => Payment::count(),
         //         'countOrder' => Order::count(),
         //         // 'countCustomer' => $countCustomer,
-        //         // 'notificationCount' => Notification::count()
+                // 'notificationCount' => Notification::count()
         //     ]);
         // });
 
@@ -38,7 +38,8 @@ class ViewServiceProvider extends ServiceProvider
                 'countPayment' => Payment::count(),
                 'countOrder' => Order::count(),
                 // 'countCustomer' => $countCustomer,
-                // 'notificationCount' => Notification::count()
+                'countNotification' => Notification::count(),
+                'notification' => Notification::where('is_read', false)->get()
             ]);
         });
     }

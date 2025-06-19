@@ -1,13 +1,5 @@
 <x-authentication-layout>
-    {{-- <div class="flex justify-center">
-        <img class="w-40 h-40" src="{{ asset('images/logo.png') }}" alt="">
-    </div> --}}
     <h1 class="text-3xl text-gray-800 text-center dark:text-gray-100 font-bold mb-6">{{ __('Welcome back!') }}</h1>
-    {{-- @if (session('status'))
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ session('status') }}
-        </div>
-    @endif --}}
     <!-- Form -->
     <form method="POST" action="{{ route('login') }}">
         @csrf

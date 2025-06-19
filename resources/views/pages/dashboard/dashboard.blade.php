@@ -36,25 +36,10 @@
             <x-dashboard.dashboard-card-06 :banners='$banners'/>
 
             <!-- Line chart (Sales Over Time) -->
-            <x-dashboard.dashboard-card-08 />
+            <x-dashboard.dashboard-card-08 :notification="$notification"/>
 
             <x-dashboard.dashboard-card-07 :content="$content"/>
 
-
-            <!-- Stacked bar chart (Sales VS Refunds) -->
-            <x-dashboard.dashboard-card-09 />
-
-            <!-- Card (Customers) -->
-            <x-dashboard.dashboard-card-10 />
-
-            <!-- Card (Reasons for Refunds) -->
-            <x-dashboard.dashboard-card-11 />
-
-            <!-- Card (Recent Activity) -->
-            <x-dashboard.dashboard-card-12 />
-
-            <!-- Card (Income/Expenses) -->
-            <x-dashboard.dashboard-card-13 />
 
         </div>
 

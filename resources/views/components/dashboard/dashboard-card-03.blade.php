@@ -7,7 +7,7 @@
             </svg>
         </header>
         <div class="flex items-start">
-            <div class="text-3xl mb-5 font-medium text-yellow-700 px-[14px] bg-yellow-500/20 rounded-full">10</div>
+            <div class="text-3xl mb-5 font-medium text-yellow-700 px-[10px] py-1 bg-yellow-500/20 rounded-full">10</div>
         </div>
         <div class="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase mb-1">All of the customers</div>
     </div>

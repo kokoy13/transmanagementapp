@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 19, 2025 at 09:34 PM
+-- Generation Time: Jun 22, 2025 at 11:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -232,11 +232,7 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `user_id`, `type`, `title`, `message`, `is_read`, `read_at`, `created_at`, `updated_at`) VALUES
-(1, 7, 'payment', 'Quos autem et.', 'Sequi eum similique officiis voluptatem nesciunt et voluptatibus. Cupiditate veniam eius odio tempora voluptates consequatur. Voluptatum illo nemo sunt veritatis.', 1, '2025-06-13 08:00:52', '2025-06-18 08:00:52', '2025-06-18 08:00:52'),
-(2, 4, 'request', 'Vero optio nisi dolorem.', 'Eius recusandae mollitia praesentium voluptatem excepturi amet. Nisi quia laboriosam sunt facilis in ullam dolores.', 0, '2025-06-16 08:00:52', '2025-06-18 08:00:52', '2025-06-18 08:00:52'),
-(3, 6, 'order', 'Assumenda et officiis.', 'Tempore omnis omnis incidunt rem. Est veritatis ducimus et saepe facere. Aliquam recusandae iste quia.', 1, '2025-06-16 08:00:52', '2025-06-18 08:00:52', '2025-06-18 08:00:52'),
-(4, 2, 'request', 'Culpa dolor voluptatibus.', 'Quas debitis maiores dolorem natus. Asperiores et minus aut labore et nemo. Natus qui consequatur illo in pariatur dolores rerum. Nam mollitia ut ea error.', 1, '2025-06-14 08:00:52', '2025-06-18 08:00:52', '2025-06-18 08:00:52'),
-(5, 4, 'payment', 'Impedit commodi officiis ipsum.', 'Quis eum autem ea dicta et eaque. At aut sapiente est ratione sed qui aut. Nesciunt aut voluptas est molestias ducimus corporis consequatur. Dolor atque fugiat temporibus tempora temporibus fuga voluptas. Dolor facere quibusdam similique omnis.', 0, '2025-06-17 08:00:52', '2025-06-18 08:00:52', '2025-06-18 08:00:52');
+(9, 5, 'request', 'Request Upgrade Bandwidth', 'User dengan nama Andika Firansyah melakukan request Upgrade bandwidth dari Family - 20 ke 40 dengan payment idPay5b4f9', 0, NULL, '2025-06-22 21:20:00', '2025-06-22 21:20:00');
 
 -- --------------------------------------------------------
 
@@ -260,6 +256,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `order_date`, `status`, `installation_address`, `packet_id`, `created_at`, `updated_at`) VALUES
+('TN4BA5Y', 5, '2025-06-23', 'success', 'pisang', 31, '2025-06-22 18:48:05', '2025-06-22 18:48:05'),
 ('TNQ8EFV', 5, '2025-06-12', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 1, '2025-06-12 11:18:32', '2025-06-12 11:18:32');
 
 -- --------------------------------------------------------
@@ -362,6 +359,31 @@ INSERT INTO `payments` (`id`, `order_id`, `payment_date`, `amount`, `payment_met
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `requests`
+--
+
+CREATE TABLE `requests` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `type` enum('regular','event') NOT NULL DEFAULT 'regular',
+  `payment_id` varchar(50) NOT NULL,
+  `requested_bandwidth` int(11) NOT NULL,
+  `note` text DEFAULT NULL,
+  `status` enum('pending','approved','rejected') NOT NULL DEFAULT 'pending',
+  `user_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`id`, `type`, `payment_id`, `requested_bandwidth`, `note`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
+(18, 'regular', 'Pay5b4f9', 40, 'saya mau upgrade dong, hehe', 'pending', NULL, '2025-06-22 21:20:00', '2025-06-22 21:20:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sessions`
 --
 
@@ -379,7 +401,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('SekNCsaVQhe2bf9HxJq9YMpzsVbwaukD5rWSfKTr', 5, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiWFZId2dHQmZzZURRekJ1RHhHQlRON2NBNkU1RzVWZWZlemZIaXhGNSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjU7fQ==', 1750360348);
+('RYTpgOXp73u8dMOct0liTKmH7s2MCHu4L8Jd97zT', 5, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTloxR1RvRXB4YzI4cmdkM0Y2YzkzMnNxTklQU3RLcnUzUlBpMGFVVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yZXF1ZXN0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NTt9', 1750627226);
 
 -- --------------------------------------------------------
 
@@ -557,7 +579,16 @@ ALTER TABLE `password_reset_tokens`
 -- Indexes for table `payments`
 --
 ALTER TABLE `payments`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `payments_order_id_foreign` (`order_id`);
+
+--
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `requests_user_id_foreign` (`user_id`),
+  ADD KEY `requests_payment_id_foreign` (`payment_id`);
 
 --
 -- Indexes for table `sessions`
@@ -619,13 +650,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `packets`
 --
 ALTER TABLE `packets`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `requests`
+--
+ALTER TABLE `requests`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -667,6 +704,19 @@ ALTER TABLE `notifications`
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_packet_id_foreign` FOREIGN KEY (`packet_id`) REFERENCES `packets` (`id`),
   ADD CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `payments`
+--
+ALTER TABLE `payments`
+  ADD CONSTRAINT `payments_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+
+--
+-- Constraints for table `requests`
+--
+ALTER TABLE `requests`
+  ADD CONSTRAINT `requests_payment_id_foreign` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`),
+  ADD CONSTRAINT `requests_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `zones`

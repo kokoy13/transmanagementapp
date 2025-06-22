@@ -1,5 +1,36 @@
     <!-- Navigation Header -->
     <nav id="navbar" class="fixed top-0 w-full z-[999999999] py-3 h-22 transition-colors duration-500 ease-in-out">
+        <!-- Floating Alert for Session Messages -->
+        <div class="fixed top-24 right-1/2 translate-x-1/2 z-[9999999999] space-y-2">
+
+            {{-- Success Alert --}}
+            @if(session('success'))
+                <div
+                    x-data="{ show: true }"
+                    x-init="setTimeout(() => show = false, 5000)"
+                    x-show="show"
+                    x-transition
+                    class="bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg transition-all ease-in-out duration-300"
+                >
+                    <strong>Sukses!</strong> {{ session('success') }}
+                </div>
+            @endif
+
+            {{-- Error Alert --}}
+            @if(session('error'))
+                <div
+                    x-data="{ show: true }"
+                    x-init="setTimeout(() => show = false, 5000)"
+                    x-show="show"
+                    x-transition
+                    class="bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg transition-all ease-in-out duration-300"
+                >
+                    <strong>Gagal!</strong> {{ session('error') }}
+                </div>
+            @endif
+
+        </div>
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
 
@@ -89,15 +120,14 @@
                                         </a>
                                     </div>
                                     <!-- Dropdown Section -->
-                                    <form method="post" action="{{ route('logout') }}" class="flex flex-col py-1.5">
-                                        @csrf
-                                        <button type="submit" class="flex items-center gap-2 bg-surface-alt px-4 py-2 text-sm text-on-surface hover:bg-surface-dark-alt/5 hover:text-on-surface-strong focus-visible:bg-surface-dark-alt/10 focus-visible:text-on-surface-strong focus-visible:outline-hidden " role="menuitem">
+                                    <div class="flex flex-col py-1.5">
+                                        <a href="{{ route('logout') }}" class="flex items-center gap-2 bg-surface-alt px-4 py-2 text-sm text-on-surface hover:bg-surface-dark-alt/5 hover:text-on-surface-strong focus-visible:bg-surface-dark-alt/10 focus-visible:text-on-surface-strong focus-visible:outline-hidden " role="menuitem">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"  class="size-4">
                                                 <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clip-rule="evenodd"/>
                                             </svg>
                                             Log out
-                                        </button>
-                                    </form>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         @else

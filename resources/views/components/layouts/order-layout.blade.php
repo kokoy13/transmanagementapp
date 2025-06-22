@@ -15,6 +15,7 @@
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css"
     />
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -58,7 +59,6 @@
             display: none !important;
         }
     </style>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>{{ $title}}</title>
 </head>
 <body class="text-gray-800 antialiased">

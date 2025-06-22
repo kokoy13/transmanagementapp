@@ -1,5 +1,36 @@
     <!-- Navigation Header -->
     <nav id="navbar" class="fixed top-0 w-full z-[999999999] py-3 h-22 bg-gray-800">
+        <!-- Floating Alert for Session Messages -->
+        <div class="fixed top-24 right-1/2 translate-x-1/2 z-[9999999999] space-y-2">
+
+            {{-- Success Alert --}}
+            @if(session('success'))
+                <div
+                    x-data="{ show: true }"
+                    x-init="setTimeout(() => show = false, 5000)"
+                    x-show="show"
+                    x-transition
+                    class="bg-green-500 text-white px-6 py-4 rounded-lg shadow-lg transition-all ease-in-out duration-300"
+                >
+                    <strong>Sukses!</strong> {{ session('success') }}
+                </div>
+            @endif
+
+            {{-- Error Alert --}}
+            @if(session('error'))
+                <div
+                    x-data="{ show: true }"
+                    x-init="setTimeout(() => show = false, 5000)"
+                    x-show="show"
+                    x-transition
+                    class="bg-red-500 text-white px-6 py-4 rounded-lg shadow-lg transition-all ease-in-out duration-300"
+                >
+                    <strong>Gagal!</strong> {{ session('error') }}
+                </div>
+            @endif
+
+        </div>
+
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
 
@@ -51,7 +82,7 @@
                             <div x-data="{ isOpen: false, openedWithKeyboard: false }" x-on:keydown.esc.window="isOpen = false, openedWithKeyboard = false" class="relative w-fit">
                                 <!-- Toggle Button -->
                                 <button type="button" x-on:click="isOpen = ! isOpen" x-on:keydown.space.prevent="openedWithKeyboard = true" x-on:keydown.enter.prevent="openedWithKeyboard = true" x-on:keydown.down.prevent="openedWithKeyboard = true" class="inline-flex items-center relative gap-2 whitespace-nowrap px-4 py-2 text-sm font-medium tracking-wide transition hover:opacity-75" x-bind:aria-expanded="isOpen || openedWithKeyboard" aria-haspopup="true">
-                                    <div class="p-2 bg-blue-500 rounded-full absolute top-1 left-10"></div>
+                                    {{-- <div class="p-2 bg-blue-500 rounded-full absolute top-1 left-10"></div> --}}
                                     <img class="w-8 h-8 rounded-full" src="{{ Auth::user()->avatar }}" alt="">
                                     <svg aria-hidden="true" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4 rotate-0 text-white">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>

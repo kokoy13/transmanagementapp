@@ -30,7 +30,7 @@ Route::get('/sign-up', function () {
 Route::post('/sign-up', [RegisterController::class, 'register']);
 
 //Route Logout
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //Route Zone
 Route::get('/map',[ZoneController::class, 'index']);
@@ -64,11 +64,17 @@ Route::put('/profile', [ProfileController::class, 'edit'])->middleware('auth')->
 Route::get('/news', [ContentController::class, 'news'])->name('news');
 Route::post('/news', [ContentController::class, 'searchNews'])->name('search.news');
 
-//Route Request
-Route::get('/notificataions', [NotificationController::class, 'index'])->name('notifications');
+//Route Notification
+Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications');
 
 //Route Request
 Route::get('/request', [RequestController::class,'index'])->name('requests');
+Route::get('/request/bandwidth',[RequestController::class, 'requestBandwidth'])->name('requests.bandwidth');
+Route::post('/request/bandwidth',[RequestController::class, 'storeBandwidth'])->name('requests.bandwidth');
+Route::get('/request/bandwidthevent',[RequestController::class, 'requestBandwidthEvent'])->name('requests.bandwidthevent');
+Route::post('/request/bandwidthevent',[RequestController::class, 'storeBandwidthEvent'])->name('requests.bandwidthevent');
+
+
 
 //Route Budaya Perusahaan
 Route::get('/budaya-perusahaan', function(){

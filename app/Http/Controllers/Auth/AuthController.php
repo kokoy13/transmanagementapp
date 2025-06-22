@@ -35,7 +35,7 @@ class AuthController extends Controller
         }
         Auth::login($registeredUser);
         return redirect()->route('home', ['name' => Str::slug($registeredUser->name)]);
-        
+
     }
 
     public function login()

@@ -33,10 +33,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/search', [DashboardController::class, 'search'])->name('search');
 
     //Monitoring Route
-    Route::get('/tx-rx', [MonitoringController::class, 'index'])->name('txrx');
+    Route::get('/tx-rx', function(){
+        return view('pages.monitoring.tx-rx.index');
+    })->name('txrx');
     Route::get('/traffic/{id}', [MonitoringController::class, 'traffic'])->name('monitor.traffic');
     Route::get('/interface-traffic/data/{id}', [MonitoringController::class, 'getTxRx']);
-    Route::get('/active-connection', [MonitoringController::class, 'getActiveConnection'])->name('active-connection');
+    Route::get('/active-connection', function(){
+        return view('pages.monitoring.active-connection.index');
+    })->name('active-connection');
 
     //Customer Route
     Route::get('/customers', [CustomerController::class, 'index'])->name('customers');
@@ -96,6 +100,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     //Reboot Route
     Route::get('/reboot', [RebootController::class, 'index'])->name('reboot');
+    Route::post('/reboot', [RebootController::class, 'reboot'])->name('reboot');
     Route::get('/utility/404', function () {
         return view('pages/utility/404');
     })->name('404');

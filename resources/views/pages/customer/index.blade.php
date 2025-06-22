@@ -25,6 +25,6 @@
                 </div>
 
         </div>
-        <x-table-customer :customers="$customers"></x-table-customer>
+        <x-table-customer :customers="$customers" :state="$state"></x-table-customer>
     </form>
 </x-app-layout>

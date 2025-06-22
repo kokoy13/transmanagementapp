@@ -72,7 +72,7 @@ class MikrotikApiService
         }
     }
 
-    public function getTraffic($id)
+    public function getTrafficById($id)
     {
     try {
         $secretData = $this->getSecretById($id);
@@ -96,34 +96,31 @@ class MikrotikApiService
         }
     }
 
-    public function getInterfaces(){
+    public function getSecretById($id){
         try{
-            $query = (new Query('/interface/print'))
-                ->equal('.proplist','.id,name,disabled');
-
+            $query = (new Query('/ppp/secret/print'))
+                ->where('.id', $id)
+                ->equal('.proplist', '.id,name');
             return $this->client->query($query)->read();
         }catch(\Exception $e){
             dd("Error: " . $e->getMessage());
         }
     }
 
-    public function getInterfaceById($id){
-        try {
-        $query = (new Query('/interface/print'))
-                    ->where('.id', $id)
-                    ->equal('.proplist','.id,name');
-
-        return $this->client->query($query)->read();
-        } catch (\Exception $e) {
+    public function getActiveConnection(){
+        try{
+            $query = (new Query('/interface/pppoe-server/print'))
+                ->equal('.proplist', 'name,user,uptime');
+            return $this->client->query($query)->read();
+        }catch(\Exception $e){
             dd("Error: " . $e->getMessage());
         }
     }
 
-    public function getSecretById($id){
+    public function getStateCustomer(){
         try{
-            $query = (new Query('/ppp/secret/print'))
-                ->where('.id', $id)
-                ->equal('.proplist', '.id,name');
+            $query = (new Query('/interface/pppoe-server/print'))
+                ->equal('.proplist', 'running,user');
             return $this->client->query($query)->read();
         }catch(\Exception $e){
             dd("Error: " . $e->getMessage());

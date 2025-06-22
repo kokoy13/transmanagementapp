@@ -17,7 +17,13 @@ class CustomerController extends Controller
     public function index()
     {
         $customers = $this->mikrotik->getSecret();
-        return view('pages.customer.index', compact('customers'));
+        $state = $this->getState();
+        return view('pages.customer.index', compact('customers', 'state'));
+    }
+
+    public function getState(){
+        $state = $this->mikrotik->getStateCustomer();
+        return $state;
     }
 
         public function action(Request $request){

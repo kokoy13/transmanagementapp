@@ -15,6 +15,6 @@
                 </div>
 
         </div>
-        <x-table-txrx :data="$data"></x-table-txrx>
+        <x-table-txrx></x-table-txrx>
     </form>
 </x-app-layout>

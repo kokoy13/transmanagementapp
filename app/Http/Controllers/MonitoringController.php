@@ -14,35 +14,37 @@ class MonitoringController extends Controller
         $this->mikrotik = $mikrotik;
     }
 
-    public function index(){
-        //Untuk Menampilkan data secret yang tidak ada trafficnya
-        // $data = $this->mikrotik->getSecret();
+    // public function index(){
+    //     $state = $this->mikrotik->getStateCustomer();
+    //     $secrets = [];
+    //     $datas = $this->mikrotik->getSecret();
+    //     //Dapatkan secret dengan status running
+    //     foreach($datas as $data){
+    //         foreach($state as $st){
+    //             if($data['name'] == $st['user'] && $st['running'] == 'true'){
+    //                 $secrets[] = $data;
+    //             }
+    //         }
+    //     }
 
-        //Untuk Menampilkan data interface dengan tujuan mendapatkan traffic
-        $data = $this->mikrotik->getInterfaces();
-        return view('pages.monitoring.tx-rx.index')->with(compact('data'));
-    }
+    //     $usage = [];
+    //     //Dapatkan tx rx dari secret
+    //     foreach($secrets as $secret){
+    //         $usage[] = $this->mikrotik->getTrafficById($secret['.id']);
+    //     }
+    //     // $usage = $this->mikrotik->getUsage();
+    //     return view('pages.monitoring.tx-rx.index')->with(compact('datas', 'usage'));
+    // }
 
     public function traffic($id){
         $data = $this->mikrotik->getSecretById($id);
         return view('pages.monitoring.tx-rx.traffic', ['data' => $data[0]]);
     }
 
-    // public function getTxRx($id){
-    //     $result = $this->mikrotik->getTraffic($id);
-    //     $data = $result[0] ?? [];
-    //     return response()->json([
-    //         'rx' => (int) $data['rx-bits-per-second'] ?? 0,
-    //         'tx' => (int) $data['tx-bits-per-second'] ?? 0,
-    //         'time' => now()->format('H:i:s')
-    //     ]);
-    // }
-
     public function getTxRx($id)
     {
         try {
-            $result = $this->mikrotik->getTraffic($id);
-
+            $result = $this->mikrotik->getTrafficById($id);
             if (isset($result['error'])) {
                 return response()->json(['error' => $result['error']], 404);
             }
@@ -60,12 +62,4 @@ class MonitoringController extends Controller
         }
     }
 
-    // public function getTxRx($id){
-    //     return response()->json(['id_diterima' => $id, 'mikrotik' => isset($this->mikrotik)]);
-    // }
-
-
-    public function getActiveConnection(){
-        return view('pages.monitoring.active-connection.index');
-    }
 }

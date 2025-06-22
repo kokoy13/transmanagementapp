@@ -54,7 +54,7 @@
                         </a>
                     </li>
                     <!-- Monitoring -->
-                    <li class="@if(Auth::user()->role == 'marketing') hidden @endif pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0" x-data="{ open: false }">
+                    <li class="@if(Auth::user()->role == 'marketing') hidden @endif pl-4 pr-3 py-2 rounded-lg mb-0.5 last:mb-0" @if(Route::is('txrx') || Route::is('active-connection')) x-data="{open: true}" @endif x-data="{ open: false }">
                         <a class="block text-gray-800 dark:text-gray-100 truncate transition" :class="open ? '' : 'hover:text-gray-900 dark:hover:text-white'" href="#0" @click.prevent="open = !open; sidebarExpanded = true">
                             <div class="flex items-center justify-between">
                                 <div class="flex items-center">

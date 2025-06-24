@@ -1,0 +1,165 @@
+{
+  "kota": "Padang",
+  "provinsi": "Sumatera Barat",
+  "kecamatan": [
+    {
+      "nama": "Bungus Teluk Kabung",
+      "kelurahan": [
+        "Bungus Barat",
+        "Bungus Selatan",
+        "Bungus Timur",
+        "Teluk Kabung Selatan",
+        "Teluk Kabung Tengah",
+        "Teluk Kabung Utara"
+      ]
+    },
+    {
+      "nama": "Koto Tangah",
+      "kelurahan": [
+        "Air Pacah",
+        "Balai Gadang",
+        "Batang Kabung Ganting",
+        "Batipuh Panjang",
+        "Bungo Pasang",
+        "Dadok Tunggul Hitam",
+        "Koto Panjang Ikua Koto",
+        "Koto Pulai",
+        "Lubuk Buaya",
+        "Lubuk Minturun",
+        "Padang Sarai",
+        "Parupuk Tabing",
+        "Pasir Nan Tigo"
+      ]
+    },
+    {
+      "nama": "Kuranji",
+      "kelurahan": [
+        "Ampang",
+        "Anduring",
+        "Gunung Sarik",
+        "Kalumbuk",
+        "Korong Gadang",
+        "Kuranji",
+        "Lubuk Lintah",
+        "Pasar Ambacang",
+        "Sungai Sapih"
+      ]
+    },
+    {
+      "nama": "Lubuk Begalung",
+      "kelurahan": [
+        "Banuaran Nan XX",
+        "Batung Taba Nan XX",
+        "Cengkeh Nan XX",
+        "Gates Nan XX",
+        "Gurun Laweh Nan XX",
+        "Kampung Baru Nan XX",
+        "Kampung Jua Nan XX",
+        "Koto Baru Nan XX",
+        "Lubuk Begalung Nan XX",
+        "Pagambiran Ampalu Nan XX",
+        "Pampangan Nan XX",
+        "Parak Laweh Pulau Air Nan XX",
+        "Pitameh Tanjung Saba Nan XX",
+        "Tanah Sirah Piai Nan XX",
+        "Tanjung Aur Nan XX"
+      ]
+    },
+    {
+      "nama": "Lubuk Kilangan",
+      "kelurahan": [
+        "Bandar Buat",
+        "Batu Gadang",
+        "Beringin",
+        "Indarung",
+        "Koto Lalang",
+        "Padang Besi",
+        "Tarantang"
+      ]
+    },
+    {
+      "nama": "Nanggalo",
+      "kelurahan": [
+        "Gurun Laweh",
+        "Kampung Lapai",
+        "Kampung Olo",
+        "Kurao Pagang",
+        "Surau Gadang",
+        "Tabing Banda Gadang"
+      ]
+    },
+    {
+      "nama": "Padang Barat",
+      "kelurahan": [
+        "Belakang Tangsi",
+        "Berok Nipah",
+        "Flamboyan Baru",
+        "Kampung Jao",
+        "Kampung Pondok",
+        "Olo",
+        "Padang Pasir",
+        "Purus",
+        "Rimbo Kaluang",
+        "Ujung Gurun"
+      ]
+    },
+    {
+      "nama": "Padang Selatan",
+      "kelurahan": [
+        "Air Manis",
+        "Alang Laweh",
+        "Batang Arau",
+        "Belakang Pondok",
+        "Bukit Gado-Gado",
+        "Mato Aie",
+        "Pasa Gadang",
+        "Ranah Parak Rumbio",
+        "Rawang",
+        "Seberang Padang",
+        "Seberang Palinggam",
+        "Teluk Bayur"
+      ]
+    },
+    {
+      "nama": "Padang Timur",
+      "kelurahan": [
+        "Andalas",
+        "Ganting Parak Gadang",
+        "Jati",
+        "Jati Baru",
+        "Kubu Dalam Parak Karakah",
+        "Kubu Marapalam",
+        "Parak Gadang Timur",
+        "Sawahan",
+        "Sawahan Timur",
+        "Simpang Haru"
+      ]
+    },
+    {
+      "nama": "Padang Utara",
+      "kelurahan": [
+        "Air Tawar Barat",
+        "Air Tawar Timur",
+        "Alai Parak Kopi",
+        "Gunung Pangilun",
+        "Lolong Belanti",
+        "Ulak Karang Selatan",
+        "Ulak Karang Utara"
+      ]
+    },
+    {
+      "nama": "Pauh",
+      "kelurahan": [
+        "Binuang Kampung Dalam",
+        "Cupak Tangah",
+        "Kapalo Koto",
+        "Koto Luar",
+        "Lambung Bukit",
+        "Limau Manis",
+        "Limau Manis Selatan",
+        "Piai Tangah",
+        "Pisang"
+      ]
+    }
+  ]
+}

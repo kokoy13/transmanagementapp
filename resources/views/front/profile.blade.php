@@ -139,7 +139,7 @@
         </main>
 
         <!-- Edit Profile Modal -->
-        <form action="{{ route('profile.edit') }}" method="post" x-show="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" x-transition>
+        <form action="{{ route('profile.edit') }}" x-cloak method="post" x-show="showModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" x-transition>
             @csrf
             @method('put')
             <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md mx-4" @click.away="showModal = false">

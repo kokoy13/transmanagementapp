@@ -3,7 +3,7 @@
         <div class="w-full mx-auto">
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div class="p-6">
-                    @if ($payments)
+                    @if ($payments->isNotEmpty())
                         <div class="bg-white my-20 rounded-lg p-8 max-w-4xl mx-auto space-y-6">
                             <!-- Header -->
                             <div class="text-center mb-8">
@@ -27,13 +27,11 @@
                                 <div>
                                     <label for="current" class="block text-sm font-medium text-gray-700 mb-1">Pilih Langganan Aktif</label>
                                     <select name="current" required id="current" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                                        @foreach ($payments as $paymentGroup)
-                                            @foreach ($paymentGroup as $pay)
-                                                <option value="{{ $pay->id }}">
-                                                    {{ $pay->order->packet->name }} - {{ $pay->order->packet->bandwidth }} Mbps
+                                        @foreach ($payments as $payment)
+                                                <option value="{{ $payment->id }}">
+                                                    {{ $payment->order->packet->name }} - {{ $payment->order->packet->bandwidth }} Mbps
                                                 </option>
-                                                <input type="text" name="bandwidthAwal" value="{{ $pay->order->packet->name }} - {{ $pay->order->packet->bandwidth }}" hidden>
-                                            @endforeach
+                                                <input type="text" name="bandwidthAwal" value="{{ $payment->order->packet->name }} - {{ $payment->order->packet->bandwidth }}" hidden>
                                         @endforeach
                                     </select>
                                 </div>
@@ -44,14 +42,12 @@
                                     <select name="bandwidth" required id="bandwidth" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
                                         <option selected value="">Pilih bandwidth</option>
                                         @foreach ($packets as $packet)
-                                            @foreach ($payments as $paymentGroup)
-                                                @foreach ($paymentGroup as $pay)
-                                                    @if ($packet->bandwidth > $pay->order->packet->bandwidth)
+                                            @foreach ($payments as $payment)
+                                                    @if ($packet->bandwidth > $payment->order->packet->bandwidth)
                                                         <option value="{{ $packet->bandwidth }}">
                                                             {{ $packet->bandwidth }} Mbps
                                                         </option>
                                                     @endif
-                                                @endforeach
                                             @endforeach
                                         @endforeach
                                     </select>

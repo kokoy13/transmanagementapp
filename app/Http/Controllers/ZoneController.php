@@ -4,46 +4,30 @@ namespace App\Http\Controllers;
 use App\Models\Zone;
 
 use Illuminate\Http\Request;
+use App\Services\ZoneCheckerService;
+use App\Http\Requests\CheckZoneRequest;
 
 class ZoneController extends Controller
 {
+    public function __construct(protected ZoneCheckerService $zoneCheckerService) {}
+
     public function index()
     {
-        $json = file_get_contents(public_path('js/map.json'));
-        $zone = json_decode($json, true );
-        $kecamatan = $zone['kecamatan'];
-
-        return view('front.zone')->with(compact('kecamatan'));
+        $kecamatan = $this->zoneCheckerService->getKecamatanFromJson();
+        return view('front.zone', compact('kecamatan'));
     }
 
-    public function checkZone(Request $request)
+    public function checkZone(CheckZoneRequest $request)
     {
-        // Validasi input
-        $validated = $request->validate([
-            'kecamatan' => 'required|string',
-            'kelurahan' => 'required|string',
-        ]);
+        $result = $this->zoneCheckerService->check(
+            $request->input('kecamatan'),
+            $request->input('kelurahan')
+        );
 
-        // Ambil kecamatan dari database
-        $kecamatan = Zone::where('type', 'kecamatan')
-                        ->where('nama', $validated['kecamatan'])
-                        ->first();
-
-        if (!$kecamatan) {
-            return redirect()->back()->with('error','Zona belum tersedia');
+        if (!$result['status']) {
+            return redirect()->back()->with('error', $result['message']);
         }
 
-        // Cek apakah kelurahan berada di dalam kecamatan tersebut
-        $kelurahan = Zone::where('type', 'kelurahan')
-                        ->where('nama', $validated['kelurahan'])
-                        ->where('parent_id', $kecamatan->id)
-                        ->first();
-
-        if (!$kelurahan) {
-            return redirect()->back()->with('error','Kelurahan kamu belum tersedia');
-        }
-
-        // Jika valid, lanjutkan logika misalnya redirect atau return view
         return redirect()->back()->with('success', 'Zona tersedia, segera melakukan order untuk instalasi jaringan atau hubungi call center');
     }
 

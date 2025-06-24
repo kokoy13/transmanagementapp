@@ -41,12 +41,10 @@ Route::post('/map', [ZoneController::class, 'checkZone'])->name('zone.checkzone'
 
 //Route redirect auth socialite
 Route::get('/auth/redirect/{provider}', [AuthController::class, 'redirect'])
-    ->middleware(CekLogin::class)
     ->name('auth.redirect');
 
 //Route callback auth socialite
-Route::get('/auth/{provider}/callback', [AuthController::class, 'callback'])
-    ->middleware(CekLogin::class);
+Route::get('/auth/{provider}/callback', [AuthController::class, 'callback']);
 
 //Route Price List
 Route::get('/packets', [PacketController::class, 'getPacket']);

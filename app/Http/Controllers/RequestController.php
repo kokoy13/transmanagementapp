@@ -2,107 +2,61 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Notification;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Order;
-use App\Models\Payment;
 use App\Models\Packet;
+use App\Models\Payment;
+use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Request as BandwidthRequest;
+use App\Services\RequestService;
+use App\Http\Requests\StoreBandwidthRequest;
 
 class RequestController extends Controller
 {
+
+    public function __construct(protected RequestService $requestService) {}
+
     public function index(){
         return view('front.request');
     }
 
-    public function requestBandwidth(){
-        $packets = Packet::select('bandwidth')->distinct()->get();
-        $orders = Order::where('user_id', Auth::user()->id)
-            ->where('status','success')
-            ->get();
-        $payments = [];
-        foreach($orders as $order){
-            $payments[] = Payment::where('order_id', $order->id)->where('payment_status','success')->get();
-        }
-        return view('front.request-bandwidth')->with(compact('payments', 'packets'));
+    //Form Request Bandwidth dengan type regular
+    public function requestBandwidth()
+    {
+        $packets = $this->requestService->getPackets();
+        $payments = $this->requestService->getSuccessfulPaymentsForUser(Auth::id());
+        return view('front.request-bandwidth', compact('payments', 'packets'));
     }
 
-    public function requestBandwidthEvent(){
-        $packets = Packet::select('bandwidth')->distinct()->get();
-        $orders = Order::where('user_id', Auth::user()->id)
-            ->where('status','success')
-            ->get();
-        $payments = [];
-        foreach($orders as $order){
-            if($order->packet->name != 'Family'){
-                $payments[] = Payment::where('order_id', $order->id)->where('payment_status','success')->get();
-            }
+    //Store inputan form Request Bandwidth dengan type regular
+    public function storeBandwidth(StoreBandwidthRequest $request)
+    {
+        $result = $this->requestService->storeBandwidthRequest($request->validated(), 'regular');
+
+        if (!$result['status']) {
+            return redirect()->route('requests')->with('error', $result['message']);
         }
-        return view('front.request-event')->with(compact('payments','packets'));
+
+        return redirect()->route('requests')->with('success', 'Berhasil request ' . $result['state'] . ' bandwidth, tunggu notifikasi dari admin untuk persetujuan');
     }
 
-    public function storeBandwidth(Request $request){
-        $requestExist = BandwidthRequest::where('payment_id', $request->input('current'))->get();
-        if($requestExist->isNotEmpty()){
-            return redirect()->route('requests')->with('error', 'Request telah dilakukan sebelumnya, tunggu request dicancel admin sebelum melakukan request lagi');
-        }
-        $state = null;
-        if($request->bandwidth > $request->bwFrom){
-            $state = 'Upgrade';
-        }else{
-            $state = 'Downgrade';
-        }
+    public function requestBandwidthEvent()
+    {
+        $packets = $this->requestService->getPackets();
+        $payments = $this->requestService->getEventEligiblePaymentsForUser(Auth::id());
 
-        $bandwidthRequest = BandwidthRequest::create([
-            'type' => 'regular',
-            'payment_id' => $request->input('current'),
-            'requested_bandwidth' => $request->input('bandwidth'),
-            'note' => $request->input('note') ?? null,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        if($bandwidthRequest){
-            $notif = Notification::create([
-                'user_id' => Auth::user()->id,
-                'type' => 'request',
-                'title' => 'Request '.$state.' Bandwidth',
-                'Message' => 'User dengan nama '.Auth::user()->name. ' melakukan request '.$state.' bandwidth dari '. $request->input('bandwidthAwal').' ke '.$request->input('bandwidth').' dengan payment id'.$request->input('current'),
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        }
-
-        return redirect()->route('requests')->with('success', 'berhasil request '.$state.' bandwidth, tunggu notifikasi dari admin untuk persetujuan');
+        return view('front.request-event', compact('payments', 'packets'));
     }
 
-    public function storeBandwidthEvent(Request $request){
-        $requestExist = BandwidthRequest::where('payment_id', $request->input('current'))->get();
-        if($requestExist->isNotEmpty()){
-            return redirect()->route('requests')->with('error', 'Request telah dilakukan sebelumnya, tunggu request dicancel admin sebelum melakukan request lagi');
+    public function storeBandwidthEvent(StoreBandwidthRequest $request)
+    {
+        $result = $this->requestService->storeBandwidthRequest($request->validated(), 'event');
+
+        if (!$result['status']) {
+            return redirect()->route('requests')->with('error', $result['message']);
         }
 
-        $bandwidthRequest = BandwidthRequest::create([
-            'type' => 'event',
-            'payment_id' => $request->input('current'),
-            'requested_bandwidth' => $request->input('bandwidth'),
-            'note' => $request->input('note') ?? null,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        if($bandwidthRequest){
-            $notif = Notification::create([
-                'user_id' => Auth::user()->id,
-                'type' => 'request',
-                'title' => 'Request Event',
-                'Message' => 'Customer dengan nama '.Auth::user()->name. ' melakukan request event dari '. $request->input('bandwidthAwal').' ke '.$request->input('bandwidth').' dengan payment id'.$request->input('current'),
-                'created_at' => now(),
-                'updated_at' => now()
-            ]);
-        }
-
-        return redirect()->route('requests')->with('success', 'berhasil request bandwidth event, tunggu notifikasi dari admin untuk persetujuan');
+        return redirect()->route('requests')->with('success', 'Berhasil request bandwidth event, tunggu notifikasi dari admin untuk persetujuan');
     }
 }

@@ -112,7 +112,7 @@ Route::post('/request/bandwidth', [RequestController::class, 'storeBandwidth'])-
 Route::get('/request/bandwidthevent', [RequestController::class, 'requestBandwidthEvent'])
     ->middleware(CekLogin::class)
     ->name('requests.bandwidthevent');
-Route::post('/request/bandwidthevent', [RequestController::class, 'storeBandwidthEvent'])->name('requests.bandwidthevent');
+Route::post('/request/bandwidthevent', [RequestController::class, 'storeBandwidthEvent'])->name('store.bandwidthevent');
 
 
 

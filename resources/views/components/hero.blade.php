@@ -1,8 +1,7 @@
 @props(['banners'])
 
 <div
-    class="relative pt-16 pb-64 flex content-center items-center justify-center"
-    style="min-height: 105vh;"
+    class="relative pt-16 pb-64 flex content-center min-h-[750px] lg:min-h-[105vh] items-center justify-center"
 >
     <div id="default-carousel" class="absolute w-full h-full" data-carousel="slide">
         <div class="absolute top-0 bottom-0 left-0 right-0 bg-black z-40 opacity-30"></div>
@@ -14,7 +13,7 @@
                     <img src="{{ Storage::url('banners/'.$banner->img) }}" class="absolute block w-full h-full" alt="...">
                 </div>
             @endforeach
-            <div class="absolute -bottom-30 left-0 right-0 z-50">
+            <div class="hidden lg:block absolute -bottom-30 left-0 right-0 z-50">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="w-full h-auto">
                     <path fill="#ffffff" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,149.3C960,160,1056,160,1152,138.7C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
                 </svg>

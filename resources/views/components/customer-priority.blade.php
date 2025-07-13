@@ -1,5 +1,5 @@
 <!-- Partnership Slider Section -->
-<div class="py-16" style="font-family: 'Inter', sans-serif;">
+<div id="customer-priority" class="py-16" style="font-family: 'Inter', sans-serif;">
     <div class="container mx-auto px-4">
         <div class="text-center mb-12">
             <h3 data-aos='fade-up' class="text-4xl font-bold text-gray-800 mb-4">Pelanggan Prioritas</h3>

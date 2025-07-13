@@ -11,14 +11,14 @@
             <!-- Header Section -->
             <div class="flex flex-wrap text-center justify-center">
                 <div class="w-full lg:w-8/12 px-4">
-                    <h2 data-aos="slide-up" class="text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                    <h2 data-aos="slide-up" class="text-4xl lg:text-6xl font-bold text-white my-6 leading-tight">
                         Cari
                         <span class="bg-gradient-to-r from-blue-400 via-blue-600 to-blue-400 bg-clip-text text-transparent">
                             Ketersediaan
                         </span>
                         Zona
                     </h2>
-                    <p data-aos="fade-left" class="text-xl leading-relaxed text-gray-300 max-w-3xl mx-auto">
+                    <p data-aos="fade-left" class="text-base lg:text-xl leading-relaxed text-gray-300 max-w-3xl mx-auto">
                         Temukan zona layanan Transnet Sumbar di Kota Padang. Cek ketersediaan jaringan,
                         kecepatan internet, dan kualitas sinyal di wilayah Anda secara real-time.
                     </p>
@@ -27,7 +27,7 @@
         </div>
 
         <!-- Map Section -->
-        <div data-aos="zoom-in" class="container mx-auto relative px-4 py-16">
+        <div data-aos="zoom-in" class="hidden lg:block container mx-auto relative px-4 py-16">
             <div class="flex flex-wrap justify-center lg:-mt-32 -mt-16">
                 <div class="w-full lg:w-8/12 px-4">
                     <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 shadow-2xl">
@@ -48,22 +48,6 @@
                                 class="w-full rounded-xl">
                             </iframe>
                         </div>
-
-                        <!-- Zone Stats -->
-                        {{-- <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-                            <div class="text-center p-4 bg-gray-700/50 rounded-xl border border-gray-600">
-                                <div class="text-3xl font-bold text-green-400 mb-2">11</div>
-                                <div class="text-gray-300 text-sm">Kecamatan Terlayani</div>
-                            </div>
-                            <div class="text-center p-4 bg-gray-700/50 rounded-xl border border-gray-600">
-                                <div class="text-3xl font-bold text-blue-400 mb-2">98%</div>
-                                <div class="text-gray-300 text-sm">Coverage Area</div>
-                            </div>
-                            <div class="text-center p-4 bg-gray-700/50 rounded-xl border border-gray-600">
-                                <div class="text-3xl font-bold text-purple-400 mb-2">25+</div>
-                                <div class="text-gray-300 text-sm">Zona Aktif</div>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -71,7 +55,7 @@
 
         <!-- CTA Button -->
         <div data-aos="zoom-out" class="text-center pb-20 relative z-10">
-            <a href="/map" class="bg-blue-500 inline-flex items-center px-12 py-4 text-white font-bold text-lg rounded-2xl transition-all duration-300 hover:scale-105">
+            <a href="/map" class="bg-blue-500 inline-flex mt-10 lg:mt-0 items-center px-12 py-4 text-white font-bold text-lg rounded-2xl transition-all duration-300 hover:scale-105">
                 <i class="fas fa-search mr-3 text-xl"></i>
                 Cari Zona Ketersediaan
             </a>

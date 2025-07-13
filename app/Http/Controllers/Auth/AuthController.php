@@ -48,7 +48,6 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         $redirect = $this->authService->authenticate($credentials);
-
         if ($redirect) {
             return redirect()->to($redirect);
         }

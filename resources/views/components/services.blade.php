@@ -15,19 +15,19 @@
                     Bekerja dengan Kami Adalah Pilihan Tepat
                 </h3>
                 <p
-                    class="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700 indent-6"
+                    class="text-base lg:text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700 indent-6"
                     data-aos="fade-up"
                 >
                 Kami menyediakan layanan manajemen jaringan yang andal untuk memastikan konektivitas dan performa jaringan Anda tetap optimal setiap saat.
                 </p>
                 <p
-                    class="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700 indent-6"
+                    class="text-base lg:text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700 indent-6"
                     data-aos="fade-up"
                 >
                 Layanan kami mencakup instalasi perangkat jaringan, konfigurasi switch dan router, hingga pengamanan jaringan dari ancaman siber.
                 </p>
                 <a
-                    href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
+                    href="#customer-priority"
                     class="font-bold text-gray-800 mt-8 underline"
                     data-aos="fade-up"
                     >Lihat Pelanggan Manage Service Kami</a

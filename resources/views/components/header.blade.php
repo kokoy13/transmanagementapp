@@ -154,7 +154,7 @@
         </div>
 
         <!-- Mobile Navigation Menu -->
-        <div id="mobileMenu" class="lg:hidden bg-gray-800/95 backdrop-blur-md border-t border-gray-700/50 transform -translate-y-full opacity-0 transition-all duration-300 ease-in-out overflow-hidden">
+        <div id="mobileMenu" class="lg:hidden bg-gray-800/95 backdrop-blur-md border-t border-gray-700/50 transform -translate-y-full hidden transition-all duration-300 ease-in-out overflow-hidden">
             <div class="px-4 py-6 space-y-4 max-h-screen overflow-y-auto">
 
                 <!-- Mobile Tentang Kami Dropdown -->
@@ -164,18 +164,18 @@
                         <i id="tentangKamiIcon" class="fas fa-chevron-down text-sm transition-transform duration-200"></i>
                     </button>
                     <div id="tentangKamiDropdown" class="hidden pl-4 mt-2 space-y-2 pb-2">
-                        <a href="/aboutus" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
+                        <a href="{{ route('sejarah-perusahaan') }}" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
                             <i class="fas fa-history mr-2 text-blue-400"></i>Sejarah Perusahaan
 
 
 
                         </a>
-                        <a href="/visimisi" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
+                        <a href="{{ route('visimisi') }}" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
                             <i class="fas fa-eye mr-2 text-blue-400"></i>Visi dan Misi
 
 
                         </a>
-                        <a href="/companyculture" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
+                        <a href="{{ route('budaya-perusahaan') }}" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
                             <i class="fas fa-users mr-2 text-blue-400"></i>Budaya Perusahaan
 
 
@@ -184,53 +184,48 @@
                 </div>
 
                 <!-- Mobile Navigation Links -->
-                <a href="/layanan" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-400 transition-colors duration-200">
+                <a href="/packets" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-400 transition-colors duration-200">
                     <i class="fas fa-cogs mr-2 text-blue-400"></i>Layanan Kami
                 </a>
-                <a href="/organisasi" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-400 transition-colors duration-200">
-                    <i class="fas fa-sitemap mr-2 text-blue-400"></i>Organisasi Perusahaan
+                <a href="{{ route('news') }}" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-400 transition-colors duration-200">
+                    <i class="fas fa-sitemap mr-2 text-blue-400"></i>Berita Terbaru
                 </a>
-                <a href="/referensi" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-400 transition-colors duration-200">
-                    <i class="fas fa-star mr-2 text-blue-400"></i>Referensi
-                </a>
-                <a href="/kontak" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-400 transition-colors duration-200">
-                    <i class="fas fa-phone mr-2 text-blue-400"></i>Kontak
+                <a href="{{ route('contact') }}" class="block text-white font-medium py-3 border-b border-gray-700/50 hover:text-blue-400 transition-colors duration-200">
+                    <i class="fas fa-phone mr-2 text-blue-400"></i>Contact
                 </a>
 
                 <!-- Mobile User Section -->
                 <div class="pt-4 border-t border-gray-700">
-                    <!-- Mobile User Profile (when logged in) -->
-                    <div class="hidden" id="mobileUserProfile">
-                        <div class="flex items-center space-x-3 mb-4 p-3 bg-gray-700/50 rounded-lg">
-                            <img src="/placeholder.svg?height=40&width=40" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-gray-600">
-                            <div>
-                                <p class="text-white font-medium">John Doe</p>
-                                <p class="text-gray-400 text-sm">john@example.com</p>
+                    @if(Auth::check())
+                        <!-- Mobile User Profile (when logged in) -->
+                        <div class="hidden" id="mobileUserProfile">
+                            <div class="flex items-center space-x-3 mb-4 p-3 bg-gray-700/50 rounded-lg">
+                                <img src="{{ Auth::user()->avatar }}" alt="Avatar" class="w-10 h-10 rounded-full border-2 border-gray-600">
+                                <div>
+                                    <p class="text-white font-medium">{{ Auth::user()->name }}</p>
+                                    <p class="text-gray-400 text-sm">{{ Auth::user()->email }}</p>
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <a href="/profile" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
+                                    <i class="fas fa-user mr-2 text-blue-400"></i>Profile
+                                </a>
+                                <a href="/orders" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
+                                    <i class="fas fa-shopping-bag mr-2 text-blue-400"></i>My Orders
+                                </a>
+                                <a href="/notifications" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
+                                    <i class="fas fa-bell mr-2 text-blue-400"></i>Notifications
+                                </a>
+                                <button onclick="logout()" class="block text-red-400 hover:text-red-300 py-2 transition-colors duration-200">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                                </button>
                             </div>
                         </div>
-                        <div class="space-y-2">
-                            <a href="/profile" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
-                                <i class="fas fa-user mr-2 text-blue-400"></i>Profile
-
-
-
-
-                            </a>
-                            <a href="/orders" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
-                                <i class="fas fa-shopping-bag mr-2 text-blue-400"></i>My Orders
-                            </a>
-                            <a href="/notifications" class="block text-gray-300 hover:text-white py-2 transition-colors duration-200">
-                                <i class="fas fa-bell mr-2 text-blue-400"></i>Notifications
-                            </a>
-                            <button onclick="logout()" class="block text-red-400 hover:text-red-300 py-2 transition-colors duration-200">
-                                <i class="fas fa-sign-out-alt mr-2"></i>Logout
-                            </button>
-                        </div>
-                    </div>
+                    @endif
 
                     <!-- Mobile Login Button (when not logged in) -->
                     <div id="mobileLoginButton">
-                        <a href="/login" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white text-center py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200">
+                        <a href="/sign-in" class="block w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white text-center py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200">
                             <i class="fas fa-sign-in-alt mr-2"></i>Login
                         </a>
                     </div>
@@ -249,14 +244,14 @@
             isMobileMenuOpen = !isMobileMenuOpen;
 
             if (isMobileMenuOpen) {
-                mobileMenu.classList.remove('-translate-y-full', 'opacity-0');
-                mobileMenu.classList.add('translate-y-0', 'opacity-100');
+                mobileMenu.classList.remove('-translate-y-full', 'hidden');
+                mobileMenu.classList.add('translate-y-0', 'block');
                 menuIcon.classList.remove('fa-bars');
                 menuIcon.classList.add('fa-times');
                 document.body.style.overflow = 'hidden'; // Prevent body scroll
             } else {
-                mobileMenu.classList.remove('translate-y-0', 'opacity-100');
-                mobileMenu.classList.add('-translate-y-full', 'opacity-0');
+                mobileMenu.classList.remove('translate-y-0', 'block');
+                mobileMenu.classList.add('-translate-y-full', 'hidden');
                 menuIcon.classList.remove('fa-times');
                 menuIcon.classList.add('fa-bars');
                 document.body.style.overflow = 'auto'; // Restore body scroll

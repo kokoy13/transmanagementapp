@@ -3,23 +3,36 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateProfileRequest;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
+use App\Services\ProfileService;
 
 class ProfileController extends Controller
 {
+    protected $profileService;
+
+    public function __construct(ProfileService $profileService)
+    {
+        $this->profileService = $profileService;
+    }
+
     public function index()
     {
-        $profile = User::find(Auth::user()->id);
-
+        $profile = $this->profileService->getUser();
         return view('front.profile')->with(compact('profile'));
     }
 
     public function edit(UpdateProfileRequest $request)
     {
-        $user = Auth::user();
-        $user->update($request->validated());
+        $user = $this->profileService->getUser();
+        $validated = $request->validated();
 
-        return redirect()->route('profile')->with('success', 'Profil berhasil diperbarui');
+        $user->fill($validated);
+
+        if ($user->isDirty()) {
+            $user->save();
+            return redirect()->route('profile')->with('success', 'Profil berhasil diperbarui');
+        }
+
+        return redirect()->route('profile');
     }
+
 }

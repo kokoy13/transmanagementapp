@@ -105,13 +105,13 @@
                                             My Orders
                                         </a>
                                         <a href="{{ route('notifications') }}" class="@if(Route::is('notifications')) bg-blue-500/50 text-blue-500 @endif flex items-center justify-between gap-2 bg-surface-alt px-4 py-2 text-sm text-on-surface hover:bg-surface-dark-alt/5 hover:text-on-surface-strong focus-visible:bg-surface-dark-alt/10 focus-visible:text-on-surface-strong focus-visible:outline-hidden " role="menuitem">
-                                            <div class="flex items-center">
+                                            <div class="flex items-center gap-2">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
                                                     <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/>
                                                 </svg>
                                                 <span>Notifications</span>
                                             </div>
-                                            <div class="w-3 bg-blue rounded-full"></div>
+                                            {{-- <div class="w-3 bg-blue rounded-full"></div> --}}
                                         </a>
                                         <a href="{{ route('requests') }}" class="flex items-center gap-2 bg-surface-alt px-4 py-2 text-sm text-on-surface hover:bg-surface-dark-alt/5 hover:text-on-surface-strong focus-visible:bg-surface-dark-alt/10 focus-visible:text-on-surface-strong focus-visible:outline-hidden " role="menuitem">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-fill" viewBox="0 0 16 16">

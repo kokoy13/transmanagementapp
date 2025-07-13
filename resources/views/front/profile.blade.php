@@ -1,4 +1,4 @@
-<x-layouts.order-layout>
+<x-layouts.order-layout :title="'Profile'">
 
     <div class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen mt-20" x-data="{
         showModal: false,
@@ -145,7 +145,7 @@
             <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md mx-4" @click.away="showModal = false">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-semibold text-slate-900">Edit Profile</h3>
-                    <button @click="showModal = false" class="text-slate-400 hover:text-slate-600 transition-colors">
+                    <button type="button" class="text-slate-400 hover:text-slate-600 transition-colors" @click="showModal = false" >
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
@@ -165,6 +165,7 @@
                     <div class="space-y-2">
                         <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
                         <input
+                            readonly
                             id="email"
                             type="email"
                             name="email"
@@ -198,7 +199,7 @@
 
                 <div class="flex justify-end space-x-2 gap-5 mt-4">
                     <button
-                        @click="showModal = false"
+                        @click="showModal = false" type="button"
                         class="px-4 py-2 border border-slate-300 rounded-md text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                         Cancel
                     </button>

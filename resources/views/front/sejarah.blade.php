@@ -1,4 +1,4 @@
-<x-layouts.main-layout>
+<x-layouts.main-layout :title="'Sejarah Perusahaan'">
 <!-- Hero Section -->
     <section class="overflow-hidden bg-cover relative bg-center pt-20" style="background-image: url('{{ asset('assets/img/sejarah-perusahaan.jpg') }}')">
         <div class="absolute top-0 bottom-0 left-0 right-0 bg-black z-20 opacity-30"></div>

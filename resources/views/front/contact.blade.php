@@ -1,4 +1,4 @@
-<x-layouts.main-layout>
+<x-layouts.main-layout :title="'Contact Us'">
     <div class="bg-gradient-to-br from-slate-50 via-white to-slate-100 min-h-screen">
     <!-- Hero Section -->
     <section class="relative px-6 py-16 overflow-hidden bg-cover bg-center" style="background-image: url('{{ asset('assets/img/contact.jpg') }}')">

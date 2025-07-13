@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
+    {{-- Title --}}
     <title>Search Availability Zone</title>
+    {{-- Font Awesome Link --}}
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -12,6 +15,8 @@
 </head>
 <body class="bg-gray-50 mx-auto my-8 ">
     <div class="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+
+        {{-- Alert Success or Error --}}
         <div
         x-data="{ show: true }"
         x-show="show"
@@ -23,7 +28,8 @@
         x-transition:leave-start="opacity-100 transform translate-y-0"
         x-transition:leave-end="opacity-0 transform translate-y-2"
         class="fixed top-4 left-1/2 transform -translate-x-1/2 z-[99999999px] max-w-md w-full mx-4"
-    >
+        >
+        {{-- Session Success --}}
         @if(session('success'))
             <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg shadow-lg flex items-center justify-between">
                 <div class="flex items-center">
@@ -38,6 +44,7 @@
                     </svg>
                 </button>
             </div>
+        {{-- Session Error --}}
         @elseif(session('error'))
             <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg shadow-lg flex items-center justify-between">
                 <div class="flex items-center">
@@ -53,9 +60,11 @@
                 </button>
             </div>
         @endif
-    </div>
+        </div>
+
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            {{-- Breadcrumb --}}
             <nav class="flex items-center space-x-2 text-black/50 mb-5">
                 <a href="/" class="hover:text-black! transition-colors duration-200">
                     <i class="fas fa-home mr-1"></i>Home
@@ -138,15 +147,16 @@
                 <div id="map" class="h-full"></div>
             </div>
         </div>
+        {{-- Show packets button when found it --}}
         @if(session('success'))
             <div class="flex justify-center">
-                        <button
-                            type="button"
-                            class="w-max bg-blue-600 hover:cursor-pointer hover:bg-blue-700 text-white font-medium py-3 px-12 rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-lg"
-                            onclick="window.location.href='/packets'"
-                        >
-                            Pesan Segera
-                        </button>
+                <button
+                    type="button"
+                    class="w-max bg-blue-600 hover:cursor-pointer hover:bg-blue-700 text-white font-medium py-3 px-12 rounded-lg transition-colors focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-lg"
+                    onclick="window.location.href='/packets'"
+                >
+                Pesan Segera
+            </button>
         </div>
         @endif
     </main>

@@ -1,4 +1,4 @@
-<x-layouts.main-layout>
+<x-layouts.main-layout :title="'Budaya Perusahaan'">
 
     <!-- Hero Section -->
     <section class="overflow-hidden bg-cover bg-center pt-20" style="background-image: url('{{ asset('assets/img/culture.jpg') }}')">

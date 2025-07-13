@@ -40,11 +40,6 @@ class PacketService
             ->orderBy('bandwidth')
             ->get();
 
-        // Kelompokkan manual berdasarkan nama paket
-        return [
-            'Family' => $packets->filter(fn ($p) => $p->name === 'Family')->values(),
-            'Office' => $packets->filter(fn ($p) => $p->name === 'Office')->values(),
-            'Dedicated' => $packets->filter(fn ($p) => !in_array($p->name, ['Family', 'Office']))->values(),
-        ];
+        return $packets;
     }
 }

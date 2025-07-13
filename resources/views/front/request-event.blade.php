@@ -1,4 +1,4 @@
-<x-layouts.order-layout>
+<x-layouts.order-layout :title="'Request Bandwidth Event'">
     <div class="mt-20 font-sans">
         <div class="w-full mx-auto">
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">

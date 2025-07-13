@@ -111,7 +111,7 @@
                                                 </svg>
                                                 <span>Notifications</span>
                                             </div>
-                                            <div class="p-3 bg-blue-500 rounded-full text-white font-semibold">5</div>
+                                            {{-- <div class="p-3 bg-blue-500 rounded-full text-white font-semibold">5</div> --}}
                                         </a>
                                         <a href="{{ route('requests') }}" class=" @if(Route::is('requests')) bg-blue-500/10 text-blue-500 @else bg-surface-alt text-on-surface  hover:bg-surface-dark-alt/5 hover:text-on-surface-strong focus-visible:bg-surface-dark-alt/10 focus-visible:text-on-surface-strong focus-visible:outline-hidden @endif flex items-center gap-2  px-4 py-2 text-sm " role="menuitem">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-fill" viewBox="0 0 16 16">

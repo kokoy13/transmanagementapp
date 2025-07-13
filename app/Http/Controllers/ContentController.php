@@ -27,14 +27,16 @@ class ContentController extends Controller
     public function news()
     {
         $contents = $this->contentService->getNews();
-        return view('front.news')->with(compact('contents'));
+        $popularPosts = $this->contentService->getNewsByLimit(3);
+        return view('front.news')->with(compact('contents','popularPosts'));
     }
 
     public function searchNews(Request $request)
     {
         $keyword = $request->keyword;
         $contents = $this->contentService->searchNews($keyword);
+        $popularPosts = $this->contentService->getNewsByLimit(3);
 
-        return view('front.news', compact('contents', 'keyword'));
+        return view('front.news', compact('contents', 'keyword', 'popularPosts'));
     }
 }

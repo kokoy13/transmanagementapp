@@ -1,4 +1,4 @@
-<x-layouts.order-layout>
+<x-layouts.order-layout :title="'Form Order'">
     <div class="mt-20">
 
         <main class="container mx-auto px-4 py-8 mb-8 max-w-6xl" x-data="{
@@ -34,7 +34,7 @@
 
                                 <div class="mb-4">
                                     <label for="fullname" class="block mb-2 font-medium text-gray-700">
-                                        Full Name <span class="text-red-500">*</span>
+                                        Full Name
                                     </label>
                                     <input
                                         readonly
@@ -42,14 +42,13 @@
                                         id="fullname"
                                         name="fullname"
                                         value="{{ $user->name }}"
-                                        required
-                                        class="w-full border border-gray-300 bg-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
                                     />
                                 </div>
 
                                 <div class="mb-4">
                                     <label for="email" class="block mb-2 font-medium text-gray-700">
-                                        Email <span class="text-red-500">*</span>
+                                        Email
                                     </label>
                                     <input
                                         readonly
@@ -57,8 +56,7 @@
                                         id="email"
                                         value="{{ $user->email }}"
                                         name="email"
-                                        required
-                                        class="w-full border border-gray-300 bg-gray-300 rounded-lg px-4 py-3"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
                                     />
                                 </div>
 
@@ -104,36 +102,30 @@
 
                                 <div class="mb-4">
                                     <label for="packetName" class="block mb-2 font-medium text-gray-700">
-                                        Package Type <span class="text-red-500">*</span>
+                                        Package Type
                                     </label>
-                                    <select required name="packetName" id="" class="w-full border border-gray-300 rounded-lg px-4 py-3">
-                                        <option @if($packet->name == 'Family') selected @endif value="Family">Family</option>
-                                        <option @if($packet->name == 'Office') selected @endif value="Office">Office</option>
-                                        <option @if($packet->name == 'Internet Kerja') selected @endif value="Internet Kerja">Internet Kerja</option>
-                                    </select>
+                                    <input
+                                        readonly
+                                        type="text"
+                                        id="packetName"
+                                        value="{{ $packet->name }}"
+                                        name="packetName"
+                                        class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    />
                                 </div>
 
-                                <div class="mb-6">
-                                    <p class="block mb-3 font-medium text-gray-700">
-                                        Bandwidth <span class="text-red-500">*</span>
-                                    </p>
-                                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                                        @foreach($packets as $packet)
-                                            <div class="relative">
-                                                <input
-                                                    type="radio"
-                                                    name="bandwidth"
-                                                    value="{{ $packet->bandwidth }}"
-                                                    class="peer hidden"
-                                                />
-                                                <label
-                                                    class="flex items-center justify-center p-3 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-100 peer-checked:bg-blue-50 peer-checked:border-blue-500 peer-checked:text-blue-600 transition-all"
-                                                >
-                                                    <span>{{ $packet->bandwidth }}</span>
-                                                </label>
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                <div class="mb-4">
+                                    <label for="bandwidth" class="block mb-2 font-medium text-gray-700">
+                                        Bandwidth (Mbps)
+                                    </label>
+                                    <input
+                                        readonly
+                                        type="text"
+                                        id="bandwidth"
+                                        value="{{ $packet->bandwidth }}"
+                                        name="bandwidth"
+                                        class="w-max bg-transparent border-none text-2xl rounded-lg px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition"
+                                    />
                                 </div>
 
                                 <div class="mb-4">
@@ -167,103 +159,84 @@
             </div>
 
             <!-- Confirmation Modal -->
-            <form
-                action="{{ route('order.set') }}"
-                method="post"
+            <!-- Modal wrapper (ganti absolute dengan fixed dan atur flex centering) -->
+            <div
                 x-show="showModal"
                 x-cloak
-                class="absolute inset-0 z-50"
+                class="fixed inset-0 z-50 flex items-center justify-center px-4 text-center bg-black bg-opacity-50"
                 x-transition:enter="transition ease-out duration-300"
                 x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100"
                 x-transition:leave="transition ease-in duration-200"
                 x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
+                @click.self="showModal = false"
             >
-                @csrf
-                <div class="flex items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-                    <div
-                        class="fixed inset-0 transition-opacity bg-gray-500 bg-opacity-75"
-                        aria-hidden="true"
-                        @click="showModal = false"
-                    ></div>
+                <form
+                    action="{{ route('order.set') }}"
+                    method="post"
+                    class="w-full max-w-lg p-6 bg-white rounded-lg shadow-xl text-left transform transition-all sm:my-8 sm:align-middle"
+                    @click.stop
+                >
+                    @csrf
 
-                    <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                    <!-- Konten modal -->
+                    <div class="flex items-start gap-3">
+                        <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900 mb-2">Confirm Your Order</h3>
+                            <div class="mt-4">
+                                <div class="space-y-3">
+                                    <div class="border-b border-gray-200 pb-3">
+                                        <p class="text-sm text-gray-500">Please review your order details:</p>
+                                    </div>
+                                    <input type="text" hidden name="fullname" value="{{ $user->name }}">
+                                    <input type="text" hidden name="telp" x-model="formData.telp">
+                                    <input type="text" hidden name="email" value="{{ $user->email }}">
+                                    <input type="text" hidden name="packetName" value="{{ $packet->name }}">
+                                    <input type="text" hidden name="bandwidth" value="{{ $packet->bandwidth }}">
+                                    <input type="text" hidden name="installationAddress" x-model="formData.installationAddress">
+                                    <input type="text" hidden name="price" value="{{ $packet->price }}">
+                                    <div class="grid grid-cols-2 gap-2 text-sm">
+                                        <p class="text-gray-600">Full Name:</p>
+                                        <p class="font-medium">{{ $user->name }}</p>
 
-                    <div
-                        class="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
-                        x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                        x-transition:leave="transition ease-in duration-200"
-                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                    >
-                        <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
-                            <div class="sm:flex sm:items-start">
-                                <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-blue-100 rounded-full sm:mx-0 sm:h-10 sm:w-10">
-                                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                </div>
-                                <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-                                    <h3 class="text-lg font-medium leading-6 text-gray-900">
-                                        Confirm Your Order
-                                    </h3>
-                                    <div class="mt-4">
-                                        <div class="space-y-3">
-                                            <div class="border-b border-gray-200 pb-3">
-                                                <p class="text-sm text-gray-500">Please review your order details:</p>
-                                            </div>
-                                            <input type="text" hidden name="fullname" value="{{ $user->name }}">
-                                            <input type="text" hidden name="telp" x-model="formData.telp">
-                                            <input type="text" hidden name="email" value="{{ $user->email }}">
-                                            <input type="text" hidden name="packetName" value="{{ $packet->name }}">
-                                            <input type="text" hidden name="bandwidth" value="{{ $packet->bandwidth }}">
-                                            <input type="text" hidden name="installationAddress" x-model="formData.installationAddress">
-                                            <input type="text" hidden name="price" value="{{ $packet->price }}">
-                                            <div class="grid grid-cols-2 gap-2 text-sm">
-                                                <p class="text-gray-600">Full Name:</p>
-                                                <p class="font-medium">{{ $user->name }}</p>
+                                        <p class="text-gray-600">Phone:</p>
+                                        <p class="font-medium" x-text="formData.telp"></p>
 
-                                                <p class="text-gray-600">Phone:</p>
-                                                <p class="font-medium" x-text="formData.telp"></p>
+                                        <p class="text-gray-600">Package:</p>
+                                        <p class="font-medium">{{ $packet->name }}</p>
 
-                                                <p class="text-gray-600">Package:</p>
-                                                <p class="font-medium">{{ $packet->name }}</p>
+                                        <p class="text-gray-600">Bandwidth:</p>
+                                        <p class="font-medium">{{ $packet->bandwidth }} Mbps</p>
 
-                                                <p class="text-gray-600">Bandwidth:</p>
-                                                <p class="font-medium">{{ $packet->bandwidth }} Mbps</p>
+                                        <p class="text-gray-600">Installation Address:</p>
+                                        <p class="font-medium" x-text="formData.installationAddress"></p>
 
-                                                <p class="text-gray-600">Installation Address:</p>
-                                                <p class="font-medium" x-text="formData.installationAddress"></p>
-
-                                                <p class="text-gray-600 font-semibold">Total Price:</p>
-                                                <p class="font-bold text-green-600">Rp <span>{{ number_format($packet->price, 0, ',','.') }}</span></p>
-                                            </div>
-                                        </div>
+                                        <p class="text-gray-600 font-semibold">Total Price:</p>
+                                        <p class="font-bold text-green-600">Rp <span>{{ number_format($packet->price, 0, ',','.') }}</span></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="px-4 py-3 bg-gray-50 gap-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                            <button
-                                type="submit"
-                                class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
-                            >
-                                Confirm Order
-                            </button>
-                            <button
-                                type="button"
-                                class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                                @click="showModal = false"
-                            >
-                                Cancel
-                            </button>
-                        </div>
                     </div>
-                </div>
-            </form>
+
+                    <!-- Tombol -->
+                    <div class="flex justify-end mt-6 space-x-3 gap-2">
+                        <button type="button" @click="showModal = false" class="px-4 py-2 border border-gray-300 text-gray-700 rounded hover:bg-gray-50">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                            Confirm Order
+                        </button>
+                    </div>
+                </form>
+            </div>
+
 
             <style>
                 [x-cloak] { display: none !important; }

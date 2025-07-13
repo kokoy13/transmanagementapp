@@ -16,4 +16,8 @@ class ContentService{
             ->orWhere('excerpt', 'like', "%$keyword%")
             ->get();
     }
+
+    public function getNewsByLimit($limit){
+        return Content::orderBy('id','DESC')->limit($limit)->get();
+    }
 }

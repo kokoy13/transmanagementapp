@@ -5,7 +5,7 @@
     style="min-height: 105vh;"
 >
     <div id="default-carousel" class="absolute w-full h-full" data-carousel="slide">
-        <div class="absolute top-0 bottom-0 left-0 right-0 bg-black z-40 opacity-10"></div>
+        <div class="absolute top-0 bottom-0 left-0 right-0 bg-black z-40 opacity-30"></div>
         <!-- Carousel wrapper -->
         <div class="absolute overflow-hidden w-full h-full">
             @foreach ($banners as $banner)

@@ -2,35 +2,27 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Services\RegisterService;
 use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
+use App\Http\Requests\RegisterRequest;
 
 class RegisterController extends Controller
 {
-    public function register(Request $request)
+    protected $registerService;
+
+    public function __construct(?RegisterService $registerService = null)
     {
-        $emailExists = User::where('email', $request->email)->exists();
+        $this->registerService = $registerService ?? new \App\Services\RegisterService();
+    }
 
-        if ($request->password != $request->password2 || $emailExists) {
-            return redirect("sign-up")->with("error", "Password invalid atau Email sudah terdaftar");
+    public function register(RegisterRequest $request)
+    {
+        $redirect = $this->registerService->register($request->validated());
+
+        if ($redirect) {
+            return redirect()->to($redirect)->with('success', 'Berhasil mendaftar dan login');
         }
 
-        $user = User::create(
-            [
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'avatar' => 'https://ui-avatars.com/api/?name=' . $request->name . '&background=random&color=fff&size=128',
-            ]
-        );
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            $name = Str::slug(Auth::user()->name);
-            return redirect()->route('home', ['name' => $name])->with('success', 'Berhasil menambahkan user ');
-        }
+        return redirect('sign-up')->with('error', 'Gagal melakukan login setelah pendaftaran.');
     }
 }

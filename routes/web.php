@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\ContentController;
+use App\Http\Middleware\CekLogin;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\PacketController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ZoneController;
-use App\Http\Controllers\Order\OrderController;
+use App\Http\Controllers\PacketController;
+use App\Http\Controllers\ContentController;
+use App\Http\Controllers\Order\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RequestController;
-use App\Http\Middleware\CekLogin;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Order\OrderController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Auth\RegisterController;
 
 //Route Home
 Route::get('/', [ContentController::class, 'index']);
@@ -20,7 +21,9 @@ Route::get('/home', [ContentController::class, 'index']);
 Route::get('/sign-in', [AuthController::class, 'login']);
 Route::post('/sign-in', [AuthController::class, 'authenticate']);
 
-Route::get('/home/{name}', [ContentController::class, 'index'])->middleware(CekLogin::class)->name('home');
+Route::get('/home/{name}', [ContentController::class, 'index'])
+    ->middleware(CekLogin::class)
+    ->name('home');
 
 //Route Sign Up
 Route::get('/sign-up', function () {
@@ -37,7 +40,8 @@ Route::get('/logout', [AuthController::class, 'logout'])
 
 //Route Zone
 Route::get('/map', [ZoneController::class, 'index']);
-Route::post('/map', [ZoneController::class, 'checkZone'])->name('zone.checkzone');
+Route::post('/map', [ZoneController::class, 'checkZone'])
+    ->name('zone.checkzone');
 
 //Route redirect auth socialite
 Route::get('/auth/redirect/{provider}', [AuthController::class, 'redirect'])
@@ -49,7 +53,8 @@ Route::get('/auth/{provider}/callback', [AuthController::class, 'callback']);
 //Route Price List
 Route::get('/packets', [PacketController::class, 'getPacket']);
 //Route Search Packet
-Route::post('/packets', [PacketController::class, 'searchPacket'])->name('packets.search');
+Route::post('/packets', [PacketController::class, 'searchPacket'])
+    ->name('packets.search');
 
 //Route Order Form
 Route::get('/order/{id}', [OrderController::class, 'getOrder'])
@@ -65,6 +70,19 @@ Route::post('/order', [OrderController::class, 'setOrder'])
 Route::get('/check-order', [OrderController::class, 'checkOrder'])
     ->middleware(CekLogin::class)
     ->name('order.check');
+Route::post('/check-order', [OrderController::class, 'searchOrder'])
+    ->middleware(CekLogin::class)
+    ->name('order.search');
+
+//Route View Payment
+Route::get('/payment/{order_id}', [PaymentController::class, 'getPayment'])
+    ->name('order.pay')
+    ->middleware(CekLogin::class);
+
+//Route Set Payment
+Route::post('/payment/set-payment', [PaymentController::class, 'setPayment'])
+    ->name('payment.set')
+    ->middleware(CekLogin::class);
 
 //Route Profile
 Route::get('/profile', [ProfileController::class, 'index'])

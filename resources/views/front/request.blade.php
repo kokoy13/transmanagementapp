@@ -1,4 +1,4 @@
-<x-layouts.order-layout>
+<x-layouts.order-layout :title="'Menu Request'">
         <div class="w-full mx-auto">
             <!-- Browser-like container -->
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">

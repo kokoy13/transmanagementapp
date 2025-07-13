@@ -32,13 +32,6 @@
                 <!-- Card 1 -->
                 @foreach ($packets as $packet)
                 <div class="gradient-bg w-1/3 flex flex-col justify-center items-center gap-5 px-6 py-8 text-white flex-shrink-0 relative min-w-[280px] sm:min-w-[320px] rounded-xl">
-                    <div class="absolute top-4 left-4">
-                        @if ($packet->name == 'Family' && $packet->bandwidth == 10)
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-sm font-medium bg-white text-indigo-800">
-                                Most Popular
-                            </span>
-                        @endif
-                    </div>
                     <h3 class="text-xl font-semibold uppercase">{{ $packet->name }}</h3>
                     <div class="flex items-baseline">
                         <div class="speed-badge flex items-center justify-center bg-white text-indigo-700 rounded-full h-26 w-26 p-2 shadow-lg">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\PacketService;
+use App\Models\Packet;
 use Illuminate\Http\Request;
 
 class PacketController extends Controller
@@ -47,22 +48,30 @@ class PacketController extends Controller
         $keyword = $request->keyword;
         $grouped = $this->packetService->searchGroupedPackets($keyword);
 
-        $family = $grouped['Family'];
-        $office = $grouped['Office'];
-        $dedicated = $grouped['Dedicated'];
+        $categorized = [
+            'Family' => [],
+            'Office' => [],
+            'Dedicated' => []
+        ];
+
+        foreach ($grouped as $packet) {
+            $name = $packet->name;
+            if (isset($categorized[$name])) {
+                $categorized[$name][] = $packet;
+            } else {
+                $categorized['Dedicated'][] = $packet;
+            }
+        }
+
+        $family = $categorized['Family'];
+        $office = $categorized['Office'];
+        $dedicated = $categorized['Dedicated'];
 
         $familyTitle = 'Family';
         $officeTitle = 'Office';
         $dedicatedTitle = 'Dedicated';
 
-        return view('front.price-list', compact(
-            'keyword',
-            'family',
-            'office',
-            'dedicated',
-            'familyTitle',
-            'officeTitle',
-            'dedicatedTitle'
-        ));
+
+        return view('front.price-list', compact('keyword','family', 'office', 'dedicated', 'familyTitle', 'officeTitle', 'dedicatedTitle'));
     }
 }

@@ -1,4 +1,4 @@
-<x-layouts.order-layout>
+<x-layouts.order-layout :title="'Price List Packet'">
     <div class="w-full h-full mt-30">
         <!-- Breadcrumb -->
             <nav class="flex items-center ml-20 space-x-2 text-black/50 my-8">

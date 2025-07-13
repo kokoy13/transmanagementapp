@@ -1,4 +1,4 @@
-<x-layouts.order-layout>
+<x-layouts.order-layout :title="'Notification'">
 
 <div class="bg-gray-100 font-sans mt-20">
     <div class="container mx-auto py-8 px-4 max-w-6xl" x-data="notificationsApp()">

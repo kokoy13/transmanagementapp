@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css', 'resources/js/app.js')
-    <title>Transnet Sumbar - Sign Up</title>
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>Sign Up</title>
     <style>
         [x-cloak] {
             display: none !important;
@@ -13,31 +14,35 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    <div class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div class="min-h-screen max-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
 
 
         <!-- Main container -->
         <div class="w-full max-w-6xl overflow-hidden bg-white rounded-2xl shadow-xl">
             <!-- Error message -->
-            <div x-data="{ show: {{ session('error') ? 'true' : 'false' }} }"
-                 x-init="setTimeout(() => show = false, 3000)"
-                 x-show="show"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0 transform -translate-y-4"
-                 x-transition:enter-end="opacity-100 transform translate-y-0"
-                 x-transition:leave="transition ease-in duration-300"
-                 x-transition:leave-start="opacity-100 transform translate-y-0"
-                 x-transition:leave-end="opacity-0 transform -translate-y-4"
-                 class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 flex items-center p-4 text-sm text-red-700 bg-red-100 rounded-lg shadow-md"
-                 role="alert">
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V7a1 1 0 10-2 0v2a1 1 0 001 1h1a1 1 0 100-2h-1zm0 4a1 1 0 10-2 0v2a1 1 0 002 0v-2z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="sr-only">Error</span>
-                <div>
-                    {{ session('error') }}
+            @if ($errors->has('password2') || $errors->has('email') || $errors->has('name') || $errors->has('password'))
+                <div x-data="{ show: true }"
+                    x-init="setTimeout(() => show = false, 3000)"
+                    x-show="show"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform -translate-y-4"
+                    x-transition:enter-end="opacity-100 transform translate-y-0"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 transform translate-y-0"
+                    x-transition:leave-end="opacity-0 transform -translate-y-4"
+                    class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 flex items-center gap-2 p-4 text-sm text-red-700 bg-red-100 rounded-lg shadow-md"
+                    role="alert">
+
+                    <svg class="w-5 h-5x" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V7a1 1 0 10-2 0v2a1 1 0 001 1h1a1 1 0 100-2h-1zm0 4a1 1 0 10-2 0v2a1 1 0 002 0v-2z" clip-rule="evenodd" />
+                    </svg>
+
+                    <div>
+                        Input tidak valid. coba ulangi!
+                    </div>
                 </div>
-            </div>
+            @endif
+
 
             <div class="flex flex-col md:flex-row">
                 <!-- Left side - Image -->
@@ -52,12 +57,6 @@
                         </a>
                     </div>
                     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/assets/img/hero4.jpeg');"></div>
-                    <div class="relative h-full flex flex-col justify-center items-center p-8 text-white">
-                        <div class="max-w-md text-center">
-                            <h1 class="text-3xl font-bold mb-4">Join Our Network</h1>
-                            <p class="text-lg opacity-90">Create an account to access all our services and connect with the future.</p>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Right side - Form -->
@@ -181,7 +180,7 @@
                         <!-- Terms and conditions -->
                         <div class="flex items-start">
                             <div class="flex items-center h-5">
-                                <input id="terms" name="terms" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <input id="terms" required name="terms" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                             </div>
                             <div class="ml-3 text-sm">
                                 <label for="terms" class="text-gray-600">I agree to the <a href="#" class="text-blue-600 hover:underline">Terms of Service</a> and <a href="#" class="text-blue-600 hover:underline">Privacy Policy</a></label>
@@ -191,7 +190,7 @@
                         <!-- Sign up button -->
                         <div>
                             <button type="submit" name="submit"
-                                    class="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-all duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md hover:shadow-lg">
+                                    class="w-full hover:cursor-pointer px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-all duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 shadow-md hover:shadow-lg">
                                 Create Account
                             </button>
                         </div>

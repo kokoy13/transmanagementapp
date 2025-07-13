@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
-    <title>Transnet Sumbar</title>
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>Sign In</title>
     <style>
         [x-cloak] {
             display: none !important;
@@ -20,16 +21,17 @@
         <div class="w-full max-w-6xl overflow-hidden bg-white rounded-2xl shadow-xl">
             <!-- Error message -->
             <div x-data="{ show: {{ session('error') ? 'true' : 'false' }} }"
-                 x-init="setTimeout(() => show = false, 3000)"
-                 x-show="show"
-                 x-transition:enter="transition ease-out duration-300"
-                 x-transition:enter-start="opacity-0 transform -translate-y-4"
-                 x-transition:enter-end="opacity-100 transform translate-y-0"
-                 x-transition:leave="transition ease-in duration-300"
-                 x-transition:leave-start="opacity-100 transform translate-y-0"
-                 x-transition:leave-end="opacity-0 transform -translate-y-4"
-                 class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 flex items-center p-4 text-sm text-red-700 bg-red-100 rounded-lg shadow-md"
-                 role="alert">
+                    x-cloak
+                    x-init="setTimeout(() => show = false, 3000)"
+                    x-show="show"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 transform -translate-y-4"
+                    x-transition:enter-end="opacity-100 transform translate-y-0"
+                    x-transition:leave="transition ease-in duration-300"
+                    x-transition:leave-start="opacity-100 transform translate-y-0"
+                    x-transition:leave-end="opacity-0 transform -translate-y-4"
+                    class="fixed top-5 left-1/2 transform -translate-x-1/2 z-50 flex items-center p-4 text-sm text-red-700 bg-red-100 rounded-lg shadow-md"
+                    role="alert">
                 <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11V7a1 1 0 10-2 0v2a1 1 0 001 1h1a1 1 0 100-2h-1zm0 4a1 1 0 10-2 0v2a1 1 0 002 0v-2z" clip-rule="evenodd"></path>
                 </svg>
@@ -44,7 +46,7 @@
                 <!-- Left side - Image   -->
                 <div class="relative h-48 md:h-auto md:w-1/2 bg-gradient-to-br from-blue-500 to-indigo-600">
                     <div class="absolute inset-0 bg-black"></div>
-                     <!-- Back button -->
+                    <!-- Back button -->
                     <div class="absolute top-5 left-5 z-20">
                         <a href="/" class="group px-4 py-2 flex items-center gap-2 bg-white rounded-full shadow-md transition-all hover:shadow-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="text-gray-700 transition-colors" viewBox="0 0 16 16">
@@ -63,7 +65,7 @@
                 </div>
 
                 <!-- Right side - Form -->
-                <div class="w-full md:w-1/2 py-12 px-6 sm:px-10 lg:px-16">
+                <div class="w-full md:w-1/2 py-24 px-6 sm:px-10 lg:px-16">
                     <form method="post" action="/sign-in" class="space-y-6">
                         @csrf
 
@@ -90,10 +92,6 @@
 
                         <!-- Password input -->
                         <div>
-                            <div class="flex justify-between items-center mb-1">
-                                <label class="block text-sm font-medium text-gray-700" for="loggingPassword">Password</label>
-                                <a href="#" class="text-xs text-blue-600 hover:text-blue-800 hover:underline transition-colors">Forgot Password?</a>
-                            </div>
                             <div class="relative" x-data="{ showPassword: false }">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">

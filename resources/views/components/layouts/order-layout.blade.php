@@ -1,12 +1,10 @@
-@props(['title' => 'Transnet Sumbar'])
-
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
+    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.png') }}" type="image/x-icon">
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -59,7 +57,7 @@
             display: none !important;
         }
     </style>
-    <title>{{ $title}}</title>
+    <title>{{$title ?? 'Transnet Sumbar'}}</title>
 </head>
 <body class="text-gray-800 antialiased">
     <x-header2/>

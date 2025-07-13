@@ -63,7 +63,7 @@
             </div>
 
             <!-- Sidebar -->
-            <div class="w-1/3 px-4 mt-8 lg:mt-0">
+            <div class="w-1/3 px-4 mt-8 lg:mt-0 hidden lg:block">
                 <!-- Search -->
                 <div class="bg-white rounded-lg shadow-sm p-6" x-data="{ search: '' }">
                     <h3 class="text-lg font-bold mb-4">Search</h3>

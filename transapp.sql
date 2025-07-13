@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 22, 2025 at 11:24 PM
+-- Generation Time: Jul 13, 2025 at 08:23 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -232,7 +232,10 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `user_id`, `type`, `title`, `message`, `is_read`, `read_at`, `created_at`, `updated_at`) VALUES
-(9, 5, 'request', 'Request Upgrade Bandwidth', 'User dengan nama Andika Firansyah melakukan request Upgrade bandwidth dari Family - 20 ke 40 dengan payment idPay5b4f9', 0, NULL, '2025-06-22 21:20:00', '2025-06-22 21:20:00');
+(9, 5, 'request', 'Request Upgrade Bandwidth', 'User dengan nama Andika Firansyah melakukan request Upgrade bandwidth dari Family - 20 ke 40 dengan payment idPay5b4f9', 0, NULL, '2025-06-22 21:20:00', '2025-06-22 21:20:00'),
+(10, 5, 'request', 'Request Upgrade Bandwidth', 'User dengan nama Andika Firansyah melakukan request Upgrade bandwidth dari Family - 20 ke 60 dengan payment id Pay5b4f9', 0, NULL, '2025-06-24 20:29:49', '2025-06-24 20:29:49'),
+(11, 5, 'request', 'Request Upgrade Bandwidth', 'Customer dengan nama Andika Firansyah melakukan request upgrade dari Family - 20 ke 100 dengan payment id Pay5b4f9', 0, NULL, '2025-06-24 21:22:03', '2025-06-24 21:22:03'),
+(12, 5, 'request', 'Request Event', 'Customer dengan nama Andika Firansyah melakukan request event dari Office - 90 ke 100 dengan payment id Pay5b4f9', 0, NULL, '2025-06-24 21:24:34', '2025-06-24 21:24:34');
 
 -- --------------------------------------------------------
 
@@ -256,8 +259,17 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `order_date`, `status`, `installation_address`, `packet_id`, `created_at`, `updated_at`) VALUES
-('TN4BA5Y', 5, '2025-06-23', 'success', 'pisang', 31, '2025-06-22 18:48:05', '2025-06-22 18:48:05'),
-('TNQ8EFV', 5, '2025-06-12', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 1, '2025-06-12 11:18:32', '2025-06-12 11:18:32');
+('TN07JQ3', 5, '2025-07-11', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 6, '2025-07-11 15:38:22', '2025-07-11 15:38:22'),
+('TN4BA5Y', 5, '2025-06-23', 'completed', 'pisang', 26, '2025-06-22 18:48:05', '2025-06-22 18:48:05'),
+('TND9GXI', 15, '2025-07-12', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 33, '2025-07-12 13:33:05', '2025-07-12 13:33:05'),
+('TNIFRR1', 15, '2025-07-12', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 31, '2025-07-12 14:14:38', '2025-07-12 14:14:38'),
+('TNJPWAV', 15, '2025-07-12', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 33, '2025-07-12 14:10:23', '2025-07-12 14:10:23'),
+('TNJXBIA', 15, '2025-07-12', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 31, '2025-07-12 14:13:51', '2025-07-12 14:13:51'),
+('TNK3MQL', 15, '2025-07-12', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 33, '2025-07-12 14:11:36', '2025-07-12 14:11:36'),
+('TNQ8EFV', 5, '2025-06-12', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 1, '2025-06-12 11:18:32', '2025-06-12 11:18:32'),
+('TNTJT8R', 15, '2025-07-12', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 5, '2025-07-12 13:22:39', '2025-07-12 13:22:39'),
+('TNWOBWM', 5, '2025-07-12', 'pending', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', 31, '2025-07-12 04:04:47', '2025-07-12 04:04:47'),
+('TNZJMWZ', 15, '2025-07-12', 'pending', 'Jalan Seberang Padang dekat Gereja Lama', 31, '2025-07-12 13:05:20', '2025-07-12 13:05:20');
 
 -- --------------------------------------------------------
 
@@ -342,7 +354,7 @@ CREATE TABLE `payments` (
   `order_id` varchar(255) NOT NULL,
   `payment_date` date NOT NULL,
   `amount` decimal(11,2) NOT NULL,
-  `payment_method` varchar(255) NOT NULL,
+  `payment_method` varchar(255) NOT NULL DEFAULT 'Bank',
   `payment_status` varchar(255) NOT NULL DEFAULT 'pending',
   `transcation_reference` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -354,7 +366,7 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `order_id`, `payment_date`, `amount`, `payment_method`, `payment_status`, `transcation_reference`, `created_at`, `updated_at`) VALUES
-('Pay5b4f9', 'TN4BA5Y', '2025-06-17', 100000.00, 'Bank', 'success', 'vkpiPMMc1gsdpU0UzLOepIxXFdfSnFxGs8fV1huR.jpg', '2025-06-04 04:46:39', '2025-06-04 04:46:39');
+('Pay5b4f9', 'TN4BA5Y', '2025-06-17', 100000.00, 'Bank', 'completed\r\n', 'vkpiPMMc1gsdpU0UzLOepIxXFdfSnFxGs8fV1huR.jpg', '2025-06-04 04:46:39', '2025-06-04 04:46:39');
 
 -- --------------------------------------------------------
 
@@ -379,7 +391,7 @@ CREATE TABLE `requests` (
 --
 
 INSERT INTO `requests` (`id`, `type`, `payment_id`, `requested_bandwidth`, `note`, `status`, `user_id`, `created_at`, `updated_at`) VALUES
-(18, 'regular', 'Pay5b4f9', 40, 'saya mau upgrade dong, hehe', 'pending', NULL, '2025-06-22 21:20:00', '2025-06-22 21:20:00');
+(21, 'event', 'Pay5b4f9', 100, 'okiii', 'pending', NULL, '2025-06-24 21:24:34', '2025-06-24 21:24:34');
 
 -- --------------------------------------------------------
 
@@ -401,7 +413,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('RYTpgOXp73u8dMOct0liTKmH7s2MCHu4L8Jd97zT', 5, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTloxR1RvRXB4YzI4cmdkM0Y2YzkzMnNxTklQU3RLcnUzUlBpMGFVVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjk6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9yZXF1ZXN0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NTt9', 1750627226);
+('oigC9MOZcaZ09EabMjkzWgPJtHnEEa6k1eLlSrqq', 5, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSllSc2JmZHJGaTdrckQ0dDRTaUZUS01UUUgzenhDdlVhV3p1a3Y0TyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzU6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9ub3RpZmljYXRpb25zIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo0OiJyb2xlIjtzOjg6ImN1c3RvbWVyIjtzOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo1O30=', 1752342014);
 
 -- --------------------------------------------------------
 
@@ -435,14 +447,15 @@ INSERT INTO `users` (`id`, `name`, `email`, `phone_number`, `address`, `email_ve
 (1, 'transnet', 'transnet@gmail.com', NULL, NULL, NULL, '$2y$12$/gD9wC31ogy0UVCZOXartuo84uDPRfalmdHDEPtFr3cQOiOjnSdkG', 'customer', 'https://ui-avatars.com/api/?name=transnet&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 'transnetsumbar', 'transnetsumbar@gmail.com', NULL, NULL, NULL, '$2y$12$9CwDyP/VWtY9NNJ1m0bvTOhBfuCFn4DaeE8y78pzugpGse1E9QF4G', 'admin', 'https://ui-avatars.com/api/?name=transnetsumbar&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, '2025-05-27 17:01:56', '2025-06-19 02:15:29'),
 (3, 'marketing', 'transnetmarketing@gmail.com', NULL, NULL, NULL, '$2y$12$oJEo3FjCaEpoB9op1pH6beTQzv58lGTZ3WedMTQapRaa9flkmIBMK', 'marketing', 'https://ui-avatars.com/api/?name=marketing&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, '2025-05-27 17:02:02', NULL),
-(4, 'Andika', 'limacastle@gmail.com', NULL, NULL, NULL, '$2y$12$gDY.aqEIJYfuMkaiAo8Ev.PO4nZqHPk4iWKTnDWZKddbsnsPuZ5zW', 'customer', 'https://lh3.googleusercontent.com/a/ACg8ocLPd5_qEakcQv8dvOiJfOcvtMalMv1JiBj6gT6V8IVw2qiBQ1I=s96-c', '102696651449371847249', 'ya29.a0AW4Xtxhq8u1pciPshA_C4PIyRGMVypWrDnI96zs4B_kgRZl2L2xp_jfDuhU8jgwf2FePvAzNNiu3MAlrIKkxhSOfaeGQS1BKaU1dmkErucGPO01XHHxFj6RuVMu40nRXa9coXn61iym8Nc2WJqnCspQsZVeVf5KcJ4ss8w-rxgaCgYKAeMSARYSFQHGX2Mi4qo4wsjArZCtUw28FUZZvg0177', NULL, NULL, '2025-05-17 09:40:33', '2025-05-17 09:40:33'),
-(5, 'Andika Firansyah', 'andikafiransyah1905@gmail.com', '-', '-', NULL, '$2y$12$9ncbZUA7fT62FuvVySTvVOPNOU5OCQPafw1wWaouwIdUwMZnqsIgG', 'customer', 'https://lh3.googleusercontent.com/a/ACg8ocLJFZTZOKqxyz7JsSV8K8JNtyMKugPFloYPCtEoWOfEcpzU_GZN=s96-c', '104923517099955748015', 'ya29.a0AW4Xtxib2XCEnIn45NB6HcIwnziTcSWJrc6BVb5UFZEDf20ItS-4XsHuN7ot5gwHx_0WRqPfi_WYCMfRgv9-2rBOhoORt1G4xW2_wEFrlzrL7P-lewRU-LmbTWEatBd3S9HDB5Cxdek-YPWnonRynMHPf5QDiFpGzpSHRPKkjQaCgYKAQcSARISFQHGX2MimBtldnWEkhicc0b9ELQAYw0177', NULL, NULL, '2025-05-18 18:23:49', '2025-06-19 18:20:38'),
+(4, 'Andika', 'limacastle@gmail.com', '082169806800', 'Rimbo Kaluang dakek GOR', NULL, '$2y$12$gDY.aqEIJYfuMkaiAo8Ev.PO4nZqHPk4iWKTnDWZKddbsnsPuZ5zW', 'customer', 'https://lh3.googleusercontent.com/a/ACg8ocLPd5_qEakcQv8dvOiJfOcvtMalMv1JiBj6gT6V8IVw2qiBQ1I=s96-c', '102696651449371847249', 'ya29.a0AW4Xtxhq8u1pciPshA_C4PIyRGMVypWrDnI96zs4B_kgRZl2L2xp_jfDuhU8jgwf2FePvAzNNiu3MAlrIKkxhSOfaeGQS1BKaU1dmkErucGPO01XHHxFj6RuVMu40nRXa9coXn61iym8Nc2WJqnCspQsZVeVf5KcJ4ss8w-rxgaCgYKAeMSARYSFQHGX2Mi4qo4wsjArZCtUw28FUZZvg0177', NULL, NULL, '2025-05-17 09:40:33', '2025-06-25 05:56:24'),
+(5, 'Andika Firansyah', 'andikafiransyah1905@gmail.com', '082169806800', 'Batang Anai Street No. 9, Rimbo Kaluang Subdistrict, West Padang District', NULL, '$2y$12$9ncbZUA7fT62FuvVySTvVOPNOU5OCQPafw1wWaouwIdUwMZnqsIgG', 'customer', 'https://lh3.googleusercontent.com/a/ACg8ocLJFZTZOKqxyz7JsSV8K8JNtyMKugPFloYPCtEoWOfEcpzU_GZN=s96-c', '104923517099955748015', 'ya29.a0AW4Xtxib2XCEnIn45NB6HcIwnziTcSWJrc6BVb5UFZEDf20ItS-4XsHuN7ot5gwHx_0WRqPfi_WYCMfRgv9-2rBOhoORt1G4xW2_wEFrlzrL7P-lewRU-LmbTWEatBd3S9HDB5Cxdek-YPWnonRynMHPf5QDiFpGzpSHRPKkjQaCgYKAQcSARISFQHGX2MimBtldnWEkhicc0b9ELQAYw0177', NULL, NULL, '2025-05-18 18:23:49', '2025-07-12 03:56:23'),
 (6, 'Aldo', 'aldoerianda@gmail.com', NULL, NULL, NULL, '$2y$12$r6.gYZp8iqObzHfd7b3kwOrHfl1ccmukxP3tMzk.SIefUl4CSzUy.', 'customer', 'https://ui-avatars.com/api/?name=Aldo&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, '2025-05-20 08:26:30', '2025-05-20 08:26:30'),
 (7, 'Triyan Eka Putra', 'triyanekamahaputra', NULL, NULL, NULL, '$2y$12$hLdcAhR66KY4bewQ5KGduuIBkvhChJsjtgAEEW/LhsFA00N3nEhiO', 'customer', 'https://ui-avatars.com/api/?name=Triyan Eka Putra&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, '2025-05-21 07:25:49', '2025-05-21 07:25:49'),
 (8, 'Andika Firansyah', 'andikafiransyah@gmail.com', NULL, NULL, NULL, '$2y$12$1J7RsK1UyUAObJT0oieHs.u9v0v0CHHo.ODS76prdwQVU2f9DW5ga', 'customer', NULL, NULL, NULL, NULL, NULL, '2025-05-23 12:37:09', '2025-05-23 12:37:09'),
 (9, 'Dream On', 'ka@gmail.com', NULL, NULL, NULL, '$2y$12$DUFLwkFPNE9LQDSKLA49cu8Nq/sKW8Gsfwf4ysbxVTWutKtSld.QO', 'marketing', 'TdnS9ETY84aUkTNWcgpmZe8cSYwFXhIZhZ33rdlv.jpg', NULL, NULL, NULL, NULL, '2025-05-27 17:26:28', '2025-06-19 02:16:32'),
 (13, 'Aldy Saja', 'aldy.om.lin@gmail.com', '-', '-', NULL, '$2y$12$ccUBdB1eg3tSC8I81FGCCu1o4AZh2a6D/.5OBVTwnzh/snU5urqrK', 'customer', 'https://lh3.googleusercontent.com/a/ACg8ocKUbzFMDbM2-cGNNDhxswsxuYqNI8xLG8lfjI-8MNvjcJwvJA=s96-c', '109677131322495310918', 'ya29.a0AW4XtxgCfkUSYNruNOq9C8daJ8TMuK-sNt7wIEKa0l4irYUQI-698PE7utEMZsuefoO20kYqTpppIAFg2_auoTjnCqJcMW9z5jF6fS36ILIpjkUyeQ1EBcOraTz1zLF8KhYaQ_LzfGYyBSsJ3kSn_6IfhVKuYnf-iTattl0taCgYKAZoSARQSFQHGX2MiPYrspT8TQGK1z7ayrBpUog0175', NULL, NULL, '2025-05-29 19:00:16', '2025-05-29 19:33:34'),
-(14, 'asep ganteng', 'asepganteng@gmail.com', NULL, NULL, NULL, '$2y$12$VC/DsdbJ8feiXfLg0ku3I.03ma2J1JFnls.b1fjCnC8V6TofI.K/q', 'customer', 'https://ui-avatars.com/api/?name=asep ganteng&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, '2025-06-16 07:21:41', '2025-06-16 07:21:41');
+(14, 'asep ganteng', 'asepganteng@gmail.com', NULL, NULL, NULL, '$2y$12$VC/DsdbJ8feiXfLg0ku3I.03ma2J1JFnls.b1fjCnC8V6TofI.K/q', 'customer', 'https://ui-avatars.com/api/?name=asep ganteng&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, '2025-06-16 07:21:41', '2025-06-16 07:21:41'),
+(15, 'Intan Ramadani', 'intanpayong@gmail.com', '089876543214', NULL, NULL, '$2y$12$o4hbGk1Ibi8KWG4vjPG8reG70XVigrhL6M7oB35M3o8m1c2HtocBi', 'customer', 'https://ui-avatars.com/api/?name=Intan+Ramadani&background=random&color=fff&size=128', NULL, NULL, NULL, NULL, '2025-07-12 12:09:40', '2025-07-12 14:14:38');
 
 -- --------------------------------------------------------
 
@@ -650,7 +663,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `packets`
@@ -662,13 +675,13 @@ ALTER TABLE `packets`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `zones`

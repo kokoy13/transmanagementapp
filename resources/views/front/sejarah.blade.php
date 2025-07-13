@@ -22,7 +22,7 @@
         </div>
     </section>
 <section class="bg-white py-16 px-4">
-  <div class="w-full px-25">
+  <div class="w-full px-0 lg:px-25">
     <!-- Header with decorative element -->
     <div class="flex items-center mb-12">
       <div class="w-12 h-1 bg-blue-500 mr-4"></div>

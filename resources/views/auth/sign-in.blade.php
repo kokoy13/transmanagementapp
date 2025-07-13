@@ -14,11 +14,11 @@
     </style>
 </head>
 <body class="bg-gray-50">
-    <div class="min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div class="min-h-screen flex items-center justify-center sm:p-6 lg:p-8">
 
 
         <!-- Main container -->
-        <div class="w-full max-w-6xl overflow-hidden bg-white rounded-2xl shadow-xl">
+        <div class="w-full max-w-6xl overflow-hidden bg-white rounded-none lg:rounded-2xl shadow-none lg:shadow-xl">
             <!-- Error message -->
             <div x-data="{ show: {{ session('error') ? 'true' : 'false' }} }"
                     x-cloak
@@ -44,7 +44,7 @@
             <div class="flex flex-col md:flex-row">
 
                 <!-- Left side - Image   -->
-                <div class="relative h-48 md:h-auto md:w-1/2 bg-gradient-to-br from-blue-500 to-indigo-600">
+                <div class="hidden lg:block relative h-48 md:h-auto md:w-1/2 bg-gradient-to-br from-blue-500 to-indigo-600">
                     <div class="absolute inset-0 bg-black"></div>
                     <!-- Back button -->
                     <div class="absolute top-5 left-5 z-20">
@@ -65,15 +65,15 @@
                 </div>
 
                 <!-- Right side - Form -->
-                <div class="w-full md:w-1/2 py-24 px-6 sm:px-10 lg:px-16">
+                <div class="w-full md:w-1/2 py-6 lg:py-24 px-6 sm:px-10 lg:px-16">
                     <form method="post" action="/sign-in" class="space-y-6">
                         @csrf
 
                         <div class="flex justify-center mb-6">
-                            <img class="w-auto h-10" src="/assets/img/logo.png" alt="Transnet Sumbar Logo">
+                            <img class="w-auto h-8 lg:h-10" src="/assets/img/logo.png" alt="Transnet Sumbar Logo">
                         </div>
 
-                        <p class="text-xl text-center italic text-gray-600 mb-8">
+                        <p class="text-lg lg:text-xl text-center italic text-gray-600 mb-8">
                             "Connectivity for better future"
                         </p>
 
@@ -92,6 +92,7 @@
 
                         <!-- Password input -->
                         <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1" for="LoggingEmailAddress">Password</label>
                             <div class="relative" x-data="{ showPassword: false }">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -131,7 +132,7 @@
                         </div>
 
                         <!-- Social login buttons -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-2 gap-4">
                             <!-- Google -->
                             <a href="{{route('auth.redirect','google' )}}" class="flex items-center justify-center px-4 py-3 space-x-2 transition-colors duration-300 border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-50">
                                 <svg class="w-5 h-5" viewBox="0 0 40 40">

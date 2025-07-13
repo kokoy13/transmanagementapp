@@ -12,7 +12,7 @@
                     </span>
                 </h1>
                 <p class="text-xl text-white max-w-2xl mx-auto leading-relaxed">
-                    We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+                    Kami senang mendengarmu. Kirim kami pesan dan kami akan segera merespon secepatnya.
                 </p>
             </div>
         </div>
@@ -25,9 +25,9 @@
                 <!-- Contact Info -->
                 <div class="space-y-8">
                     <div>
-                        <h2 class="text-3xl font-bold text-slate-900 mb-6">Get in Touch</h2>
+                        <h2 class="text-3xl font-bold text-slate-900 mb-6">Hubungi Kami</h2>
                         <p class="text-lg text-slate-600 leading-relaxed">
-                            Ready to take your project to the next level? We're here to help you succeed.
+                            Siap untuk membawa bisnis mu ke level selanjutnya? kami disini membantumu agar sukses
                         </p>
                     </div>
 

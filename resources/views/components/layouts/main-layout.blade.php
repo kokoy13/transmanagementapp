@@ -37,7 +37,7 @@
 
     <title>{{ $title ?? 'Transnet Sumbar' }}</title>
 </head>
-<body class="text-gray-800 antialiased">
+<body class="text-gray-800 antialiased max-w-screen overflow-x-hidden">
 
     {{-- Header --}}
     <x-header />

@@ -3,7 +3,7 @@
         <div class="w-full mx-auto">
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 <div class="p-6">
-                    @if ($payments)
+                    @if ($payments->isNotEmpty())
                         <div class="bg-white my-20 rounded-lg p-8 max-w-4xl mx-auto space-y-6">
                             <!-- Header -->
                             <div class="text-center mb-8">
@@ -21,7 +21,7 @@
                             </div>
 
                             <!-- Form -->
-                            <form action="{{ route('requests.bandwidth') }}" method="POST" class="space-y-6">
+                            <form action="{{ route('store.bandwidth') }}" method="POST" class="space-y-6">
                                 @csrf
                                 <!-- Pilih Langganan -->
                                 <div>
@@ -74,7 +74,7 @@
                             <div class="text-center max-w-md p-6 rounded-2xl">
                                 <img src="{{ asset('assets/img/notfound.png') }}" alt="Not Found" class="mx-auto mb-4">
                                 <h2 class="text-2xl font-semibold text-gray-700">Request Tidak Valid</h2>
-                                <p class="text-sm text-gray-500 mt-2">Paket langganan tidak ada karena anda belum pernah melakukan order.</p>
+                                <p class="text-sm text-gray-500 mt-2">Paket langganan tidak ada karena anda belum pernah melakukan order atau pembayaran belum success.</p>
                                 <div class="mt-6">
                                     <a href="/packets" class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-colors">
                                         Pesan Sekarang

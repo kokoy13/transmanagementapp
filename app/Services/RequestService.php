@@ -20,7 +20,7 @@ class RequestService
     public function getSuccessfulPaymentsForUser($userId)
     {
         return Payment::whereHas('order', function ($query) use ($userId) {
-            $query->where('user_id', $userId)->where('status', 'success');
+            $query->where('user_id', $userId)->where('status', 'completed');
         })->where('payment_status', 'success')->get();
     }
 
@@ -31,7 +31,7 @@ class RequestService
             ->where('payment_status', 'success')
             ->whereHas('order', function ($query) use ($userId) {
                 $query->where('user_id', $userId)
-                    ->where('status', 'success')
+                    ->where('status', 'completed')
                     ->whereHas('packet', function ($q) {
                         $q->where('name', '!=', 'Family');
                     });

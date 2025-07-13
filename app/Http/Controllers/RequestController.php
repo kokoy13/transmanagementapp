@@ -45,7 +45,6 @@ class RequestController extends Controller
     {
         $packets = $this->requestService->getPackets();
         $payments = $this->requestService->getEventEligiblePaymentsForUser(Auth::id());
-
         return view('front.request-event', compact('payments', 'packets'));
     }
 
